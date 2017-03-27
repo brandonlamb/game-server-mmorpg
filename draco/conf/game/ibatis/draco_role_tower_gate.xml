@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="RoleTowerGate" >
+  <insert id="insert" parameterClass="com.game.draco.app.tower.domain.RoleTowerGate" >
+    insert into draco_role_tower_gate
+    (roleId, gateId, star, starAwardState, resetStatus)
+    values (#roleId#, #gateId#, #star#, #starAwardState#, #resetStatus#)
+  </insert>
+  
+  <select id="selectListOne" resultClass="com.game.draco.app.tower.domain.RoleTowerGate" parameterClass="java.util.Map">
+  	select * from draco_role_tower_gate where $key$ = #value#
+  </select>
+  
+   <update id="update" parameterClass="com.game.draco.app.tower.domain.RoleTowerGate" >
+    update draco_role_tower_gate
+    set
+       star=#star#,
+       starAwardState=#starAwardState#,
+       resetStatus=#resetStatus#
+  	where roleId= #roleId# and gateId= #gateId#
+  </update>
+ </sqlMap>

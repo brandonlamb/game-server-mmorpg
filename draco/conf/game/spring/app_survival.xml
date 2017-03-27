@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="survivalApp" class="com.game.draco.app.survival.SurvivalAppImpl">
+	</bean>
+	<bean id="survivalBattleApp" class="com.game.draco.app.survival.SurvivalBattleAppImpl">
+		<property name="survivalCache" ref="survivalCache"></property>
+	</bean>
+</beans>

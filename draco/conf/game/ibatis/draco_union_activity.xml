@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="UnionActivity" >
+    <typeAlias alias="unionActivity" type="com.game.draco.app.union.domain.UnionActivity"/>
+  	
+  	<select id="selectAll" resultClass="unionActivity">
+  		select * from draco_union_activity
+  	</select>
+  	
+ 	<select id="selectListOne" parameterClass="java.util.Map" resultClass="unionActivity">
+    	select * from draco_union_activity where $key$ = #value#
+ 	</select>
+ 	
+ 	<insert id="insert" parameterClass="unionActivity" >
+	    insert into draco_union_activity(unionId,activityId,num,state)values (#unionId#,#activityId#,#num#,#state#)
+  	</insert>
+  	
+   <delete id="deleteOne" parameterClass="java.util.Map" >
+   <![CDATA[delete from draco_union_activity where $key$ < #value#]]>
+  </delete>
+  
+   <update id="update" parameterClass="unionActivity" >
+    update draco_union_activity
+			set state = #state# ,num=#num# 
+	where unionId = #unionId# and activityId = #activityId#
+	</update>
+	
+   
+</sqlMap>

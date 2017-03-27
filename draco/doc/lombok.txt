@@ -1,0 +1,8 @@
+1.将lib/tools/lombok.jar copy到eclipse的安装目录。 
+2.修改eclipse.ini文件，加入如下 代码 
+
+-Xbootclasspath/a:lombok.jar
+-javaagent:lombok.jar
+
+3.将lib/tools/lombok.jar加入项目classpath
+4.重启eclipse

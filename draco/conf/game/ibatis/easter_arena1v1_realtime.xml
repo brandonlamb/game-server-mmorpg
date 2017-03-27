@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="Arena1V1RealTime" >
+
+  <typeAlias alias="arena1V1RealTime" type="sacred.alliance.magic.app.arena.domain.Arena1V1RealTime"/>
+ 
+ 	<select id="selectAll" resultClass="arena1V1RealTime">
+    	select 
+    	r.roleId,
+    	r.rolename as roleName,
+    	r.level as roleLevel,
+    	r.battleScore,
+    	r.campId,
+    	c.cycle1v1Score as score
+    	from easter_role r,easter_role_arena c
+    	where c.cycle1v1Score > 0 
+		and to_days(c.cycleDate) = to_days(now())
+		and r.roleId = c.roleId 
+		order by c.cycle1v1Score desc 
+ 	</select>
+ 	
+ 	
+</sqlMap>

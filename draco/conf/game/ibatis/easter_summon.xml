@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="SummonDbInfo" >
+	 <typeAlias alias="summonDbInfo" type="sacred.alliance.magic.domain.SummonDbInfo"/>
+   <insert id="insert" parameterClass="summonDbInfo" >
+    insert into easter_summon 
+    (id, targetId, times, lastExTime, expiredTime, type)
+    values 
+    (#id#, #targetId#, #times#, #lastExTime#, #expiredTime#, #type#)
+  </insert>
+  
+  <select id="selectListOne" resultClass="summonDbInfo" parameterClass="java.util.Map">
+  	select * from easter_summon where $key$ = #value#
+  </select>
+  
+  <update id="update" parameterClass="summonDbInfo" >
+    update easter_summon
+    set
+		times=#times#,
+		lastExTime=#lastExTime#,
+		expiredTime=#expiredTime#
+  	where id= #id# and targetId=#targetId#
+  </update>
+  
+  <delete id="deleteTwo" parameterClass="java.util.Map" >
+    delete from easter_summon
+    where $key1$ = #value1# and $key2$ = #value2#
+  </delete>
+</sqlMap> 

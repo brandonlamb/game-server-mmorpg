@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans> 
+	<bean id="serverHolder" class="sacred.alliance.magic.core.server.ServerHolder">
+	
+		<property name="initServiceMap">
+			<map>
+			    <!-- executorRouter不能用spring自启动，因为里面用到了springcontext -->
+				<entry key="executorRouter"><ref bean="executorRouter" /></entry>
+			    <entry key="areaServerClient"><ref bean="areaServerClient" /></entry>
+				<!-- get the serverId -->
+				<entry key="areaServerNotifyApp"><ref bean="areaServerNotifyApp" /></entry>
+				<entry key="i18n"><ref bean="i18n" /></entry>
+				<entry key="idFactory"><ref bean="idFactory" /></entry>
+				<entry key="dataLoader"><ref bean="dataLoaderManager" /></entry>
+				
+				<entry key="buffApp"><ref bean="buffApp" /></entry>
+				<entry key="skillApp"><ref bean="skillApp" /></entry>
+				
+				<entry key="aiApp"><ref bean="aiApp" /></entry>
+				<entry key="npcApp"><ref bean="npcApp" /></entry>
+				<entry key="mapApp"><ref bean="mapApp" /></entry>
+				<!-- 刷怪的都要放到refreshRuleApp后面 -->
+				<entry key="refreshRuleApp"><ref bean="refreshRuleApp" /></entry>
+				
+				<!-- 必须放到buff之后，因为会加载门派神兽的鼓舞buff -->
+				<!-- <entry key="factionApp"><ref bean="factionApp" /></entry> -->
+				<entry key="userMapApp"><ref bean="userMapApp" /></entry>
+				<entry key="goodsApp"><ref bean="goodsApp" /></entry>
+				<!-- 放在物品,地图后面 -->
+				<entry key="roleBornApp"><ref bean="roleBornApp" /></entry>
+				<!-- 加载任务必须放到物品和地图之后 -->
+				<entry key="questApp"><ref bean="questApp" /></entry>
+				
+				<entry key="medalApp"><ref bean="medalApp" /></entry>
+				
+				<!-- roleRebornApp必须放到 mapApp后边加裁-->
+				<entry key="roleRebornApp"><ref bean="roleRebornApp" /></entry>
+				
+				<!-- 因为活动中用到了宝箱，所有宝箱app必须在活动前加载 -->
+				<entry key="chestApp"><ref bean="chestApp"/></entry>
+				
+				<!-- 活动App,所有具体的活动需要在activeApp之后加载 -->
+				<entry key="activeApp"><ref bean="activeApp"/></entry>
+				<!-- NPC传送，需要在活动（activeApp）之后加载 -->
+				<entry key="npcTransferApp"><ref bean="npcTransferApp" /></entry>
+				<entry key="rateApp"><ref bean="rateApp" /></entry>
+				<!-- 加载任务必须放到物品之后 -->
+				<entry key="fallApp"><ref bean="fallApp" /></entry>
+				<entry key="auctionApp"><ref bean="auctionApp" /></entry>
+				<entry key="npcFunctionApp"><ref bean="npcFunctionApp" /></entry>
+				<entry key="npcStoreApp"><ref bean="npcStoreApp" /></entry>
+				
+				<entry key="attriApp"><ref bean="attriApp"/></entry>
+				<entry key="shopApp"><ref bean="shopApp"/></entry>
+				<entry key="shopTimeApp"><ref bean="shopTimeApp"/></entry>
+				<!-- 必须在shop后，需要取价格 -->
+				<entry key="goodsContainerApp"><ref bean="goodsContainerApp"/></entry>
+				<entry key="chatApp"><ref bean="chatApp"/></entry>
+				
+				<!-- exchangeApp必须放到 goodsApp后边加裁-->
+				<entry key="exchangeApp"><ref bean="exchangeApp"/></entry>
+				<entry key="treasureApp"><ref bean="treasureApp"/></entry>
+				<!-- 暂时不加载 <entry key="rankApp"><ref bean="rankApp"/></entry> -->
+				<entry key="countApp"><ref bean="countApp"/></entry>
+				<entry key="discountApp"><ref bean="discountApp"/></entry>
+				<entry key="announceApp"><ref bean="announceApp"/></entry>
+
+				<!--
+				<entry key="activeRankApp"><ref bean="activeRankApp"/></entry>
+				-->
+				<entry key="levelGiftApp"><ref bean="levelGiftApp"/></entry>
+				<entry key="activeDpsApp"><ref bean="activeDpsApp"/></entry>
+		
+				<!-- new vip system -->
+				<entry key="vipApp"><ref bean="vipApp"/></entry>
+			
+				<!-- 怪物攻城，必须放到活动Application之后 -->
+				<entry key="activeSiegeApp"><ref bean="activeSiegeApp"/></entry>
+				<entry key="npcRefreshApp"><ref bean="npcRefreshApp" /></entry>
+				<entry key="copyLogicApp"><ref bean="copyLogicApp" /></entry>
+				<entry key="copyTeamApp"><ref bean="copyTeamApp" /></entry>
+				<!--暂时不用 <entry key="copyLineApp"><ref bean="copyLineApp" /></entry> -->
+				
+				<!--暂时不用 <entry key="nostrumApp"><ref bean="nostrumApp" /></entry> -->
+				
+				<!--暂时不用 <entry key="factionWarApp"><ref bean="factionWarApp"/></entry> -->
+				
+				<!-- <entry key="carnivalApp"><ref bean="carnivalApp" /></entry> -->
+				
+				<entry key="menuApp"><ref bean="menuApp" /></entry>
+				
+				<entry key="questPokerApp"><ref bean="questPokerApp"/></entry>
+				<entry key="compassApp"><ref bean="compassApp"/></entry>
+				<entry key="socialApp"><ref bean="socialApp"/></entry>
+				
+				<entry key="summonApp"><ref bean="summonApp" /></entry>
+				
+				<entry key="npcInspireApp"><ref bean="npcInspireApp" /></entry>
+				<entry key="giftCodeApp"><ref bean="giftCodeApp" /></entry>
+				<!--暂时不用 <entry key="signApp"><ref bean="signApp" /></entry>  -->
+				<entry key="shopSecretApp"><ref bean="shopSecretApp" /></entry>
+				<entry key="angelChestApp"><ref bean="angelChestApp" /></entry>
+				<entry key="broadcastApp"><ref bean="broadcastApp" /></entry>
+				
+				<!-- 任务模块的支持，必须放到任务相关的Application之后 -->
+				<entry key="questServiceApp"><ref bean="questServiceApp"/></entry>
+				<entry key="arenaApp"><ref bean="arenaApp"/></entry>
+				<entry key="arena1V1App"><ref bean="arena1V1App"/></entry>
+				<entry key="arena3V3App"><ref bean="arena3V3App"/></entry>
+				<entry key="worldMapApp"><ref bean="worldMapApp"/></entry>
+				<entry key="recoupApp"><ref bean="recoupApp"/></entry>
+				<entry key="schedulerApp"><ref bean="schedulerApp" /></entry>
+				
+				<entry key="inviteApp"><ref bean="inviteApp" /></entry>
+				<!--暂时不用 <entry key="arenaTopApp"><ref bean="arenaTopApp" /></entry> -->
+				
+				<entry key="recallApp"><ref bean="recallApp"/></entry>
+				
+				<entry key="pkApp"><ref bean="pkApp" /></entry>
+				<entry key="campBalanceApp"><ref bean="campBalanceApp" /></entry>
+				<entry key="doorDogApp"><ref bean="doorDogApp" /></entry>
+				<entry key="dramaApp"><ref bean="dramaApp" /></entry>
+				
+				<!-- 宠物 -->
+				<entry key="petApp"><ref bean="petApp" /></entry>
+				<!-- 大富翁（暂时不用） -->
+				<!-- <entry key="richManApp"><ref bean="richManApp" /></entry> -->
+				<!-- 目标 -->
+				<entry key="targetApp"><ref bean="targetApp" /></entry>
+				
+				<!-- 坐骑  -->
+				<entry key="horseApp"><ref bean="horseApp" /></entry>
+				<!-- 天赋 -->
+				<entry key="talentApp"><ref bean="talentApp" /></entry>
+				<!-- 抽卡 -->
+				<entry key="choiceCardApp"><ref bean="choiceCardApp" /></entry>
+				
+				<entry key="heroApp"><ref bean="heroApp" /></entry>
+				<entry key="heroArenaApp"><ref bean="heroArenaApp" /></entry>
+				
+				<!-- 炼金 --> 
+				<entry key="alchemyApp"><ref bean="alchemyApp" /></entry>
+				<!-- 幸运宝箱 -->
+				<entry key="luckyBoxApp"><ref bean="luckyBoxApp" /></entry>
+				<!-- 异步竞技场 -->
+				<entry key="asyncArenaApp"><ref bean="asyncArenaApp" /></entry>
+				<!-- 公会 -->
+				<entry key="unionDataApp"><ref bean="unionDataApp" /></entry>
+				<!-- 生存战场 -->
+				<entry key="survivalApp"><ref bean="survivalApp" /></entry>
+				<!-- 公会积分战 -->
+				<entry key="unionIntegralBattleDataApp"><ref bean="unionIntegralBattleDataApp" /></entry>
+				<!-- 阵营战 -->
+				<entry key="campWarApp"><ref bean="campWarApp" /></entry>
+				<!-- 排行榜 -->
+				<entry key="rankApp"><ref bean="rankApp" /></entry>
+				<!-- 关闭服务器 -->
+				<entry key="shutDownApp"><ref bean="shutDownApp" /></entry>
+				<!-- 连续登陆 -->
+				<entry key="accumulateLoginApp"><ref bean="accumulateLoginApp" /></entry>
+				<!-- 颜色 --> 
+				<entry key="insLogicApp"><ref bean="insLogicApp" /></entry>
+				<!-- 装备 -->
+				<entry key="equipApp"><ref bean="equipApp" /></entry>
+				<!-- 符文 -->
+				<entry key="runeApp"><ref bean="runeApp" /></entry>
+				
+				<entry key="dailyPlayApp"><ref bean="dailyPlayApp" /></entry>
+				<entry key="forwardApp"><ref bean="forwardApp" /></entry>
+				<!-- 红点提示 -->
+				<entry key="hintApp"><ref bean="hintApp" /></entry>
+				<!-- 运营活动 -->
+				<entry key="operateActiveApp"><ref bean="operateActiveApp" /></entry>
+				<entry key="monthCardApp"><ref bean="monthCardApp" /></entry>
+				<entry key="firstPayApp"><ref bean="firstPayApp" /></entry>
+				<entry key="growFundApp"><ref bean="growFundApp" /></entry>
+				<entry key="payExtraApp"><ref bean="payExtraApp" /></entry>
+				<entry key="donateApp"><ref bean="donateApp" /></entry>
+				<entry key="simpleApp"><ref bean="simpleApp" /></entry>
+				<!-- 哥布林活动 -->
+				<entry key="goblinApp"><ref bean="goblinApp" /></entry>
+				<entry key="hitComboApp"><ref bean="hitComboApp" /></entry>
+				<!-- 世界等级 -->
+				<entry key="worldLevelApp"><ref bean="worldLevelApp" /></entry>
+				<!-- userRole -->
+				<entry key="userRoleApp"><ref bean="userRoleApp" /></entry>
+				<entry key="onlineCenter"><ref bean="onlineCenter" /></entry>
+				<entry key="print"><ref bean="print" /></entry>
+				<entry key="enhanceOptionApp"><ref bean="enhanceOptionApp" /></entry>
+				<entry key="userAttributeApp"><ref bean="userAttributeApp" /></entry>
+				<entry key="qualifyApp"><ref bean="qualifyApp" /></entry>
+				<entry key="specialLogicApp"><ref bean="specialLogicApp" /></entry>
+				<!-- 组队 -->
+				<entry key="teamApp"><ref bean="teamApp" /></entry>
+				<entry key="unionBattleApp"><ref bean="unionBattleApp" /></entry>
+				<!-- 一键恢复 -->
+				<entry key="recoveryApp"><ref bean="recoveryApp" /></entry>
+                <entry key="towerApp"><ref bean="towerApp" /></entry>
+				
+				<!-- 昆仑DC日志 -->
+				<entry key="logApp"><ref bean="logApp" /></entry>
+				<!-- 自检必须放到最后，如果自检失败服务器将shutdown -->
+				<entry key="check"><ref bean="check" /></entry>
+				
+			</map>
+		</property>
+		
+		<property name="serverMap">
+			<map>
+				<entry key="minaServer"><ref bean="minaServer" /></entry>
+				<entry key="minaHttpServer"><ref bean="minaHttpServer" /></entry>
+			</map>
+		</property>
+		
+		<property name="startedServiceMap">
+			<map>
+				<!-- 
+				socket 网关已经不存在
+				<entry key="gateWayNotify"><ref bean="gateWayNotify" /></entry>
+				 -->
+			  	<!-- start the notify thread -->
+				<entry key="areaServerNotify"><ref bean="areaServerNotifyApp" /></entry>
+			</map>
+		</property>
+	</bean>
+	
+</beans>
+				

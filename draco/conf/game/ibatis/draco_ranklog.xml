@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="Rank" >
+  <!-- select role from db-->
+	<select id="selectRole" resultClass="sacred.alliance.magic.vo.RoleInstance" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role where $key$ = #value#;
+  </select>
+  <!-- 1 score -->
+  <select id="selectScoreAllRole" resultClass="sacred.alliance.magic.vo.RoleInstance" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role 
+  	ORDER BY battleScore DESC, LEVEL DESC, EXP DESC, UNIX_TIMESTAMP(createtime) 
+  	LIMIT #value2#;
+  </select>
+  <select id="selectScoreCampRole" resultClass="sacred.alliance.magic.vo.RoleInstance" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role 
+  	where $key1$ = #value1# 
+  	ORDER BY battleScore DESC, LEVEL DESC, EXP DESC, UNIX_TIMESTAMP(createtime) 
+  	LIMIT #value2#;
+  </select>
+  
+  <!-- 2 level -->
+  <select id="selectLevelAllRole" resultClass="sacred.alliance.magic.vo.RoleInstance" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role 
+  	ORDER BY LEVEL DESC, EXP DESC, UNIX_TIMESTAMP(createtime) 
+  	LIMIT #value2#;
+  </select> 
+  <select id="selectLevelCampRole" resultClass="sacred.alliance.magic.vo.RoleInstance" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role 
+  	where $key1$ = #value1#  
+  	ORDER BY LEVEL DESC, EXP DESC, UNIX_TIMESTAMP(createtime) 
+  	LIMIT #value2#;
+  </select>
+
+  <!-- 3 hero selectHeroAllRole-->
+  <select id="selectHeroAllRole" resultClass="com.game.draco.app.hero.domain.RoleHero" parameterClass="java.util.Map">
+  	SELECT * FROM draco_role_hero
+  		ORDER BY score DESC,level DESC, exp DESC
+  		LIMIT #value2#;
+  </select> 
+  <select id="selectHeroCampRole" resultClass="com.game.draco.app.hero.domain.RoleHero" parameterClass="java.util.Map">
+       SELECT a.* FROM draco_role_hero a, easter_role b
+	   WHERE a.roleid= b.roleid
+	   AND b.campId = #value1#
+  		ORDER BY score DESC,LEVEL DESC, EXP DESC
+  		LIMIT #value2#;
+  </select>
+  
+  <!-- 4 equip 一般角色等级越高的  装备越好 -->
+  <select id="selectEquipAllRole" resultClass="sacred.alliance.magic.vo.RoleInstance" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role 
+  	ORDER BY level DESC, exp DESC 
+  	LIMIT #value2#;
+  </select>
+  
+  <select id="selectEquipCampRole" resultClass="sacred.alliance.magic.vo.RoleInstance" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role 
+  	where $key1$ = #value1# 
+  	ORDER BY level DESC, exp DESC 
+  	LIMIT #value2#;
+  </select>
+  
+  <!-- 5 horse selectHorseAllRole -->
+  <select id="selectHorseAllRole" resultClass="com.game.draco.app.horse.domain.RoleHorse" parameterClass="java.util.Map">
+	SELECT * FROM draco_role_horse 
+    	ORDER BY battleScore DESC,quality DESC,star DESC 
+  		LIMIT #value2#;
+  </select> 
+  <select id="selectHorseCampRole" resultClass="com.game.draco.app.horse.domain.RoleHorse" parameterClass="java.util.Map">
+	 SELECT a.* FROM draco_role_horse  a,easter_role b
+	 WHERE a.roleid= b.roleid
+	 AND  b.campId = #value1#  
+     ORDER BY a.battleScore DESC,a.quality DESC,a.star DESC
+     LIMIT #value2#; 
+  </select> 
+  
+  <!-- 6 godess 初始化暂不考虑角色创建时间  -->
+  <select id="selectPetAllRole" resultClass="com.game.draco.app.pet.domain.RolePet" parameterClass="java.util.Map">
+    SELECT * FROM draco_role_pet 
+    	ORDER BY score DESC,star DESC,level DESC 
+  		LIMIT #value2#;
+  </select>
+  <select id="selectPetCampRole" resultClass="com.game.draco.app.pet.domain.RolePet" parameterClass="java.util.Map">
+        	
+    	SELECT a.* FROM draco_role_pet a, easter_role b
+    	WHERE a.masterId= b.roleId
+	    AND b.campId =  #value1#
+    	ORDER BY a.score DESC,a.star DESC,a.level DESC 
+  		LIMIT #value2#;
+  </select>  
+  
+  <!-- 8 异步竞技场 -->
+  <select id="selectAllAsyncArena" resultClass="com.game.draco.app.asyncarena.domain.AsyncArenaRole" parameterClass="java.util.Map">
+  	SELECT * FROM draco_role_async_arena WHERE historyHonor != 0 ORDER BY historyHonor DESC  LIMIT #value2#;
+  </select>
+  
+  <!-- 9 大富翁 -->
+  <select id="selectAllRichMan" resultClass="com.game.draco.app.richman.domain.RoleRichMan" parameterClass="java.util.Map">
+  	SELECT * FROM draco_role_richman 
+  	ORDER BY todayCoupon DESC,totalCoupon DESC
+  	LIMIT #value2#;
+  </select>
+  
+    
+  
+  <select id="selectGameMoneyAllRole" resultClass="sacred.alliance.magic.vo.RoleInstance" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role ORDER BY silverMoney DESC, level DESC LIMIT #value2#;
+  </select>
+  
+   <select id="selectGameMoneyCareerRole" resultClass="sacred.alliance.magic.vo.RoleInstance" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role where $key1$ = #value1# ORDER BY silverMoney DESC, level DESC LIMIT #value2#;
+  </select>
+   <select id="selectHonorAllRole" resultClass="sacred.alliance.magic.vo.RoleInstance" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role ORDER BY honor DESC, level DESC LIMIT #value2#;
+   </select>
+  
+   <select id="selectHonorCareerRole" resultClass="sacred.alliance.magic.vo.RoleInstance" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role where $key1$ = #value1# ORDER BY honor DESC, level DESC LIMIT #value2#;
+   </select>
+  
+   <select id="selectRechargeAllRole" resultClass="sacred.alliance.magic.vo.RoleInstance" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role ORDER BY rolePayGold DESC, level DESC LIMIT #value2#;
+  </select>
+  
+  <select id="selectRechargeCareerRole" resultClass="sacred.alliance.magic.vo.RoleInstance" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role where $key1$ = #value1# ORDER BY rolePayGold DESC, level DESC LIMIT #value2#;
+  </select>
+  
+  <select id="selectConsumeAllRole" resultClass="sacred.alliance.magic.vo.RoleInstance" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role ORDER BY roleConsumeGold DESC, level DESC LIMIT #value2#;
+  </select>
+  
+  <select id="selectConsumeCareerRole" resultClass="sacred.alliance.magic.vo.RoleInstance" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role where $key1$ = #value1# ORDER BY roleConsumeGold DESC, level DESC LIMIT #value2#;
+  </select>
+  
+  <!--select rankEquip equips from db -->
+  <select id="selectEquip" resultClass="sacred.alliance.magic.domain.RoleGoods" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role_goods where $key$ = #value# and (storageType=5 or storageType=1);
+  </select>
+  
+   <select id="selectAllArena" resultClass="sacred.alliance.magic.domain.RoleArena" parameterClass="java.util.Map">
+  	SELECT * FROM draco_role_async_arena where topScore>0 and (topDate is not null) and 7>=(TO_DAYS(now()) - TO_DAYS(topDate)) ORDER BY topDate DESC, topScore DESC LIMIT #value#;
+  </select>
+  
+  <!--  
+  <select id="selectAllMount" resultClass="sacred.alliance.magic.domain.RoleMount" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role_mount ORDER BY battleScore DESC, mountLevel DESC LIMIT #value#;
+  </select>
+  -->
+  
+  <!-- select rankArena1v1 equips from db-->
+  <select id="selectAllArena1V1" resultClass="com.game.draco.app.rank.domain.RankLogArenaDB" parameterClass="java.util.Map">
+  	SELECT A.roleId,
+        A.win1v1,
+				A.fail1v1,
+				A.weekWin1v1,
+				A.weekFail1v1,
+				A.winnvn,
+				A.failnvn,
+				A.weekWinnvn,
+				A.weekFailnvn,
+				A.win1vn,
+				A.join1v1,
+				A.joinnvn,
+				A.weekJoin1v1,
+				A.weekJoinnvn,
+				easter_role.career 
+  	FROM easter_role_arena as A LEFT JOIN easter_role ON A.roleId=easter_role.roleid 
+  	where A.$key2$ >= #value2#
+  	 and (A.weekWin1v1 + A.weekFail1v1)>=20 
+  	 ORDER BY (A.weekWin1v1 / (A.weekWin1v1 + A.weekFail1v1)) DESC LIMIT #value3#;
+  </select>
+  
+  <select id="selectCareerArena1V1" resultClass="com.game.draco.app.rank.domain.RankLogArenaDB" parameterClass="java.util.Map">
+  	SELECT A.roleId,
+        A.win1v1,
+				A.fail1v1,
+				A.weekWin1v1,
+				A.weekFail1v1,
+				A.winnvn,
+				A.failnvn,
+				A.weekWinnvn,
+				A.weekFailnvn,
+				A.win1vn,
+				A.join1v1,
+				A.joinnvn,
+				A.weekJoin1v1,
+				A.weekJoinnvn,
+				easter_role.career  
+		FROM easter_role_arena as A LEFT JOIN easter_role ON A.roleId=easter_role.roleid 
+		where easter_role.$key1$ = #value1# and A.$key2$ >= #value2# and (A.weekWin1v1 + A.weekFail1v1)>=20 
+		ORDER BY (A.weekWin1v1 / (A.weekWin1v1 + A.weekFail1v1)) DESC LIMIT #value3#;
+  </select>
+  
+  <!-- select rankArena1vn from db -->
+  <select id="selectAllArena1VN" resultClass="com.game.draco.app.rank.domain.RankLogArenaDB" parameterClass="java.util.Map">
+  	SELECT A.roleId,
+        A.win1v1,
+				A.fail1v1,
+				A.weekWin1v1,
+				A.weekFail1v1,
+				A.winnvn,
+				A.failnvn,
+				A.weekWinnvn,
+				A.weekFailnvn,
+				A.win1vn,
+				A.join1v1,
+				A.joinnvn,
+				A.weekJoin1v1,
+				A.weekJoinnvn,
+				easter_role.career 
+  	FROM easter_role_arena as A LEFT JOIN easter_role ON A.roleId=easter_role.roleid 
+  	where A.win1vn>=1 ORDER BY A.win1vn DESC LIMIT #value2#;
+  </select>
+  
+  <select id="selectCareerArena1VN" resultClass="com.game.draco.app.rank.domain.RankLogArenaDB" parameterClass="java.util.Map">
+  	SELECT A.roleId,
+        A.win1v1,
+				A.fail1v1,
+				A.weekWin1v1,
+				A.weekFail1v1,
+				A.winnvn,
+				A.failnvn,
+				A.weekWinnvn,
+				A.weekFailnvn,
+				A.win1vn,
+				A.join1v1,
+				A.joinnvn,
+				A.weekJoin1v1,
+				A.weekJoinnvn,
+				easter_role.career 
+  	FROM easter_role_arena as A LEFT JOIN easter_role ON A.roleId=easter_role.roleid
+  	where easter_role.$key1$ = #value1# and A.win1vn>=1 ORDER BY A.win1vn DESC LIMIT #value2#;
+  </select>
+  
+  
+
+  <select id="selectTypeTaobao" resultClass="sacred.alliance.magic.domain.RoleCount" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role_count 
+  	where $value1$>0 and to_days(dayTime) = to_days(now())
+  	ORDER BY $value1$ DESC LIMIT #value2#;
+  </select>
+  
+
+  <!--select all rankDbInfo from db -->
+  <select id="selectAllRankDbInfo" resultClass="com.game.draco.app.rank.domain.RankDbInfo" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role_rank where $key$ = #value#;
+  </select>
+  
+  
+  <!-- rank gainFlower -->
+  <select id="selectAllFlower" resultClass="com.game.draco.app.rank.domain.RankLogCountDB" parameterClass="java.util.Map">
+  	SELECT A.roleId,
+  			A.flowerNum, 
+  			easter_role.sex 
+  	FROM easter_role_count as A LEFT JOIN easter_role ON A.roleId=easter_role.roleid 
+  	where A.flowerNum>0 
+  	ORDER BY A.flowerNum DESC LIMIT #value2#;
+  </select>
+  
+   <select id="selectTypeFlower" resultClass="com.game.draco.app.rank.domain.RankLogCountDB" parameterClass="java.util.Map">
+  		SELECT A.roleId,
+  			A.flowerNum, 
+  			easter_role.sex 
+  	FROM easter_role_count as A LEFT JOIN easter_role ON A.roleId=easter_role.roleid 
+  	where A.flowerNum>0 and easter_role.sex=#value1# 
+  	ORDER BY A.flowerNum DESC LIMIT #value2#;
+  </select>
+  
+  <select id="selectTodayAllFlower" resultClass="com.game.draco.app.rank.domain.RankLogCountDB" parameterClass="java.util.Map">
+  	SELECT A.roleId,
+  			A.todayFlowerNum, 
+  			easter_role.sex 
+  	FROM easter_role_count as A LEFT JOIN easter_role ON A.roleId=easter_role.roleid 
+  	where A.todayFlowerNum>0 and to_days(A.dayTime) = to_days(now())
+  	ORDER BY A.todayFlowerNum DESC LIMIT #value2#;
+  </select>
+  
+   <select id="selectTodayTypeFlower" resultClass="com.game.draco.app.rank.domain.RankLogCountDB" parameterClass="java.util.Map">
+  		SELECT A.roleId,
+  			A.todayFlowerNum, 
+  			easter_role.sex 
+  	FROM easter_role_count as A LEFT JOIN easter_role ON A.roleId=easter_role.roleid 
+  	where A.todayFlowerNum>0 and easter_role.sex=#value1# and to_days(A.dayTime) = to_days(now())
+  	ORDER BY A.todayFlowerNum DESC LIMIT #value2#;
+  </select>
+  
+  <select id="selectTodayAllKill" resultClass="com.game.draco.app.rank.domain.RankLogCountDB" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role_count 
+  	where todayKillCount>0 and to_days(dayTime) = to_days(now())
+  	ORDER BY todayKillCount DESC LIMIT #value2#;
+  </select>
+  
+   <select id="selectTodayTypeKill" resultClass="com.game.draco.app.rank.domain.RankLogCountDB" parameterClass="java.util.Map">
+  		SELECT A.roleId,
+  			A.todayKillCount 
+  	FROM easter_role_count as A LEFT JOIN easter_role ON A.roleId=easter_role.roleid 
+  	where A.todayKillCount>0 and easter_role.campId=#value1# and to_days(A.dayTime) = to_days(now())
+  	ORDER BY A.todayKillCount DESC LIMIT #value2#;
+  </select>
+  
+  
+   <select id="selectRankIdRoleDonate" resultClass="com.game.draco.app.operate.donate.domain.RoleDonate" parameterClass="java.util.Map">
+  	SELECT * FROM draco_donate_role where rankId=#value1# ORDER BY curCount DESC LIMIT #value2#;
+  </select>
+  
+ <select id="selectAllArena3V3" resultClass="sacred.alliance.magic.domain.RoleArena" parameterClass="java.util.Map">
+  	SELECT * FROM easter_role_arena where 
+  	arenaLevel3v3>0 and (cycleDate is not null) and 7>=(TO_DAYS(now()) - TO_DAYS(cycleDate)) 
+  	and WEEKOFYEAR(cycleDate)=WEEKOFYEAR(now()) 
+  	ORDER BY arenaLevel3v3 DESC, cycleWin3v3 DESC LIMIT #value#;
+  </select>
+  
+ <select id="selectAllTowerGate" resultClass="com.game.draco.app.tower.domain.RoleTowerGate" parameterClass="java.util.Map">
+  	SELECT draco_role_tower_gate.* FROM (SELECT roleId,  MAX(gateId) gateId FROM draco_role_tower_gate GROUP BY roleId ) t
+     LEFT JOIN draco_role_tower_gate ON t.roleId = draco_role_tower_gate.roleId AND t.gateId = draco_role_tower_gate.gateId
+     order by gateId desc,star desc LIMIT #value#;
+  </select>
+ </sqlMap>

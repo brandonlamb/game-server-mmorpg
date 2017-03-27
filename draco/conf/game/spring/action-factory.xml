@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="actionFactory" class="sacred.alliance.magic.core.action.AutoLoadActionFactory"  init-method="init">
+		<property name="pkgList">
+			<list>
+				<value>sacred.alliance.magic.action</value>
+				<value>sacred.alliance.magic.app.attri.action</value>
+				<value>com.game.draco.action.internal</value>
+				<value>com.game.draco.app.hero.action</value>
+				<value>com.game.draco.app.hero.arena.action</value>
+				<value>com.game.draco.app.copy.action</value>
+				<value>com.game.draco.app.copy.team.action</value>
+				<value>com.game.draco.app.copy.line.action</value>
+				<value>com.game.draco.app.nostrum.action</value>
+				<value>com.game.draco.app.drama.action</value>
+				<value>com.game.draco.app.skill.action</value>
+				<value>com.game.draco.app.giftcode.action</value>
+				<value>com.game.draco.app.sign.action</value>
+				<value>com.game.draco.app.levelgift.action</value>
+				<value>com.game.draco.app.medal.action</value>
+				<value>com.game.draco.app.horse.action</value>
+				<value>com.game.draco.app.alchemy.action</value>
+				<value>com.game.draco.app.luckybox.action</value>
+				<value>com.game.draco.app.vip.action</value>
+				<value>com.game.draco.app.rank.action</value>
+				<value>com.game.draco.app.quest.action</value>
+				<value>com.game.draco.app.quest.poker.action</value>
+				<value>com.game.draco.app.asyncarena.action</value>
+				<!-- <value>com.game.draco.app.richman.action</value> -->
+				<value>com.game.draco.app.exchange.action</value>
+				<value>com.game.draco.app.compass.action</value>
+				<value>com.game.draco.app.store.action</value>
+				<value>com.game.draco.app.mail.action</value>
+				<value>com.game.draco.app.npc.action</value>
+				<value>com.game.draco.app.shop.action</value>
+				<value>com.game.draco.app.union.action</value>
+				<value>com.game.draco.app.union.battle.action</value>
+				<value>com.game.draco.app.camp.balance.action</value>
+				<value>com.game.draco.app.target.action</value>
+				<value>com.game.draco.app.camp.war.action</value>
+				<value>com.game.draco.app.title.action</value>
+				<value>com.game.draco.app.chat.action</value>
+				<value>com.game.draco.app.social.action</value>
+				<value>com.game.draco.app.role.systemset.action</value>
+				<value>com.game.draco.app.accumulatelogin.action</value>
+				<value>com.game.draco.app.pet.action</value>
+				<value>com.game.draco.app.shopsecret.action</value>
+				<value>com.game.draco.app.equip.action</value>
+				<value>com.game.draco.app.choicecard.activity.action</value>
+				<value>com.game.draco.app.choicecard.gamemoney.action</value>
+				<value>com.game.draco.app.choicecard.gem.action</value>
+				<value>com.game.draco.app.rune.action</value>
+				<value>com.game.draco.app.hint.action</value>
+				<value>com.game.draco.app.dailyplay.action</value>
+				<value>com.game.draco.app.forward.action</value>
+				<value>com.game.draco.app.hint.action</value>
+				<value>com.game.draco.app.enhanceoption.action</value>
+				<value>com.game.draco.app.qualify.action</value>
+				<value>com.game.draco.app.operate.action</value>
+				<value>com.game.draco.app.operate.discount.action</value>
+				<value>com.game.draco.app.operate.monthcard.action</value>
+				<value>com.game.draco.app.operate.firstpay.action</value>
+				<value>com.game.draco.app.operate.growfund.action</value>
+				<value>com.game.draco.app.operate.donate.action</value>
+				<value>com.game.draco.app.recovery.action</value>
+				<value>com.game.draco.app.goblin.action</value>
+				<value>sacred.alliance.magic.app.arena.action</value>
+				<value>com.game.draco.app.talent.action</value>
+				<value>com.game.draco.app.survival.action</value>
+				<value>com.game.draco.app.team.action</value>
+				<value>com.game.draco.app.choicecard.preview.action</value>
+				<value>com.game.draco.app.unionbattle.action</value>
+				<value>com.game.draco.app.tower.action</value>
+			</list>
+		</property>
+	</bean>
+	
+</beans>
+

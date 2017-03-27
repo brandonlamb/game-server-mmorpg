@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="RoleArena" >
+      
+  <insert id="insert" parameterClass="sacred.alliance.magic.domain.RoleArena" >
+    insert into easter_role_arena 
+    (roleId,win1v1,fail1v1,cycleWin1v1,cycleFail1v1,join1v1,cycleJoin1v1,cycleDate,cycle1v1Score,topScore,topDate,
+    cycle3v3Score,cycleWin3v3,cycleFail3v3,arenaLevel3v3,lastArenaLevel3v3,cycleWinDark3v3,darkKillNum
+    )
+    values (
+    #roleId#,#win1v1#,#fail1v1#,#cycleWin1v1#,#cycleFail1v1#,#join1v1#,#cycleJoin1v1#,#cycleDate#,#cycle1v1Score#,#topScore#,#topDate#,
+    #cycle3v3Score#,#cycleWin3v3#,#cycleFail3v3#,#arenaLevel3v3#,#lastArenaLevel3v3#,#cycleWinDark3v3#,#darkKillNum#
+    )
+  </insert>
+  
+  <select id="selectObjectOne" resultClass="sacred.alliance.magic.domain.RoleArena" parameterClass="java.util.Map" >
+  	select *   
+    from easter_role_arena
+    where $key$ = #value#
+  </select>
+  
+  <select id="selectListOne" resultClass="sacred.alliance.magic.domain.RoleArena" parameterClass="java.util.Map" >
+  	select *
+    from easter_role_arena
+    where $key$ = #value# 
+  </select>
+  
+  <select id="selectListTwo" resultClass="sacred.alliance.magic.domain.RoleArena" parameterClass="java.util.Map" >
+  	select *
+    from easter_role_arena
+    where $key1$ = #value1# and $key2$ = #value2#
+  </select>
+  
+  <select id="selectListByIterate" resultClass="sacred.alliance.magic.domain.RoleArena" parameterClass="java.util.Map">
+    	select * from easter_role_arena  where topDate >= '$value1$' order by topScore desc,cycle1v1Score desc limit $value2$
+ 	</select>
+  
+  <delete id="deleteOne" parameterClass="java.util.Map" >
+    delete from easter_role_arena
+    where $key$ = #value#
+  </delete>
+  
+  <update id="update" parameterClass="sacred.alliance.magic.domain.RoleArena" >
+    update easter_role_arena
+    set win1v1 = #win1v1#,
+    fail1v1 = #fail1v1# ,
+    cycleWin1v1 = #cycleWin1v1# ,
+    cycleFail1v1 = #cycleFail1v1# ,
+    join1v1 = #join1v1#,
+    cycleJoin1v1 = #cycleJoin1v1#,
+    cycle1v1Score = #cycle1v1Score#,
+    cycleDate = #cycleDate# ,
+    topScore= #topScore#,
+    topDate= #topDate#,
+    cycle3v3Score = #cycle3v3Score#,
+    cycleWin3v3 = #cycleWin3v3#,
+      cycleFail3v3 = #cycleFail3v3#,
+    arenaLevel3v3 = #arenaLevel3v3#,
+    lastArenaLevel3v3 = #lastArenaLevel3v3#,
+    cycleWinDark3v3 = #cycleWinDark3v3#,
+    darkKillNum = #darkKillNum#
+    where roleId =  #roleId#
+  </update>
+</sqlMap>

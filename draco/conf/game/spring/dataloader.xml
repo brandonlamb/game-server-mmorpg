@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	<!--等级属性关系数据-->
+	<bean id="roleLevelupLoader" class="sacred.alliance.magic.data.RoleLevelupLoader"/>
+	
+	<bean id="goodsLoader" class="sacred.alliance.magic.data.GoodsLoader"/>
+
+	<bean id="collectPointLoader" class="sacred.alliance.magic.data.CollectPointLoader"/>
+	
+	<bean id="dataLoaderManager" class="sacred.alliance.magic.data.DefaultDataLoaderManager"
+		depends-on="goodsApp">
+		<property name="loaderMap">
+			<map>
+				<!-- 以下有顺序关系,请谨慎修改 -->
+				
+				<entry key="goodsLoader">
+					<ref bean="goodsLoader" />
+				</entry>
+				
+				<entry key="collectPointLoader">
+					<ref bean="collectPointLoader" />
+				</entry>
+				
+				<entry key="roleLevelupLoader">
+					<ref bean="roleLevelupLoader"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

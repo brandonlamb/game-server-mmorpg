@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+ 
+ 	<bean id="onlineCenter"
+		class="sacred.alliance.magic.app.onlinecenter.OnlineCenterImpl" >
+		<property name="userRoleApp" ref="userRoleApp" />
+		<property name="userBuffApp" ref="userBuffApp" />
+		<property name="userGoodsApp" ref="userGoodsApp" />
+		<property name="heartBeatConfig" ref="heartBeatConfig" />
+		<property name="handler" ref="minaChannelHandler" />
+		<property name="ioBothIdleSecond" value="${acceptor.socket.bothidle.second}" />
+	</bean>
+	
+	<bean id="print"
+		class="sacred.alliance.magic.app.onlinecenter.PrintOnlineInfo" destroy-method="stop">
+		<property name="minaServer" ref="minaServer" />
+		<property name="onlineCenter" ref="onlineCenter" />
+		<property name="interval" value="15000" />
+	</bean>
+ 
+	
+
+	
+</beans>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="hookHolder" class="sacred.alliance.magic.core.server.HookHolder" >
+		<property name="hookList">
+			<list>
+				 <ref local="shutdownHook" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="shutdownHook" class="sacred.alliance.magic.component.ShutdownHook" init-method="init">
+	</bean>
+</beans>

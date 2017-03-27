@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="minaIoHandler"
+		class="sacred.alliance.magic.channel.mina.MinaIoHandlerSupport">
+		<property name="handler" ref="minaChannelHandler" />
+	</bean>
+
+	<bean id="minaChannelHandler"
+		class="sacred.alliance.magic.channel.mina.MinaChannelHandler">
+		<property name="router" ref="executorRouter" />
+	</bean>
+
+	<bean id="minaV2CodecFactory"
+		class="sacred.alliance.magic.codec.impl.bytes.MinaV2CodecFactory">
+		<property name="messageParser" ref="ioBufferMessageParser" />
+		<property name="security" ref="minaSecurity" />
+		<property name="recvMaxPackLength" value="65536" />
+	</bean>
+	
+	<bean id="minaSecurity" class="sacred.alliance.magic.codec.impl.bytes.DefaultMinaV2Security">
+		<property name="messageParser" ref="ioBufferMessageParser" />
+		<property name="maxSecretCommandId" value="4997" />
+	</bean>
+	
+	<bean id="socketAddress" class="java.net.InetSocketAddress">
+		<constructor-arg><value>${acceptor.socket.address}</value></constructor-arg>
+		<constructor-arg>
+			<value>${acceptor.socket.port}</value>
+		</constructor-arg>
+	</bean>
+
+	<bean id="minaServer" destroy-method="stop"
+		class="sacred.alliance.magic.core.server.MinaServer">
+		<property name="handler" ref="minaIoHandler" />
+		<property name="acceptor">
+			<bean
+				class="org.apache.mina.transport.socket.nio.NioSocketAcceptor">
+				<!--  
+				<constructor-arg>
+					<value>${acceptor.socket.processor.count}</value>
+				</constructor-arg>
+				-->
+			</bean>
+		</property>
+		<property name="bothIdleTime" value="${acceptor.socket.bothidle.second}" />
+		<property name="socketAddress" ref="socketAddress" />
+		<property name="filterMap">
+			<map>
+			  
+			 
+			    <!--  
+				<entry key="logger">
+					<bean
+						class="org.apache.mina.filter.logging.LoggingFilter" />
+				</entry>
+				-->
+				<entry key="seekRouteHead">
+					<bean class="sacred.alliance.magic.filter.RouteHeadFilter" />
+				</entry>  
+				<entry key="codec">
+					<bean
+						class="org.apache.mina.filter.codec.ProtocolCodecFilter">
+						<constructor-arg>
+							<ref local="minaV2CodecFactory" />
+						</constructor-arg>
+					</bean>
+				</entry>
+				  
+				<entry key="executor">
+					<bean class="org.apache.mina.filter.executor.ExecutorFilter">
+						<constructor-arg>
+							 <bean class="org.apache.mina.filter.executor.OrderedThreadPoolExecutor">
+									<constructor-arg>
+											<value>2</value>
+									</constructor-arg>
+									<constructor-arg>
+											<value>100</value>
+									</constructor-arg>
+							</bean>
+						</constructor-arg>
+					</bean>
+				</entry>
+				
+				<entry key="messageLogger">
+					<bean
+						class="sacred.alliance.magic.filter.LoggingMessageFilter">
+						<property name="protoBuffer" ref="bytesProtoBuffer" />
+						<property name="filterCommandSet">
+							<set>
+								<value>200</value>
+								<value>-200</value>
+								<value>202</value>
+								<value>-202</value>
+								<value>-211</value>
+								<value>213</value>
+								<value>500</value>
+								<value>-500</value>
+								<value>503</value>
+								<value>-201</value>
+								<value>-240</value>
+								<!--<value>-503</value>
+							--></set>
+						</property>
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	
+	
+</beans>
+

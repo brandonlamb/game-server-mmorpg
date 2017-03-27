@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="RoleQuestDailyFinished" >
+ 	<typeAlias alias="roleQuestDailyFinished" type="com.game.draco.app.quest.domain.RoleQuestDailyFinished"/>
+  
+    <insert id="insert" parameterClass="roleQuestDailyFinished" >
+    insert into draco_role_quest_daily_finished
+    	(roleId, updateTime, 
+    	edata0, edata1, edata2, edata3, edata4, edata5, edata6, edata7, edata8, edata9, 
+    	edata10, edata11, edata12, edata13, edata14, edata15, edata16, edata17, edata18, edata19, 
+    	edata20, edata21, edata22, edata23, edata24, edata25, edata26, edata27, edata28, edata29, 
+    	edata30, edata31, edata32, edata33, edata34, edata35, edata36, edata37, edata38, edata39)
+    values 
+    	(#roleId#, #updateTime#, 
+    	#edata0#, #edata1#, #edata2#, #edata3#, #edata4#, #edata5#, #edata6#, #edata7#, #edata8#, #edata9#, 
+    	#edata10#, #edata11#, #edata12#, #edata13#, #edata14#, #edata15#, #edata16#, #edata17#, #edata18#, #edata19#, 
+    	#edata20#, #edata21#, #edata22#, #edata23#, #edata24#, #edata25#, #edata26#, #edata27#, #edata28#, #edata29#, 
+    	#edata30#, #edata31#, #edata32#, #edata33#, #edata34#, #edata35#, #edata36#, #edata37#, #edata38#, #edata39#)
+  	</insert>
+  
+  	<update id="update" parameterClass="roleQuestDailyFinished" >
+  	 update draco_role_quest_daily_finished 
+  	 set 
+		updateTime = #updateTime#,
+		edata0 = #edata0#,
+		edata1 = #edata1#,
+		edata2 = #edata2#,
+		edata3 = #edata3#,
+		edata4 = #edata4#,
+		edata5 = #edata5#,
+		edata6 = #edata6#,
+		edata7 = #edata7#,
+		edata8 = #edata8#,
+		edata9 = #edata9#,
+		edata10 = #edata10#,
+		edata11 = #edata11#,
+		edata12 = #edata12#,
+		edata13 = #edata13#,
+		edata14 = #edata14#,
+		edata15 = #edata15#,
+		edata16 = #edata16#,
+		edata17 = #edata17#,
+		edata18 = #edata18#,
+		edata19 = #edata19#,
+		edata20 = #edata20#,
+		edata21 = #edata21#,
+		edata22 = #edata22#,
+		edata23 = #edata23#,
+		edata24 = #edata24#,
+		edata25 = #edata25#,
+		edata26 = #edata26#,
+		edata27 = #edata27#,
+		edata28 = #edata28#,
+		edata29 = #edata29#,
+		edata30 = #edata30#,
+		edata31 = #edata31#,
+		edata32 = #edata32#,
+		edata33 = #edata33#,
+		edata34 = #edata34#,
+		edata35 = #edata35#,
+		edata36 = #edata36#,
+		edata37 = #edata37#,
+		edata38 = #edata38#,
+		edata39 = #edata39#
+  	 where 
+  		 roleId=#roleId#
+  	</update>
+  	
+  	<update id="updateOnlyOneField" parameterClass="java.util.Map">
+  		update draco_role_quest_daily_finished 
+  	 	set 
+  	 		updateTime = #updateTime#,
+  	 		$key$ = #value#
+  	 	where
+  	 		roleId=#roleId#
+  	</update>
+  
+  	<select id="selectObjectOne" parameterClass="java.util.Map" resultClass="roleQuestDailyFinished">
+    	select * from draco_role_quest_daily_finished where $key$ = #value# 
+ 	</select>
+ 	
+ 	<select id="selectObjectTwo" parameterClass="java.util.Map" resultClass="roleQuestDailyFinished">
+    	select * from draco_role_quest_daily_finished where $key1$ = #value1# and $key2$ = #value2#
+ 	</select>
+ 	
+	<select id="selectListOne" parameterClass="java.util.Map" resultClass="roleQuestDailyFinished">
+  		select * from draco_role_quest_daily_finished where $key$ = #value#
+  	</select>
+  	
+  	<select id="selectListTwo" parameterClass="java.util.Map" resultClass="roleQuestDailyFinished">
+    	select * from draco_role_quest_daily_finished where $key1$ = #value1# and $key2$ = #value2#
+ 	</select>
+  
+</sqlMap>

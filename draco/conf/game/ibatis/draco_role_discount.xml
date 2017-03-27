@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="RoleDiscount">
+
+	<insert id="insert"
+		parameterClass="com.game.draco.app.operate.discount.domain.RoleDiscount">
+		insert into draco_role_discount
+		(activeId,roleId,totalValue,operateDate,meetCond1Count,meetCond2Count,meetCond3Count,meetCond4Count,meetCond5Count,meetCond6Count,meetCond7Count,meetCond8Count,meetCond9Count,meetCond10Count
+		,reward1Count,reward2Count,reward3Count,reward4Count,reward5Count,reward6Count,reward7Count,reward8Count,reward9Count,reward10Count,curDayTotal,extraInfo
+		) values (
+		#activeId#,#roleId#,#totalValue#,#operateDate#,#meetCond1Count#,#meetCond2Count#,#meetCond3Count#,#meetCond4Count#,#meetCond5Count#,#meetCond6Count#,#meetCond7Count#,#meetCond8Count#,#meetCond9Count#,#meetCond10Count#
+		,#reward1Count#,#reward2Count#,#reward3Count#,#reward4Count#,#reward5Count#,#reward6Count#,#reward7Count#,#reward8Count#,#reward9Count#,#reward10Count#,#curDayTotal#,#extraInfo#
+		)
+	</insert>
+
+	<select id="selectListOne"
+		resultClass="com.game.draco.app.operate.discount.domain.RoleDiscount"
+		parameterClass="java.util.Map">
+		select * from draco_role_discount where $key$ = #value#
+	</select>
+
+	<select id="selectListTwo"
+		resultClass="com.game.draco.app.operate.discount.domain.RoleDiscount"
+		parameterClass="java.util.Map">
+		select * from draco_role_discount where $key1$ = #value1# and
+		$key2$ = #value2#
+	</select>
+	
+	<select id="selectObjectTwo" resultClass="com.game.draco.app.operate.discount.domain.RoleDiscount" parameterClass="java.util.Map">
+		select * from draco_role_discount where $key1$ = #value1# and
+		$key2$ = #value2#
+	</select>
+
+	<delete id="deleteOne" parameterClass="java.util.Map">
+		delete from draco_role_discount where $key$ = #value#
+	</delete>
+
+	<update id="update"
+		parameterClass="com.game.draco.app.operate.discount.domain.RoleDiscount">
+		update draco_role_discount set totalValue = #totalValue# ,
+		operateDate = #operateDate# , meetCond1Count = #meetCond1Count#
+		, meetCond2Count = #meetCond2Count# , meetCond3Count =
+		#meetCond3Count# , meetCond4Count = #meetCond4Count# ,
+		meetCond5Count = #meetCond5Count# , meetCond6Count =
+		#meetCond6Count# , meetCond7Count = #meetCond7Count# ,
+		meetCond8Count = #meetCond8Count# , meetCond9Count =
+		#meetCond9Count# , meetCond10Count = #meetCond10Count# ,
+		reward1Count = #reward1Count# , reward2Count = #reward2Count# ,
+		reward3Count = #reward3Count# , reward4Count = #reward4Count# ,
+		reward5Count = #reward5Count# , reward6Count = #reward6Count# ,
+		reward7Count = #reward7Count# , reward8Count = #reward8Count# ,
+		reward9Count = #reward9Count# , reward10Count = #reward10Count#,
+		curDayTotal = #curDayTotal#, extraInfo = #extraInfo# where
+		roleId = #roleId# and activeId = #activeId#
+	</update>
+
+</sqlMap>

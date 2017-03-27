@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="idFactoryConfig"
+		class="sacred.alliance.magic.app.config.IdFactoryConfig"
+		init-method="init">
+		<property name="resource">
+			<value>spring/properties/idfactory.properties</value>
+		</property>
+	</bean>
+
+	<bean id="socialConfig"
+		class="com.game.draco.app.social.config.SocialConfig"
+		init-method="init">
+		<property name="resource">
+			<value>spring/properties/social.properties</value>
+		</property>
+	</bean>
+
+
+	<!-- 快捷购买配置 -->
+	<bean id="quickBuyConfig"
+		class="sacred.alliance.magic.app.config.QuickBuyConfig"
+		init-method="init">
+		<property name="resource">
+			<value>spring/properties/quickbuy.properties</value>
+		</property>
+	</bean>
+
+
+	<bean id="pathConfig"
+		class="sacred.alliance.magic.app.config.PathConfig"
+		init-method="init">
+		<property name="currentPath">
+			<value>${currentPath}</value>
+		</property>
+		<property name="resource">
+			<value>spring/properties/path.properties</value>
+		</property>
+	</bean>
+
+	<bean id="illegalWordsConfig"
+		class="sacred.alliance.magic.app.config.WordsConfig"
+		init-method="init">
+		<property name="path">
+			<value>resources/txt/dirty-word.txt</value>
+		</property>
+	</bean>
+
+	<bean id="forbiddenWordsConfig"
+		class="sacred.alliance.magic.app.config.WordsConfig"
+		init-method="init">
+		<property name="path">
+			<value>resources/txt/forbidden-word.txt</value>
+		</property>
+	</bean>
+	
+
+	<bean id="skillConfig"
+		class="sacred.alliance.magic.app.config.SkillConfig"
+		init-method="init">
+		<property name="resource">
+			<value>spring/properties/skillconfig.properties</value>
+		</property>
+	</bean>
+
+	<bean id="parasConfig"
+		class="sacred.alliance.magic.app.config.ParasConfig"
+		init-method="init">
+		<property name="resource">
+			<value>spring/properties/paras.properties</value>
+		</property>
+	</bean>
+
+	<!-- 读取公会配置文件 -->
+	<bean id="factionConfig"
+		class="sacred.alliance.magic.app.config.FactionConfig"
+		init-method="init">
+		<property name="resource">
+			<value>spring/properties/faction.properties</value>
+		</property>
+	</bean>
+
+	<bean id="serverStateConfig"
+		class="sacred.alliance.magic.app.config.ServerStateConfig"
+		init-method="init">
+		<property name="resource">
+			<value>spring/properties/serverstate.properties</value>
+		</property>
+	</bean>
+
+	<bean id="heartBeatConfig"
+		class="sacred.alliance.magic.app.config.HeartBeatConfig"
+		init-method="init">
+		<property name="resource">
+			<value>spring/properties/heartbeat.properties</value>
+		</property>
+	</bean>
+
+	<bean id="timingWriteDBConfig"
+		class="sacred.alliance.magic.app.config.TimingWriteDBConfig"
+		init-method="init">
+		<property name="resource">
+			<value>spring/properties/timingwriteDB.properties</value>
+		</property>
+	</bean>
+	
+	<bean id="chargeConfig"
+		class="sacred.alliance.magic.app.config.ChargeConfig"
+		init-method="init">
+		<property name="resource">
+			<value>spring/properties/charge.properties</value>
+		</property>
+	</bean>
+	
+	<bean id="inviteConfig"
+		class="sacred.alliance.magic.app.config.InviteConfig"
+		init-method="init">
+		<property name="resource">
+			<value>spring/properties/invite.properties</value>
+		</property>
+	</bean>
+
+	<!-- 平台应用配置 -->
+	<bean id="platformConfig"
+		class="sacred.alliance.magic.app.config.PlatformConfig"
+		init-method="init">
+		<property name="configFile">
+			<value>env/platform.properties</value>
+		</property>
+	</bean>
+	
+	<!-- token验证密钥配置 -->
+	<bean id="tokenSecretkeyConfig"
+		class="sacred.alliance.magic.app.config.TokenSecretkeyConfig"
+		init-method="init">
+		<property name="configFile">
+			<value>env/tokenSecretkey.properties</value>
+		</property>
+	</bean>
+	
+	<bean id="doorDogConfig"
+		class="sacred.alliance.magic.app.config.DoorDogConfig"
+		init-method="init">
+		<property name="configFile">
+			<value>spring/properties/doordog.properties</value>
+		</property>
+	</bean>
+	
+	<bean id="envConfig"
+		class="sacred.alliance.magic.app.config.EnvConfig"
+		init-method="init">
+		<property name="configFile">
+			<value>env.properties</value>
+		</property>
+	</bean>
+	
+</beans>

@@ -1,0 +1,7 @@
+1.在项目根目录下新建目录 resources
+2.在resources目录下建立下列目录的软链接(->后面目录为shenzhou/public/gameData)
+a) xls -> gameData/xls
+b) script -> gameData/script
+c) map_data -> gameData/map_data
+d) resource -> gameData/resource
+e) txt -> gameData/txt

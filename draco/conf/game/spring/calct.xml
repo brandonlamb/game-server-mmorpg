@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="roleFormulaCalct" class="sacred.alliance.magic.app.attri.calct.RoleFormulaCalct" autowire="byName">
+	</bean>
+	<bean id="npcFormulaCalct" class="sacred.alliance.magic.app.attri.calct.NpcFormulaCalct" autowire="byName">
+	</bean>
+	
+	<bean id="roleCalct" class="sacred.alliance.magic.app.attri.calct.RoleCalct" autowire="byName">
+		<property name="roleFormulaCalct" ref="roleFormulaCalct" />
+	</bean>
+	
+	<bean id="npcCalct" class="sacred.alliance.magic.app.attri.calct.NpcCalct" autowire="byName">
+		<property name="npcFormulaCalct" ref="npcFormulaCalct" />
+	</bean>
+	
+	<bean id="petCalct" class="sacred.alliance.magic.app.attri.calct.PetCalct" autowire="byName">
+		<property name="roleFormulaCalct" ref="roleFormulaCalct" />
+	</bean>
+	
+	
+	<bean id="calctManager" class="sacred.alliance.magic.app.attri.calct.CalctManagerImpl"  autowire="byName"> 
+	<property name="calctMap">
+			<map>
+				<entry key="0"><ref bean="roleCalct" /></entry>
+				<entry key="1"><ref bean="npcCalct" /></entry>
+				<entry key="4"><ref bean="npcCalct" /></entry>
+				<entry key="5"><ref bean="petCalct" /></entry>
+			</map>
+		</property>
+	</bean>
+</beans>

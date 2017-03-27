@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="UnionIntegralRank" >
+	 <typeAlias alias="integralRank" type="com.game.draco.app.unionbattle.domain.UnionIntegralRank"/>
+  	<insert id="insert" parameterClass="integralRank" >
+    	insert into draco_union_integral_rank
+    	(unionId,integral,oldIntegral,resetTime)
+   		values  
+    	(#unionId#, #integral#,#oldIntegral#,#resetTime#)
+  	</insert>
+  
+    <select id="selectAll" resultClass="integralRank">
+  		select * from draco_union_integral_rank
+    </select>
+    
+	<update id="update" parameterClass="integralRank">
+		update draco_union_integral_rank set 
+			integral=#integral# ,oldIntegral=#oldIntegral#,resetTime=#resetTime# 
+		where
+			unionId=#unionId#
+	</update>
+	
+	<delete id="deleteOne"  parameterClass="java.util.Map">
+  		delete from draco_union_integral_rank where $key$ = #value#
+   	</delete>
+	
+</sqlMap> 

@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans> 
+  
+	<bean id="pooledExecutor" class="sacred.alliance.magic.core.executor.PooledExecutor" 
+		init-method="start" destroy-method="stop">
+		<property name="processor" ref="requestProcessor" />
+		<property name="corePoolSize" value="${executor.corepoolsize}" />
+		<property name="maximumPoolSize" value="${executor.maximumpoolsize}" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="defaultCommandExecutor thread" />
+		<property name="queueCapacity" value="-1" />
+	</bean>
+	
+	
+	<bean id="loginExecutor" class="sacred.alliance.magic.core.executor.PooledExecutor" 
+		init-method="start" destroy-method="stop">
+		<property name="processor" ref="requestProcessor" />
+		<property name="corePoolSize" value="${login.executor.corepoolsize}" />
+		<property name="maximumPoolSize" value="${login.executor.maximumpoolsize}" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="loginExecutor thread" />
+		<property name="queueCapacity" value="-1" />
+	</bean>
+	 
+	 <bean id="userOrderedExecutor" class="sacred.alliance.magic.component.executor.ChannelEventExecutor" 
+		init-method="start" destroy-method="stop">
+		<property name="processor" ref="requestProcessor" />
+		<property name="corePoolSize" value="${userorder.executor.corepoolsize}" />
+		<property name="maximumPoolSize" value="${userorder.executor.maximumpoolsize}" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="userOrderedExecutor thread" />
+		<property name="queueCapacity" value="-1" />
+		<property name="cumulateList">
+			<list>
+				<!-- 64 充值内部逻辑-->
+				<!-- 1135 变身 -->
+				<value>50,51,56,57,60,61,62,63,64,201,203,67,1135,762,240</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="factionExecutor" class="sacred.alliance.magic.component.executor.FactionChannelEventExecutor" 
+		init-method="start" destroy-method="stop">
+		<property name="processor" ref="requestProcessor" />
+		<property name="corePoolSize" value="${faction.executor.corepoolsize}" />
+		<property name="maximumPoolSize" value="${faction.executor.maximumpoolsize}" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="factionOrderedExecutor thread" />
+		<property name="queueCapacity" value="-1" />
+		<property name="cumulateList">
+			<list>
+				<!-- 禅让帮主 -->
+				<value>1715</value>
+			</list>
+		</property>
+	</bean>
+	 
+	 
+	 <bean id="battleExecutor" class="sacred.alliance.magic.component.executor.ChannelEventExecutor" 
+		init-method="start" destroy-method="stop">
+		<property name="processor" ref="requestProcessor" />
+		<property name="corePoolSize" value="${battle.executor.corepoolsize}" />
+		<property name="maximumPoolSize" value="${battle.executor.maximumpoolsize}" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="battleExecutor thread" />
+		<property name="queueCapacity" value="-1" />
+	</bean>
+	
+	<!-- 
+	<bean id="userOrderedSupport" class="sacred.alliance.magic.component.ChannelEventSafeSupport" init-method="init">
+		<property name="notNotifyCmdList">
+			<list>
+				<value>300</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="battleExecutor" class="sacred.alliance.magic.core.executor.KeyOrderedExecutor" 
+		init-method="start" destroy-method="stop">
+		<property name="processor" ref="requestProcessor" />
+		<property name="corePoolSize" value="${battle.executor.corepoolsize}" />
+		<property name="maximumPoolSize" value="${battle.executor.maximumpoolsize}" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="keyOrderedSupport" ref="userOrderedSupport" />
+		<property name="threadName" value="battleExecutor thread" />
+		<property name="queueCapacity" value="-1" />
+	</bean>
+	 -->
+	 
+	 <bean id="posExecutor" class="sacred.alliance.magic.component.executor.ChannelEventLastExecutor" 
+		init-method="start" destroy-method="stop">
+		<property name="processor" ref="requestProcessor" />
+		<property name="corePoolSize" value="2" />
+		<property name="maximumPoolSize" value="16" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="posExecutor thread" />
+		<property name="queueCapacity" value="-1" />
+	</bean>
+	
+	<bean id="posStopExecutor" class="sacred.alliance.magic.component.executor.ChannelEventLastExecutor" 
+		init-method="start" destroy-method="stop">
+		<property name="processor" ref="requestProcessor" />
+		<property name="corePoolSize" value="2" />
+		<property name="maximumPoolSize" value="16" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="posStopExecutor thread" />
+		<property name="queueCapacity" value="-1" />
+	</bean>
+	
+	 
+	<bean id="arenaExecutor" class="sacred.alliance.magic.core.executor.PooledExecutor" 
+		init-method="start" destroy-method="stop">
+		<property name="processor" ref="requestProcessor" />
+		<!-- 擂台赛单线程执行 -->
+		<property name="corePoolSize" value="1" />
+		<property name="maximumPoolSize" value="1" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="arenaExecutor thread" />
+	</bean>
+	
+	<bean id="teamExecutor" class="sacred.alliance.magic.core.executor.PooledExecutor" 
+		init-method="start" destroy-method="stop">
+		<property name="processor" ref="requestProcessor" />
+		<!-- 组队单线程执行 -->
+		<property name="corePoolSize" value="1" />
+		<property name="maximumPoolSize" value="1" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="teamExecutor thread" />
+	</bean>
+	
+	<bean id="warBattleExecutor" class="sacred.alliance.magic.core.executor.PooledExecutor" 
+		init-method="start" destroy-method="stop">
+		<property name="processor" ref="requestProcessor" />
+		<!-- 组队单线程执行 -->
+		<property name="corePoolSize" value="1" />
+		<property name="maximumPoolSize" value="1" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="teamExecutor thread" />
+	</bean>
+	
+	<bean id="tradingExecutor" class="sacred.alliance.magic.core.executor.PooledExecutor" 
+		init-method="start" destroy-method="stop">
+		<property name="processor" ref="requestProcessor" />
+		<!-- 交易单线程执行 -->
+		<property name="corePoolSize" value="1" />
+		<property name="maximumPoolSize" value="1" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="tradingExecutor thread" />
+	</bean>
+	
+	<bean id="campWarExecutor" class="sacred.alliance.magic.core.executor.PooledExecutor" 
+		init-method="start" destroy-method="stop">
+		<property name="processor" ref="requestProcessor" />
+		<!-- 阵营战单线程执行 -->
+		<property name="corePoolSize" value="1" />
+		<property name="maximumPoolSize" value="1" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="campWarExecutor thread" />
+	</bean>
+	
+	<!--  
+	<bean id="jetlangExecutor" class="sacred.alliance.magic.core.executor.JetlangExecutor" 
+			init-method="start" destroy-method="stop">
+		<property name="processor" ref="requestProcessor" />
+		<property name="inChannel" >
+			<bean class="org.jetlang.channels.MemoryChannel"></bean>
+		</property>
+		<property name="fiber" >
+			<bean class="org.jetlang.fibers.ThreadFiber"></bean>
+		</property>
+	</bean>
+	-->
+	
+	<!-- 执行器路由配置 不能用spring自启动-->
+	<bean id="executorRouter" class="sacred.alliance.magic.channel.ChannelExecutorRouter" depends-on="actionFactory">
+	  <property name="actionFactory" ref="actionFactory" />
+	  <property name="defaultExecutor" ref="pooledExecutor" />
+	  <property name="executorMap">
+			<map>
+				<!-- =====================================并发=============================================== -->
+				<!-- 用户登录,4999无法获得key所以无法userOrderedExecutor -->
+				<entry key="4998,4999"><ref bean="loginExecutor" /></entry>
+				
+				<!-- 正常行走,跳转点附近心走 -->
+				<entry key="200,217"><ref bean="posExecutor" /></entry>
+				
+				<!-- 正常停止,跳转点附近停止 -->
+				<entry key="213,218"><ref bean="posStopExecutor" /></entry>
+				
+				<!-- 获得地图资源,地图NPC列表,进入国家,大地图NPC数据,分线列表,新地图协议 -->
+				<entry key="202,214,250,251,254,240"><ref bean="pooledExecutor" /></entry>
+				
+				<!-- 技能树显示,同步属性通知 -->
+				<entry key="315,500"><ref bean="pooledExecutor" /></entry>
+				
+				<!-- 物品：同步数据,查看详细信息(504,508,511) -->
+				<entry key="503,504,508,511"><ref bean="pooledExecutor" /></entry>
+				
+				<!-- 玩家回归：发奖励请求信息(80) -->
+				<entry key="80"><ref bean="pooledExecutor" /></entry>
+				
+				<!-- 异步发邮件 -->
+				<entry key="84"><ref bean="pooledExecutor" /></entry>
+				<!-- ========================================================================================= -->
+				
+				
+				<!-- *************************************单线程*********************************************** -->
+				<!-- 交易单线程处理：交易申请,答复申请,上架物品,交易,取消交易 -->
+				<entry key="3900,3902,3904,3906,3907"><ref bean="tradingExecutor" /></entry>
+				
+				<!-- 擂台赛 -->
+				<entry key="3850,3851,3852,3853"><ref bean="arenaExecutor" /></entry>
+				<!-- 擂台赛内部命令 -->
+				<entry key="52,53,54,55"><ref bean="arenaExecutor" /></entry>
+				<!-- 切磋确认 -->
+				<entry key="3856"><ref bean="arenaExecutor" /></entry>
+				
+				<!-- 社交单线程-->
+				<entry key="1215,1217,1220"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 战斗 -->
+				<entry key="300"><ref bean="battleExecutor" /></entry>
+				
+				<!-- 组队单线程处理,副本自动组队逻辑 -->
+				<entry key="1301,1302,1303,1304,1305,1306,1308,1309,1310,1312,1313,1314,220,221,66,69"><ref bean="teamExecutor" /></entry>
+				
+				<!-- 生存战场 -->
+				<entry key="68,280,281,282,283"><ref bean="warBattleExecutor" /></entry>
+				<!-- ***************************************************************************************** -->
+				
+				
+				<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~单用户单线程~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+				<!-- 下线入库,定时入库,用户登录,GM封停用户,定时入库 -->
+				<entry key="50,51,56,57,67"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 交易逻辑：个人锁定,个人取消,个人执行,个人超时 -->
+				<entry key="60,61,62,63"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 创建角色,角色登录,用户登出,切换角色,退出角色,卡死复位,删除角色,角色改名-->
+				<entry key="103,104,105,106,107,109,112,113"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 切换地图,寻路到目标点,自动寻路,大地图传送请求,大地图传送执行,切线 -->
+				<entry key="205,215,222,252,253,255"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!--获得地图数据,进入地图,传出地图,瞬移 -->
+				<!-- 其中201,203必须允许多个在队列 -->
+				<entry key="201,203,212,216"><ref bean="pooledExecutor" /></entry>
+				
+				<!-- 技能学习 -->
+				<entry key="316"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 脱穿装备,脱装备,整理背包,使用物品,丢弃物品,拆分,物品确认使用,物品批量使用,打开仓库,仓库存取,批量存取,物品分解,装备升星 -->
+				<entry key="501,510,502,507,509,506,514,519,565,567,568,560,561"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 藏宝图鉴定,藏宝图传送 -->
+				<entry key="513,515"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 强化,镶嵌,摘除,洗练,英雄装备材料合成,一键商城购买-->
+				<entry key="541,543,549,555,1279,2112"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 掉落拾取,NPC鼓舞 -->
+				<entry key="603,613"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 任务列表,接任务,交任务,放弃任务,任务寻路,扑克任务刷新,扑克任务接取,扑克任务提交,扑克任务打开,弹出任务信息,任务传送, 刷新任务, 扑克任务购买轮数-->
+				<entry key="701,704,705,706,707,713,714,715,717,718,719,720,722"><ref bean="userOrderedExecutor"/></entry>
+				
+				<!-- 拍卖行：物品下架,物品上架,钱上架,购买 -->
+				<entry key="852,853,854,855"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 邮件：收取附件,批量提取附件,删除邮件,批量删除邮件 -->
+				<entry key="1003,1004,1005,1006"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 物品买卖：购买物品,出售物品 -->
+				<entry key="1602,1603"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 系统设置 -->
+				<entry key="3100"><ref bean="userOrderedExecutor"/></entry>
+				
+				<!-- 活动：折扣活动领奖,折扣活动详情 -->
+				<entry key="2317,2316"><ref bean="userOrderedExecutor"/></entry> 
+				<!-- 乐翻天 捐献,领取世界奖励，领取排名奖励 -->
+				<entry key="2393,2394,2395"><ref bean="userOrderedExecutor"/></entry>
+				
+				<!-- NPC兑换：兑换请求 -->
+				<entry key="1402"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 淘宝停位置,淘宝停止,死亡复活 -->
+				<entry key="1909,1910,2001"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 商城购买,限时购买,快捷购买 -->
+				<!-- 2111(快捷购买不再提醒)不能放入单用户单线程 -->
+				<entry key="2102,2104,2110"><ref bean="userOrderedExecutor" /></entry> 
+				
+				<!-- 激活码领取,等级奖励领取,签到,补签,领奖 -->
+				<entry key="2400,2403,2405,2406,2407"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 称号激活,称号续费,确认续费,取消称号 -->
+				<entry key="2342,2344,2347,2343"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 排行榜活动领奖 -->
+				<entry key="2321"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 充值具体逻辑 -->
+				<entry key="64"><ref bean="userOrderedExecutor" /></entry>
+				<!-- rolearea对象入库 -->
+				<entry key="79"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 切磋邀请 -->
+				<entry key="3855"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 在线挂机系统 -->
+				<entry key="951,952"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 进入副本,接交任务，付费完成 -->
+				<entry key="209,259,207"><ref bean="userOrderedExecutor" /></entry>
+				 
+				<!-- 前往、活跃度领奖 -->
+				<entry key="1161,1162"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 动态菜单功能 -->
+				<entry key="153"><ref bean="userOrderedExecutor" /></entry>
+				
+				<!-- 阵营战报名，取消报名,自动报名,系统匹配-->
+				<entry key="350,351,85,87"><ref bean="campWarExecutor" /></entry>
+				
+				<!-- 公会仓库 -->
+				<entry key="71,72,73,74,78"><ref bean="userOrderedExecutor" /></entry>
+				<!-- 神秘商店 -->
+				<entry key="1618,1619,1620"><ref bean="userOrderedExecutor" /></entry>
+				<!-- 邀请 -->
+				<entry key="2410,2411,2412"><ref bean="userOrderedExecutor" /></entry>
+				<!-- 进入大师赛 -->
+				<entry key="3862"><ref bean="userOrderedExecutor" /></entry>
+				<!-- 首充领取奖励 -->
+				<entry key="2314"><ref bean="userOrderedExecutor" /></entry>
+				<!-- PK规则 -->
+				<entry key="1521,1526,1527,81,82"><ref bean="userOrderedExecutor" /></entry>
+				<!-- 阵营平衡 -->
+				<entry key="1530,1532,1535"><ref bean="userOrderedExecutor" /></entry>
+				<!-- 英雄 -->
+				<!-- 英雄物品转换为影子,出战,吞噬,英雄兑换,英雄升品,更新可切换英雄列表-->
+				<entry key="1251,1254,1258,1262,1267,1269"><ref bean="userOrderedExecutor" /></entry>
+				<!-- 英雄试练：更换英雄、进入战斗、全体复活-->
+				<entry key="1341,1342,1346"><ref bean="userOrderedExecutor" /></entry>
+				<!-- 坐骑 -->  
+				<entry key="2600,2601,2602,2607,2610,2611,2612,2614"><ref bean="userOrderedExecutor" /></entry>
+				<!-- 炼金 -->
+				<entry key="1914"><ref bean="userOrderedExecutor" /></entry>
+				<!-- 幸运宝箱 -->
+				<entry key="1916,1917"><ref bean="userOrderedExecutor" /></entry>
+				<!-- 宠物 升星, 吞噬, 抢夺, 抢夺列表刷新, 镶嵌, 兑换, 使用物品卡-->
+				<entry key="1655,1656,1658,1660,1661,1662,1663,1664,1665,1666"><ref bean="userOrderedExecutor" /></entry>
+				<!-- 大富翁 掷骰子, 使用道具卡-->
+				<entry key="2652,2657"><ref bean="userOrderedExecutor" /></entry>
+				<!-- 目标 领奖,前往-->
+				<entry key="1122,1123"><ref bean="userOrderedExecutor" /></entry>
+				<!-- 异步竞技场  -->
+				<entry key="2620,2622,2623,2624,2625,2626,2627"><ref bean="userOrderedExecutor" /></entry>
+				<!-- 排位赛 -->
+				<entry key="1753"><ref bean="userOrderedExecutor" /></entry>
+				<!-- VIP 升级奖励  -->
+				<entry key="2512,2513,2514"><ref bean="userOrderedExecutor" /></entry>
+				<!-- 公会 -->
+				<entry key="86,1700,1701,1702,1703,1706,1708,1710,1711,1715,1717,1725,1728,2751,2752,2753,2754,2755,2756,2757,2758,2759,2760,2761,2765,2766"><ref bean="userOrderedExecutor" /></entry>
+			    <entry key="2521"><ref bean="userOrderedExecutor" /></entry>
+			    <!-- 抽卡 -->
+			    <entry key="2810,2811,2812,2813,2814,2815"><ref bean="userOrderedExecutor" /></entry>
+			    <!-- 符文操作 -->
+			    <entry key="556,547"><ref bean="userOrderedExecutor" /></entry>	
+			    <!-- 日活跃 -->	
+			    <!-- 领取奖励 -->	
+			    <entry key="1921"><ref bean="userOrderedExecutor" /></entry>	
+			    <!-- 清除疲劳度 -->
+			    <entry key="116,117"><ref bean="userOrderedExecutor" /></entry>	
+			    <!-- 副本购买次数 -->
+			    <entry key="258"><ref bean="userOrderedExecutor" /></entry>	
+			    <!-- 运营活动领奖 -->
+			    <entry key="2457,2460,2463"><ref bean="userOrderedExecutor" /></entry>
+			    <!-- 天赋 -->
+			    <entry key="2816,2817,2818,2819"><ref bean="userOrderedExecutor" /></entry>	
+			     <!-- 公会积分战 -->
+			    <entry key="2544,2546,2547"><ref bean="userOrderedExecutor" /></entry>	
+		</map>
+	 </property>
+	</bean>
+</beans>

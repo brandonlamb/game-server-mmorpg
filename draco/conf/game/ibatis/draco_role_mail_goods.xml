@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="MailGoods" >
+  <typeAlias alias="mailGoods" type="com.game.draco.app.mail.domain.MailGoods"/>
+  
+ 	<update id="update" parameterClass="mailGoods" >
+    update draco_role_mail_goods
+    <dynamic prepend="set" >
+		roleId =  #roleId#,
+		storageType=#storageType#,
+		goodsId=#goodsId#,
+		mosaic =  #mosaic#,
+		currOverlapCount =  #currOverlapCount#,
+		bind =  #bind#,
+		attrVar =  #attrVar#,
+		strengthenLevel= #strengthenLevel#,
+		otherParm =  #otherParm#,
+		quality = #quality#,
+		star= #star#
+    </dynamic>
+    where mailId = #mailId#
+  </update>
+  <insert id="insert" parameterClass="mailGoods" >
+    insert into draco_role_mail_goods 
+    (id, roleId, storageType, goodsId,mosaic, currOverlapCount,bind,attrVar,strengthenLevel,otherParm,mailId,sendTime,deadline,quality,star
+     )
+    values (
+    #id#,#roleId#, #storageType#, #goodsId#,
+     #mosaic#,#currOverlapCount#,#bind#,#attrVar#,#strengthenLevel#,#otherParm#,#mailId#,#sendTime#,#deadline#,#quality#,#star#
+    )
+  </insert>
+  <select id="selectObjectOne" resultClass="mailGoods" parameterClass="java.util.Map" >
+  	select *   
+    from draco_role_mail_goods
+    where $key$ = #value#
+  </select>
+  <select id="selectListTwo" resultClass="mailGoods" parameterClass="java.util.Map" >
+		select * from draco_role_mail_goods where $key1$ = #value1# and $key2$ = #value2#
+
+  </select>
+  <select id="selectObjectTwo" resultClass="mailGoods" parameterClass="java.util.Map" >
+		select * from draco_role_mail_goods where $key1$ = #value1# and $key2$ = #value2#
+
+  </select>
+   <delete id="deleteOne" parameterClass="java.util.Map" >
+   <![CDATA[delete from draco_role_mail_goods where $key$ <= #value#]]>
+    	
+  </delete>
+   <delete id="deleteTwo" parameterClass="java.util.Map" >
+   delete from draco_role_mail_goods where $key1$ = #value1# and $key2$ = #value2# 
+    	
+  </delete>
+</sqlMap>

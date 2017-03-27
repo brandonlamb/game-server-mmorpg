@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="Faction" >
+    <typeAlias alias="faction" type="sacred.alliance.magic.domain.Faction"/>
+  	
+ 	<select id="selectAll" resultClass="faction">
+    	select * from easter_faction 
+ 	</select>
+ 	<select id="selectObjectOne" parameterClass="java.util.Map" resultClass="faction">
+    	select * from easter_faction where $key$ = #value# 
+ 	</select>
+ 	
+ 	<select id="selectListOne" parameterClass="java.util.Map" resultClass="faction">
+    	select * from easter_faction where $key$ = #value#
+ 	</select>
+ 	
+ 	<select id="selectListTwo" parameterClass="java.util.Map" resultClass="faction">
+    	select * from easter_faction where $key1$ = #value1# and $key2$ = #value2#
+ 	</select>
+ 	<select id="countOne" resultClass="int" parameterClass="java.util.Map">
+ 		select count(*) from easter_faction where $key$ = #value#
+ 	</select>
+ 	
+ 	<insert id="insert" parameterClass="sacred.alliance.magic.domain.Faction" >
+	    insert into easter_faction 
+	    (factionId, factionName,factionLevel,status,leaderId,leaderName,createDate,factionDesc,
+	    memberNum,contribution,integral,resource,factionMoney,factionCamp,donateCount,donateTime)
+	    values 
+	    (#factionId#,#factionName#,#factionLevel#,#status#,#leaderId#,#leaderName#,#createDate#,#factionDesc#,
+	    #memberNum#,#contribution#,#integral#,#resource#,#factionMoney#,#factionCamp#,#donateCount#,#donateTime#)
+  	</insert>
+  	
+ 	<update id="update" parameterClass="sacred.alliance.magic.domain.Faction">
+  		update easter_faction 
+		set
+			factionName = #factionName#,
+			factionLevel=#factionLevel#,
+			status=#status#,
+			leaderId=#leaderId#,
+			leaderName=#leaderName#,
+			createDate=#createDate#,
+			factionDesc=#factionDesc#,
+		    memberNum=#memberNum#,
+		    contribution=#contribution#,
+		    integral=#integral#,
+		    resource=#resource#,
+		    factionMoney=#factionMoney#,
+		    factionCamp=#factionCamp#,
+		    donateCount=#donateCount#,
+		    donateTime=#donateTime#
+  		where factionId=#factionId#
+   </update>
+   
+   <delete id="deleteOne"  parameterClass="java.util.Map">
+  		delete from easter_faction where $key$ = #value#
+   </delete>
+   
+   <select id="selectDel"  resultClass="faction">
+  		select * from easter_faction where disbandedDate is not null
+   </select>
+   
+   <!-- 修改帮主名称 -->
+   <update id="modifyLeaderName" parameterClass="java.util.Map" >
+  	 update easter_faction 
+  	 set leaderName = #roleName#
+     where factionId = #factionId# and leaderId = #roleId#
+   </update>
+   
+   <select id="searchFactionByName" parameterClass="java.util.Map" resultClass="faction">
+    	select * from easter_faction where factionName like '%$parameter$%'
+ 	</select>
+   
+</sqlMap>

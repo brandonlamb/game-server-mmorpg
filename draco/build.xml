@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!--
+==============================================================================
+
+==============================================================================
+-->
+
+<project name="draco" default="dist" basedir=".">
+
+	<!-- set global properties for this build -->
+	<property name="name" value="draco" />
+	<property name="build" value="build" />
+	<property name="dist" value="." />
+	<property name="version" value="0.1.1" />
+
+	<path id="project.class.path">
+		<pathelement path="${java.class.path}" />
+		<pathelement path="${additional.path}" />
+		<fileset dir="lib">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<target name="init" depends="clean">
+		<!-- create the time stamp -->
+		<tstamp />
+		<mkdir dir="${build}/build" />
+		<mkdir dir="${build}/log" />
+		<mkdir dir="${build}/bin" />
+		<mkdir dir="${build}/code" />
+	</target>
+	
+	<path id="src.path">
+			<pathelement path="src/java/game" /> 
+			<pathelement path="src/java/platform" />
+		    <pathelement path="src/java/script" />
+	</path>
+	
+	<target name="compile" depends="init">
+		<property name="src" refid="src.path"/> 
+		<javac srcdir="${src}" destdir="${build}/code" encoding="UTF-8" debug="on">
+			<classpath refid="project.class.path" />
+		</javac>
+	</target>
+
+	<target name="dist" depends="compile">
+		<!--<mkdir dir="${dist}/lib" />-->
+		<jar jarfile="${dist}/lib/${name}-${version}.jar" basedir="${build}/code" />
+	</target>
+
+<target name="clean">
+	<!-- delete the ${build} -->
+	<delete dir="${build}" />
+	<delete file="${dist}/lib/${name}-${version}.jar" />
+</target>
+</project>
+

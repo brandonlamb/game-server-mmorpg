@@ -1,0 +1,1 @@
+ALTER TABLE draco_role_recovery ADD PRIMARY KEY (roleId,recoveryId);

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap namespace="QualifyRobot">
+	<typeAlias alias="qualifyRobot" type="com.game.draco.app.qualify.domain.QualifyRobot" />
+
+	<insert id="insert" parameterClass="qualifyRobot">
+		insert into draco_qualify_robot (roleId,roleName,heroId1,heroId2,heroId3,level,battleScore) values (#roleId#,#roleName#,#heroId1#,#heroId2#,#heroId3#,#level#,#battleScore#)
+	</insert>
+
+	<select id="selectAll" resultClass="qualifyRobot">
+		select rt.* from draco_qualify_robot rt right join draco_qualify_rank rk on rt.roleId = rk.roleId where rk.robot = 1
+	</select>
+
+	<delete id="deleteAll">
+		delete from  draco_qualify_robot
+		<!--where (select count(1) as num from draco_qualify_rank where draco_qualify_rank.roleId = draco_qualify_robot.roleId) = 0;-->
+	</delete>
+
+</sqlMap>

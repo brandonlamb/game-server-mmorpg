@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<!-- npc system-->
+<beans>
+	<bean id="npcFunctionApp" class="com.game.draco.app.npc.npcfunction.NpcFunctionAppImpl" autowire="byName"></bean>
+	<!-- NPC教学，重复阅读 -->
+	<bean id="npcTeachApp"  class="com.game.draco.app.npc.npcfunction.NpcTeachAppImpl" init-method="start" autowire="byName">
+		<property name="pathConfig" ref="pathConfig" />
+	</bean>
+	   
+	<!-- NPC传送 -->
+	<bean id="npcTransferApp" class="com.game.draco.app.npc.transfer.NpcTransferAppImpl" autowire="byName">
+	</bean>
+	<!-- 地图刷怪 -->
+	<bean id="npcRefreshApp" class="com.game.draco.app.npc.refresh.NpcRefreshAppImpl" autowire="byName"></bean>
+	<!-- 刷怪 -->
+	<bean id="refreshRuleApp" class="com.game.draco.app.npc.refreshrule.RefreshRuleAppImpl" autowire="byName"></bean>
+	
+	<!-- NPC鼓舞 -->
+	<bean id="npcInspireApp" class="com.game.draco.app.npc.inspire.NpcInspireAppImpl" autowire="byName"></bean>
+	
+	<bean id="npcApp"  destroy-method="stop" class="com.game.draco.app.npc.NpcAppImpl" autowire="byName">
+		<property name="npcFunctionSupports">
+			<list>
+				<ref bean="userQuestApp"/>
+				<ref bean="npcTeachApp"/>
+				<ref bean="npcStoreApp"/>
+				<ref bean="npcFunctionApp"/>
+				<ref bean="npcTransferApp"/>
+				<ref bean="summonApp"/>
+				<ref bean="exchangeApp"/>
+				<ref bean="npcInspireApp"/>
+				<ref bean="shopSecretApp"/>
+				<ref bean="arenaTopApp"/>
+				<!-- 公会战 -->
+				<ref bean="unionBattleApp"/>
+				<ref bean="pkApp"/>
+				<ref bean="campBalanceApp"/>
+			</list>
+		</property>
+	</bean>	 
+
+</beans>

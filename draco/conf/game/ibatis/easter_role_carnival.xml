@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="CarnivalDbInfo" >
+	 <typeAlias alias="carnivalDbInfo" type="sacred.alliance.magic.domain.CarnivalDbInfo"/>
+  <insert id="insert" parameterClass="carnivalDbInfo" >
+    insert into easter_role_carnival
+    (activeId, targetId, name, campId, career, targetValue, subTargetValue)
+    values 
+    (#activeId#, #targetId#, #name#, #campId#, #career#, #targetValue#, #subTargetValue#)
+  </insert>
+  
+  <select id="selectListOne" resultClass="carnivalDbInfo" parameterClass="java.util.Map">
+  	select * from easter_role_carnival where $key$ = #value#
+  </select>
+  
+  <select id="getActiveDataBySize" resultClass="carnivalDbInfo" parameterClass="java.util.Map">
+  	select * from easter_role_carnival where activeId = #activeId# order by targetValue desc,subTargetValue desc limit #start#, #end#
+  </select>
+  
+  <select id="getActiveData" resultClass="carnivalDbInfo" parameterClass="java.util.Map">
+  	select * from easter_role_carnival where activeId = #activeId# and targetValue >= #targetValue#
+  </select>
+  
+  <update id="update" parameterClass="carnivalDbInfo" >
+    update easter_role_carnival
+    set	targetValue=#targetValue#, subTargetValue = #subTargetValue# where activeId= #activeId# and targetId=#targetId#
+  </update>
+  
+  <delete id="deleteOne" parameterClass="java.util.Map" >
+    delete from easter_role_carnival 
+    where $key$ = #value#
+  </delete>
+  
+  <select id="getCampActiveDataByColumn" resultClass="carnivalDbInfo" parameterClass="java.util.Map" >
+  	(select * from easter_role_carnival where campId=0 and activeId = #itemId# order by targetValue desc,subTargetValue desc limit 1) 
+	union all 
+	(select * from easter_role_carnival where campId=1 and activeId = #itemId# order by targetValue desc,subTargetValue desc limit 1)
+	union all 
+	(select * from easter_role_carnival where campId=2 and activeId = #itemId# order by targetValue desc,subTargetValue desc limit 1)
+  </select>
+  
+  <select id="getCareerActiveDataByColumn" resultClass="carnivalDbInfo" parameterClass="java.util.Map" >
+  	(select * from easter_role_carnival where career=0 and activeId = #itemId# order by targetValue desc,subTargetValue desc limit 1) 
+	union all 
+	(select * from easter_role_carnival where career=1 and activeId = #itemId# order by targetValue desc,subTargetValue desc limit 1)
+	union all 
+	(select * from easter_role_carnival where career=2 and activeId = #itemId# order by targetValue desc,subTargetValue desc limit 1)
+  </select>
+ </sqlMap> 

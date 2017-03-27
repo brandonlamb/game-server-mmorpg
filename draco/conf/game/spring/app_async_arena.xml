@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="asyncArenaApp" class="com.game.draco.app.asyncarena.AsyncArenaAppImpl">
+	</bean>
+	
+	<bean id="roleAsyncArenaApp" class="com.game.draco.app.asyncarena.RoleAsyncArenaAppImpl">
+	</bean>
+	
+	<bean id="roleAsyncArenaStorage" class="com.game.draco.app.asyncarena.RoleAsyncArenaSSDBStorage">
+		<property name="ssdbUtil" ref="ssdbUtil" />
+	</bean>
+	
+</beans>

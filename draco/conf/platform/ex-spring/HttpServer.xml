@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans> 
+	
+	<bean id="minaHttpServer" 
+		destroy-method="stop"
+		class="sacred.alliance.magic.core.server.MinaServer">
+		<property name="handler" ref="minaHttpHandlerSupport" />
+		<property name="acceptor">
+			<bean
+				class="org.apache.mina.transport.socket.nio.NioSocketAcceptor">
+				<!--  
+				<constructor-arg>
+					<value>${acceptor.socket.processor.count}</value>
+				</constructor-arg>
+				-->
+			</bean>
+		</property>
+		<property name="socketAddress" ref="minaHttpSocketAddress" />
+		<property name="bothIdleTime" value="${http.acceptor.socket.bothidle.second}" />
+		<property name="filterMap">
+			<map>
+                <!--
+                <entry key="logger">
+					<bean class="org.apache.mina.filter.logging.LoggingFilter" />
+				</entry>
+				-->
+				<entry key="codec">
+					<bean
+						class="org.apache.mina.filter.codec.ProtocolCodecFilter">
+						<constructor-arg>
+							<ref local="minaHttpCodecFactory" />
+						</constructor-arg>
+					</bean>
+				</entry>
+                <!--
+                 <entry key="messageLogger">
+					<bean class="sacred.alliance.magic.channel.mina.LoggingMessageFilter">
+                          <property name="protoBuffer" ref="bytesProtoBuffer" />
+                     </bean>
+				</entry>
+				-->
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="minaHttpSocketAddress" class="java.net.InetSocketAddress">
+		<constructor-arg><value>${http.server.address}</value></constructor-arg>
+		<constructor-arg>
+			<value>${http.server.port}</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="minaHttpCodecFactory"
+		class="sacred.alliance.magic.channel.http.mina.HttpServerProtocolCodecFactory" >
+	</bean>
+	
+	<bean id="minaHttpHandlerSupport" class="sacred.alliance.magic.channel.http.mina.MinaHttpHandlerSupport" >
+		<property name="urlMapping" ref="urlMapping" />
+	</bean>
+	
+	<bean id="urlMapping" class="sacred.alliance.magic.channel.http.DefaultUrlMapping">
+		<property name="serviceMap">
+			<map>
+				<entry key="/">
+		 			<ref bean="defaultHttpService"/>
+		 		</entry>
+		 		<entry key="/online">
+		 			<ref bean="onlineHttpService"/>
+		 		</entry>
+		 		<entry key="/status">
+		 			<ref bean="statusHttpService"/>
+		 		</entry>
+		 		<entry key="/cdkeytake">
+		 			<ref bean="openCdkeyTakeHttpService"/>
+		 		</entry>
+		 		<entry key="/rolequery">
+		 			<ref bean="openRoleInfoHttpService"/>
+		 		</entry>
+				<entry key="/robots.txt">
+					<ref bean="robotsHttpService"/>
+				</entry>
+				<entry key="/favicon.ico">
+					<ref bean="faviconIcoService"/>
+				</entry>
+				<entry key="/mamashuohenweixian">
+					<ref bean="exitService"/>
+				</entry>
+				<entry key="/eyes">
+					<ref bean="eyesService"/>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	 <bean id="httpChannelHandler" class="sacred.alliance.magic.channel.DefaultChannelHandler" >
+		<property name="router" ref="externalExecutorRouter" />
+	</bean>
+	
+	<bean id="defaultHttpService" class="sacred.alliance.magic.channel.http.service.DefaultHttpService">
+		<property name="messageParser" ref="jsonByteMessageParser" />
+		<property name="handler" ref="httpChannelHandler" />
+	</bean>
+	
+	<bean id="jsonByteMessageParser" class="sacred.alliance.magic.codec.json.JsonByteMessageParser" >
+		<property name="mapping" ref="externalMessageMapping" />
+	</bean>
+	
+	<bean id="onlineHttpService" class="sacred.alliance.magic.http.service.OnlineHttpService" />
+	<bean id="statusHttpService" class="sacred.alliance.magic.http.service.StatusHttpService" />
+	<bean id="openRoleInfoHttpService" class="sacred.alliance.magic.open.service.OpenRoleInfoHttpService" />
+	<bean id="openCdkeyTakeHttpService" class="sacred.alliance.magic.open.service.OpenCdkeyTakeHttpService" />
+	<bean id="robotsHttpService" class="sacred.alliance.magic.http.service.RobotsService" />
+	<bean id="faviconIcoService" class="sacred.alliance.magic.http.service.FaviconIcoService" />
+	<bean id="exitService" class="sacred.alliance.magic.http.service.ExitService" />
+	<bean id="eyesService" class="sacred.alliance.magic.http.service.EyesService" />
+	
+	
+</beans>

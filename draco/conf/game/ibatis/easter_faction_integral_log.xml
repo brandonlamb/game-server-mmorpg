@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="FactionIntegralLog" >
+  <typeAlias alias="factionIntegralLog" type="sacred.alliance.magic.domain.FactionIntegralLog"/>
+  
+  <insert id="insert" parameterClass="factionIntegralLog" >
+    insert into easter_faction_integral_log 
+    (factionId, roleId, roleName, operateType, integral, remainIntegral, operateTime, info)
+    values 
+    (#factionId#, #roleId#, #roleName#, #operateType#, #integral#, #remainIntegral#, #operateTime#, #info#)
+    <selectKey resultClass="int" keyProperty="id" >
+      SELECT @@IDENTITY AS id
+    </selectKey>
+  </insert>
+  
+  <select id="selectAll" resultClass="factionIntegralLog">
+  	select * from easter_faction_integral_log 
+  </select>
+  
+  <select id="selectListOne" resultClass="factionIntegralLog" parameterClass="java.util.Map" >
+  	select * from easter_faction_integral_log
+    where $key$ = #value#
+  </select>
+  
+  <select id="selectListTwo" resultClass="factionIntegralLog" parameterClass="java.util.Map" >
+  	select * from easter_faction_integral_log
+    where $key1$ = #value1# and $key2$ = #value2#
+  </select>
+  
+  <select id="selectObjectOne" resultClass="factionIntegralLog" parameterClass="java.util.Map" >
+  	select * from easter_faction_integral_log where $key$ = #value#
+  </select>
+  
+  <select id="selectObjectTwo" resultClass="factionIntegralLog" parameterClass="java.util.Map" >
+  	select * from easter_faction_integral_log where $key1$ = #value1# and $key2$ = #value2#
+  </select>
+  
+  <!-- 查询帮会所有积分日志 -->
+  <select id="getAllIntegralLogList" resultClass="factionIntegralLog" parameterClass="java.util.Map">
+  	select * from easter_faction_integral_log
+  	where factionId = #factionId#
+  	order by id desc
+  	limit #start#, #end#
+  </select>
+  
+  <!-- 查询帮会收入（消耗）的积分日志 -->
+  <select id="getIntegralLogList" resultClass="factionIntegralLog" parameterClass="java.util.Map">
+  	select * from easter_faction_integral_log
+  	where factionId = #factionId# and operateType = #operateType#
+  	order by operateTime desc
+  	limit #start#, #end#
+  </select>
+  
+  <update id="update" parameterClass="factionIntegralLog" >
+    update easter_faction_integral_log
+    set
+    	factionId=#factionId#,
+    	roleId=#roleId#,
+    	roleName=#roleName#,
+    	operateType#operateType#,
+    	integral="integral",
+    	remainIntegral=#remainIntegral#,
+    	operateTime="operateTime",
+    	info="info"
+    where id = #id#
+  </update>
+  
+  <!-- 删除一周前的积分日志数据 -->
+  <delete id="deleteBeforeOneWeek" parameterClass="java.util.Map" >
+    <![CDATA[delete from easter_faction_integral_log where subString(operateTime,1,10) <= subString(DATE_ADD(now(),INTERVAL - 1 week),1,10)]]>
+  </delete>
+  
+  <delete id="deleteTwo" parameterClass="java.util.Map" >
+    delete from easter_faction_integral_log
+    where $key1$ = #value1# and $key2$ = #value2#
+  </delete>
+  
+   <delete id="deleteOne" parameterClass="java.util.Map" >
+    delete from easter_faction_integral_log 
+    where $key$ = #value#
+  </delete>
+  
+  <select id="countOne" resultClass="int" parameterClass="java.util.Map" >
+    select count(*) from  easter_faction_integral_log where $key$ = #value#
+  </select>
+  
+  <select id="countTwo" resultClass="int" parameterClass="java.util.Map" >
+    select count(*) from  easter_faction_integral_log where $key1$ = #value1# and $key2$ = #value2#
+  </select>
+  
+</sqlMap>

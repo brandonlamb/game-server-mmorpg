@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="RoleDrama" >
+
+	<insert id="insert" parameterClass="com.game.draco.app.drama.domain.RoleDrama" >
+		insert into easter_role_drama(roleId, dramaId) 
+		values(#roleId#, #dramaId#)
+  	</insert>
+  	
+  	
+  	<select id="selectListOne" resultClass="com.game.draco.app.drama.domain.RoleDrama" parameterClass="java.util.Map" >
+  	select * from easter_role_drama
+    where $key$ = #value# 
+  </select>
+	
+</sqlMap>

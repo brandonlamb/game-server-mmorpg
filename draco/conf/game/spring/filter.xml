@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="filterChainFactory"
+		class="sacred.alliance.magic.core.filter.SimpleFilterChainFactory">
+		<property name="filterList">
+			<list>
+				<ref local="refuseRequestFilter"/>
+				<ref local="operationSwitchFilter"/>
+				<ref local="popedomFilter"/>
+				<!--  
+				<ref local="userStateFilter"/>
+				-->
+			   <ref local="actionTimeFilter"/>
+			   <ref local="quickBuyMessageFilter"/>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<bean id="actionTimeFilter" class="sacred.alliance.magic.filter.ActionTimeFilter" init-method="init">
+	</bean>
+	
+	<bean id="userStateFilter" class="sacred.alliance.magic.filter.UserStateFilter" init-method="init">
+	</bean>
+	
+	<bean id="refuseRequestFilter" class="sacred.alliance.magic.filter.RefuseRequestFilter" init-method="init">
+	</bean>
+	
+	<bean id="popedomFilter"
+		class="sacred.alliance.magic.filter.PopedomFilter"
+		init-method="init"
+		destroy-method="destroy">
+		<property name="nonFilterCommand" value="4998,4999,1,100,101,102,106,2201,110,111" />
+	</bean>
+	
+	<bean id="operationSwitchFilter" class="sacred.alliance.magic.filter.OperationSwitchFilter" init-method="init">
+	</bean>
+	
+	<bean id="quickBuyMessageFilter" class="sacred.alliance.magic.filter.QuickBuyMessageFilter" init-method="init">
+	</bean>
+	
+</beans>
+

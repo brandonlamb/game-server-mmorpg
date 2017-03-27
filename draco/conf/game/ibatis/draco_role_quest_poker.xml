@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap namespace="RoleQuestPoker" >
+	<typeAlias alias="roleQuestPoker" type="com.game.draco.app.quest.poker.domian.RoleQuestPoker"/>
+	
+	<insert id="insert" parameterClass="roleQuestPoker" >
+		insert into draco_role_quest_poker
+			(roleId, count, poker1, poker2, poker3, status, updateTime, tempQuestId, tempAwardId, tempPoker, buyNum) 
+		values
+			(#roleId#, #count#, #poker1#, #poker2#, #poker3#, #status#, #updateTime#, #tempQuestId#, #tempAwardId#, #tempPoker#, #buyNum#)
+	</insert>
+	
+	<select id="selectObjectOne" parameterClass="java.util.Map" resultClass="roleQuestPoker">
+    	select * from draco_role_quest_poker where $key$ = #value# 
+ 	</select>
+ 	
+ 	<select id="selectObjectTwo" parameterClass="java.util.Map" resultClass="roleQuestPoker">
+    	select * from draco_role_quest_poker where $key1$ = #value1# and $key2$ = #value2#
+ 	</select>
+ 	
+	<select id="selectListOne" parameterClass="java.util.Map" resultClass="roleQuestPoker">
+  		select * from draco_role_quest_poker where $key$ = #value#
+  	</select>
+  	
+  	<select id="selectListTwo" parameterClass="java.util.Map" resultClass="roleQuestPoker">
+    	select * from draco_role_quest_poker where $key1$ = #value1# and $key2$ = #value2#
+ 	</select>
+  	
+  	<update id="update" parameterClass="roleQuestPoker">
+  		update draco_role_quest_poker
+  		set 
+  			count=#count#,
+  			poker1=#poker1#,
+  			poker2=#poker2#,
+  			poker3=#poker3#,
+  			status=#status#,
+  			updateTime=#updateTime#,
+  			tempQuestId = #tempQuestId#,
+  			tempAwardId = #tempAwardId#,
+  			tempPoker = #tempPoker#,
+  			buyNum = #buyNum#
+		where
+			roleId=#roleId#
+  	</update>
+  	
+  	<delete id="deleteAll">
+  		truncate table draco_role_quest_poker
+  	</delete>
+  	
+  	<delete id="deleteOne"  parameterClass="java.util.Map">
+  		delete from draco_role_quest_poker where $key$ = #value#
+  	</delete>
+  	
+  	<delete id="deleteTwo"  parameterClass="java.util.Map">
+  		delete from draco_role_quest_poker where $key1$ = #value1# and $key2$ = #value2#
+  	</delete>
+  	
+</sqlMap>

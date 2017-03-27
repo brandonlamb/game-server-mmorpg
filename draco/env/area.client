@@ -1,0 +1,3 @@
+proxy=areaServer:tcp -h 192.168.1.180 -p 19320 -t 5000
+pool.size=1
+Ice.Warn.Connections=1

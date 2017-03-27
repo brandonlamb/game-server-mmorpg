@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="messageCenter"
+		class="sacred.alliance.magic.app.msgcenter.MessageCenterImpl"
+		init-method="start" destroy-method="stop">
+		<property name="onlineCenter" ref="onlineCenter" />
+		<property name="messageSenderMap">
+			<map>
+				<entry key="0">
+					<ref bean="defaultMessageSender" />
+				</entry>
+				<entry key="-200">
+					<ref bean="rolePosMessageSender" />
+				</entry>
+				<entry key="-213">
+					<ref bean="rolePosMessageSender" />
+				</entry>
+				<entry key="-211">
+					<ref bean="npcPostMessageSender" />
+				</entry>
+				<entry key="-301">
+					<ref bean="battleMessageSender" />
+				</entry>
+				<entry key="-400">
+					<ref bean="attrMessageSender" />
+				</entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="rolePosMessageSender"
+		class="sacred.alliance.magic.app.msgcenter.MessageSenderImpl" init-method="start" destroy-method="stop">
+		<property name="onlineCenter" ref="onlineCenter" />
+		<property name="corePoolSize" value="2" />
+		<property name="maximumPoolSize" value="8" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="clearWhenFull" value="true" />
+		<property name="queueCapacity" value="500000" />
+		<property name="clearCapacity" value="200000" />
+		<property name="threadName" value="rolePosMessageSender" />
+	</bean>
+	
+	<bean id="npcPostMessageSender"
+		class="sacred.alliance.magic.app.msgcenter.MessageSenderJlImpl"
+		init-method="start" destroy-method="stop">
+		<property name="onlineCenter" ref="onlineCenter" />
+		<property name="corePoolSize" value="2" />
+		<property name="maximumPoolSize" value="8" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="npcPostMessageSender" />
+	</bean>
+	
+	<bean id="defaultMessageSender"
+		class="sacred.alliance.magic.app.msgcenter.MessageSenderJlImpl"
+		init-method="start" destroy-method="stop">
+		<property name="onlineCenter" ref="onlineCenter" />
+		<property name="corePoolSize" value="2" />
+		<property name="maximumPoolSize" value="8" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="defaultMessageSender" />
+	</bean>
+
+
+<!--  
+
+<bean id="pos200MessageSender"
+		class="sacred.alliance.magic.app.msgcenter.BalancedMessageSender"
+		init-method="start" destroy-method="stop">
+		<property name="senderList">
+			<list>
+				<ref bean="pos200_1_MessageSender" />
+				<ref bean="pos200_2_MessageSender" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="pos200_1_MessageSender"
+		class="sacred.alliance.magic.app.msgcenter.MessageSenderJlImpl"
+		init-method="start" destroy-method="stop">
+		<property name="onlineCenter" ref="onlineCenter" />
+		<property name="corePoolSize" value="2" />
+		<property name="maximumPoolSize" value="8" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="pos200_1_MessageSender" />
+	</bean>
+
+
+	<bean id="pos200_2_MessageSender"
+		class="sacred.alliance.magic.app.msgcenter.MessageSenderJlImpl"
+		init-method="start" destroy-method="stop">
+		<property name="onlineCenter" ref="onlineCenter" />
+		<property name="corePoolSize" value="2" />
+		<property name="maximumPoolSize" value="8" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="pos200_2_MessageSender" />
+	</bean>
+	
+	<bean id="pos211MessageSender"
+		class="sacred.alliance.magic.app.msgcenter.MessageSenderJlImpl"
+		init-method="start" destroy-method="stop">
+		<property name="onlineCenter" ref="onlineCenter" />
+		<property name="corePoolSize" value="2" />
+		<property name="maximumPoolSize" value="16" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="pos211MessageSender" />
+	</bean>
+
+	<bean id="pos213MessageSender"
+		class="sacred.alliance.magic.app.msgcenter.MessageSenderJlImpl"
+		init-method="start" destroy-method="stop">
+		<property name="onlineCenter" ref="onlineCenter" />
+		<property name="corePoolSize" value="2" />
+		<property name="maximumPoolSize" value="16" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="pos213MessageSender" />
+	</bean>
+-->
+
+	
+
+	<bean id="battleMessageSender"
+		class="sacred.alliance.magic.app.msgcenter.MessageSenderJlImpl"
+		init-method="start" destroy-method="stop">
+		<property name="onlineCenter" ref="onlineCenter" />
+		<property name="corePoolSize" value="2" />
+		<property name="maximumPoolSize" value="8" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="battleMessageSender" />
+	</bean>
+
+
+	<bean id="attrMessageSender"
+		class="sacred.alliance.magic.app.msgcenter.MessageSenderJlImpl"
+		init-method="start" destroy-method="stop">
+		<property name="onlineCenter" ref="onlineCenter" />
+		<property name="corePoolSize" value="2" />
+		<property name="maximumPoolSize" value="8" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="attrMessageSender" />
+	</bean>
+	<!--
+		<bean id="defaultMessageSender"
+		class="sacred.alliance.magic.app.msgcenter.MessageSenderImpl" init-method="start" destroy-method="stop">
+		<property name="onlineCenter" ref="onlineCenter" />
+		<property name="corePoolSize" value="2" />
+		<property name="maximumPoolSize" value="200" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="queueCapacity" value="-1" />
+		<property name="threadName" value="defaultMessageSender" />
+		</bean>
+		
+		
+		<bean id="posMessageSender"
+		class="sacred.alliance.magic.app.msgcenter.MessageSenderImpl" init-method="start" destroy-method="stop">
+		<property name="onlineCenter" ref="onlineCenter" />
+		<property name="corePoolSize" value="2" />
+		<property name="maximumPoolSize" value="200" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="queueCapacity" value="-1" />
+		<property name="threadName" value="posMessageSender" />
+		</bean>
+		
+		
+		<bean id="battleMessageSender"
+		class="sacred.alliance.magic.app.msgcenter.MessageSenderImpl" init-method="start" destroy-method="stop">
+		<property name="onlineCenter" ref="onlineCenter" />
+		<property name="corePoolSize" value="2" />
+		<property name="maximumPoolSize" value="10" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="queueCapacity" value="1000" />
+		<property name="threadName" value="posMessageSender" />
+		</bean>
+		
+		<bean id="attrMessageSender"
+		class="sacred.alliance.magic.app.msgcenter.MessageSenderImpl" init-method="start" destroy-method="stop">
+		<property name="onlineCenter" ref="onlineCenter" />
+		<property name="corePoolSize" value="2" />
+		<property name="maximumPoolSize" value="10" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="queueCapacity" value="1000" />
+		<property name="threadName" value="posMessageSender" />
+		</bean>
+	-->
+</beans>

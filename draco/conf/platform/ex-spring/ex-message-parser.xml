@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans> 
+
+	<bean id="externalMessageParser"
+		class="sacred.alliance.magic.codec.impl.bytes.BytesMessageParser" init-method="init">
+		<property name="mapping" ref="externalMessageMapping" />
+		<property name="byteBufferAllocate" value="64" />
+		<!-- ProtoCodecFactory工厂类的包名 -->
+		<property name="protobufPackagePathList">
+			<list>
+				<value>com.game.draco.debug.message.codec</value>
+				<value>platform.all.message.codec</value>
+			</list>
+		</property>
+		<!-- 对象池大小 -->
+		<property name="protobufPoolMaxSleeping" value="1024" />
+		<property name="protoBuffer" ref="bytesProtoBuffer" />
+	</bean>
+	
+
+	
+</beans>

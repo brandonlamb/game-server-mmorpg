@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans> 
+	
+	<bean id="httpJsonClient" class="sacred.alliance.magic.client.http.HttpJsonClient" autowire="byName">
+		<property name="messageMapping" ref="externalMessageMapping" />
+		<!-- HTTP POST 的默认请求时间是5秒 可以在此处配置超时时间 -->
+	</bean>
+	
+</beans>

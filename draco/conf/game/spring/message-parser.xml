@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="gameMessageMapping" class="sacred.alliance.magic.codec.impl.AutoLoadMessageMapping"  init-method="init">
+		<property name="pkgList">
+			<list>
+				<value>com.game.draco.message.request</value>
+				<value>com.game.draco.message.response</value>
+				<value>com.game.draco.message.push</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<bean id="ioBufferMessageParser"
+		class="sacred.alliance.magic.codec.impl.bytes.IoBufferMessageParser"
+		init-method="init">
+		<property name="mapping" ref="gameMessageMapping" />
+		<property name="byteBufferAllocate" value="64" />
+		<property name="protobufPackagePath" value="com.game.draco.message.codec" />
+		<property name="protobufPoolMaxSleeping" value="1024" />
+		<property name="protoBuffer" ref="bytesProtoBuffer" />
+	</bean>
+	
+	<bean id="bytesProtoBuffer" class="org.project.protobuf.codec.bytes.ByteProtoBuffer" />
+</beans>
+

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	<!-- 该 BeanPostProcessor 将自动对标注 @Autowired 的 Bean 进行注入 -->   
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/> 
+	
+	
+	
+	<bean id="statLogApp" class="sacred.alliance.magic.app.log.StatLogAppImpl" autowire="byName"></bean>
+	
+	
+	<bean id="attriApp"
+		class="sacred.alliance.magic.app.attri.AttriAppImpl" autowire="byName">
+		<property name="roleLevelupLoader" ref="roleLevelupLoader" />
+	</bean>
+	
+	<bean id="mapApp" destroy-method="stop" class="sacred.alliance.magic.app.map.MapAppImpl" autowire="byName">
+	</bean>
+	
+	<bean id="battleApp" class="sacred.alliance.magic.app.battle.BattleAppImpl" autowire="byName">
+		<property name="userQuestApp" ref="userQuestApp" />
+	</bean>	
+	
+	<bean id="aiApp"  destroy-method="stop" 
+		class="sacred.alliance.magic.app.ai.AiAppImpl" autowire="byName">
+		<property name="scriptSupport" ref="pyScriptSupport" />
+		<property name="npcAiScriptSupport" ref="npcAiScriptSupport" />
+	</bean>	
+	
+
+	
+	<bean id="fallApp"  class="sacred.alliance.magic.app.fall.FallAppImpl" autowire="byName">
+	</bean> 
+	
+	<bean id="calculateExpApp"  class="sacred.alliance.magic.app.battle.calculate.CalculateExpAppImpl" autowire="byName">
+	</bean> 
+	 
+	
+	<bean id="roleBornApp"  class="sacred.alliance.magic.app.role.RoleBornAppImpl" autowire="byName"/>
+	
+	<bean id="roleRebornApp"  class="sacred.alliance.magic.app.role.RoleRebornAppImpl" autowire="byName">
+	</bean>
+	
+	<!-- 物品 goodsApp -->
+	<bean id="goodsApp" class="sacred.alliance.magic.app.goods.GoodsAppImpl" autowire="byName" >
+		<property name="idFactory" ref="idFactory" />
+		<property name="goodsLoader" ref="goodsLoader" />
+	</bean>
+
+	<!-- 系统广播 -->
+	<bean id="announceApp"  class="sacred.alliance.magic.app.announce.AnnounceAppImpl" autowire="byName" >
+		<property name="baseDAO" ref="baseDAO" />
+	</bean>
+	
+
+	<bean id="chargeApp" class="sacred.alliance.magic.app.charge.ChargeAppImpl" autowire="byName">
+	</bean>
+	
+	<!-- 关闭服务器 
+	<bean id="shutDownApplication"  class="sacred.alliance.magic.app.shutdown.ShutDownApplicationImpl" >
+	</bean>
+	-->
+	<bean id="clientTargetApp"  class="sacred.alliance.magic.app.clienttarget.ClientTargetAppImpl" autowire="byName">
+	</bean>
+	
+	<bean id="autoSearchRoadApp" class="sacred.alliance.magic.app.path.AutoSearchRoadAppImpl" autowire="byName">
+		<property name="parasConfig" ref="parasConfig"/>
+	</bean>
+	
+	<!-- 大地图 -->
+	<bean id="worldMapApp" class="sacred.alliance.magic.app.map.worldmap.WorldMapAppImpl" autowire="byName">
+		<property name="parasConfig" ref="parasConfig"/>
+	</bean>
+	
+
+	<!-- 藏宝图 -->
+	<bean id="treasureApp"  class="sacred.alliance.magic.app.treasure.TreasureAppImpl" autowire="byName">
+		<!-- <property name="handler" ref="minaChannelHandler" /> -->
+	</bean>
+	
+	<bean id="quickBuyApp" class="sacred.alliance.magic.app.quickbuy.QuickBuyAppImpl" autowire="byName">
+	</bean>
+	
+	<!-- 排行榜 
+	<bean id="rankApp"  class="sacred.alliance.magic.app.rank.RankAppImpl" autowire="byName">
+		<property name="logLayout" value="%m%n" />
+		<property name="logEncoding" value="" />
+		<property name="logDatePat" value="'.'yyyy-MM-dd-HH" />
+		<property name="logFilePath" value="/data/logs/draco/rank/" />
+	</bean>
+	-->
+	<!-- 计数 -->
+		<bean id="countApp"  class="sacred.alliance.magic.app.count.CountAppImpl" autowire="byName">
+		<!-- <property name="handler" ref="minaChannelHandler" /> -->
+	</bean>
+	
+	<!--
+	<bean id="factionFuncApp" class="sacred.alliance.magic.app.faction.FactionFuncAppImpl" autowire="byName"></bean>
+	-->
+	
+	<!-- 公会神兽 
+	<bean id="factionSoulApp" class="sacred.alliance.magic.app.faction.godbeast.FactionSoulAppImpl" autowire="byName"></bean>
+	-->
+	
+	<!-- 召唤怪物 -->
+	<bean id="summonApp" class="sacred.alliance.magic.app.summon.SummonAppImpl" autowire="byName"></bean>
+
+	<!-- 嘉年华 -->
+	<bean id="carnivalApp" class="sacred.alliance.magic.app.carnival.CarnivalAppImpl" autowire="byName"></bean>
+	
+	<!-- 掉落广播 -->
+	<bean id="broadcastApp" class="sacred.alliance.magic.app.broadcast.BroadcastAppImpl" autowire="byName"></bean>
+	
+	<!-- 掉落广播 
+	<bean id="factionWarApp" class="sacred.alliance.magic.app.faction.war.FactionWarAppImpl" autowire="byName">
+		<property name="factionDAO" ref="factionDAO" />
+	</bean>
+	-->
+	<!-- 回归奖励 -->
+	<bean id="recallApp" class="sacred.alliance.magic.app.recall.RecallAppImpl" autowire="byName"></bean>
+	
+	<!-- rsa -->
+	<bean id="rsaApp" class="sacred.alliance.magic.app.rsa.RsaAppImpl" autowire="byName">
+		<property name="fileName" value="${game.pri.file}" />
+		<property name="decryptStr" value="${SHENZHOU_DB_PWD}" />
+	</bean>
+	
+	<!-- 昆仑DC日志 -->
+	<bean id="logApp" class="sacred.alliance.magic.log.LogAppImpl" autowire="byName">
+		<property name="logFilePath" value="${kunlun.LogFilePath}" />
+		<property name="pkgName" value="sacred.alliance.magic.log.log" />
+	</bean>
+	
+	<bean id="tokenApp" class="sacred.alliance.magic.app.token.TokenAppImpl" autowire="byName"></bean>
+	
+	<bean id="pkApp" class="sacred.alliance.magic.app.pk.PkAppImpl" autowire="byName"></bean>
+	
+	<bean id="publicSetApp" class="sacred.alliance.magic.app.set.PublicSetAppImpl" init-method="start" >
+		<property name="pathConfig" ref="pathConfig" />
+	</bean>
+		
+</beans>

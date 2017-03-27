@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="DracoSocialRelation" >
+  <typeAlias alias="dracoSocialRelation" type="com.game.draco.app.social.domain.DracoSocialRelation"/>
+  
+  <insert id="insert" parameterClass="com.game.draco.app.social.domain.DracoSocialRelation" >
+    insert into draco_social_relation 
+	    (roleId, friendId, friendHeadId, intimate, socialType, praiseTime)
+    values 
+	    (#roleId#, #friendId#, #friendHeadId#, #intimate#, #socialType#, #praiseTime#)
+  </insert>
+
+  <select id="getRelationList" parameterClass="java.util.Map" resultClass="dracoSocialRelation">
+  	select s.*, r1.roleName as roleName, r1.campId as camp, r1.sex as sex, r2.roleName as friendName, r2.campId as friendCamp, r2.sex as friendSex, r2.level as friendLevel
+		from draco_social_relation s
+		left join easter_role r1 on r1.roleId = s.roleId 
+		left join easter_role r2 on r2.roleId = s.friendId
+	where s.roleId = #roleId#
+  </select>
+
+  <update id="update" parameterClass="com.game.draco.app.social.domain.DracoSocialRelation" >
+    update draco_social_relation
+    set 
+    	friendHeadId = #friendHeadId#,
+    	intimate = #intimate#,
+    	praiseTime = #praiseTime#
+    where roleId = #roleId# and friendId = #friendId# and socialType = #socialType#
+  </update>
+  
+  <delete id="deleteThree" parameterClass="java.util.Map" >
+    delete from 
+    draco_social_relation
+    where $key1$ = #value1# and $key2$ = #value2# and $key3$ = #value3#
+  </delete>
+</sqlMap>

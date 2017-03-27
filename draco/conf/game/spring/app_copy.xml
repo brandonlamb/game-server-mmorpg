@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="copyLogicApp" class="com.game.draco.app.copy.CopyLogicAppImpl" autowire="byName"></bean>
+
+	<bean id="copyTeamApp" class="com.game.draco.app.copy.team.CopyTeamAppImpl" autowire="byName">
+		<property name="teamCopyCache" ref="teamCopyCache"></property>
+	</bean>
+
+	<bean id="copyLineApp" class="com.game.draco.app.copy.line.CopyLineAppImpl" autowire="byName"></bean>
+
+</beans>

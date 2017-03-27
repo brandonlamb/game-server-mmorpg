@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ChargeRecord" >
+	<typeAlias alias="chargeRecord" type="sacred.alliance.magic.domain.ChargeRecord"/>
+	
+	<insert id="insert" parameterClass="chargeRecord" >
+    insert into draco_role_charge 
+    	(roleId,channelId, channelOrderId, orderId, recordTime,userId , feeValue, state, errCode, payGold, gameMoney)
+    values 
+    	(#roleId#,#channelId#, #channelOrderId#, #orderId#, #recordTime#, #userId#, #feeValue#, #state#, #errCode#, #payGold#, #gameMoney#)
+  </insert>
+  
+  <select id="selectListTwo" resultClass="chargeRecord" parameterClass="java.util.Map" >
+  	select * from draco_role_charge where $key1$ = #value1# and $key2$ = #value2# order by recordTime
+  </select>
+  
+  <select id="sumThree" resultClass="int" parameterClass="java.util.Map" >
+   <![CDATA[ select sum(payGold) from  draco_role_charge where state=1 and $key1$ = #value1# and $key2$ >= #value2# and $key3$ <= #value3#]]>
+  </select>
+  <!-- 
+  <select id="selectObjectOne" resultClass="chargeRecord" parameterClass="java.util.Map" >
+    select * from draco_role_charge where $key$ = #value#
+  </select>
+   -->
+  <select id="selectObjectTwo" resultClass="chargeRecord" parameterClass="java.util.Map" >
+    select * from draco_role_charge where $key1$ = #value1# and $key2$ = #value2#
+  </select>
+  
+   <select id="getUserChargeRecord" resultClass="chargeRecord" parameterClass="java.util.Map">
+  	select * from draco_role_charge 
+  	where roleId = #roleId# 
+  	order by recordTime DESC 
+  	limit #start#,#size#
+  </select>
+
+</sqlMap>

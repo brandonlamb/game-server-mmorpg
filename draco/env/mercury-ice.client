@@ -1,0 +1,3 @@
+proxy=mercuryServer:tcp -h 192.168.1.180 -p 18720 -t 5000
+pool.size=5
+Ice.Warn.Connections=1

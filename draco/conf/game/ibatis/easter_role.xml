@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="RoleInstance" >
+
+ <typeAlias alias="roleInstance" type="sacred.alliance.magic.vo.RoleInstance"/>
+ 
+	<update id="update" parameterClass="sacred.alliance.magic.vo.RoleInstance" >
+    update easter_role 
+    	set 
+    	userId=#userId#,
+    	userName=#userName#,
+    	roleName=#roleName#,
+    	sex=#sex#,
+    	level=#level#,
+    	exp=#exp#,
+    	potential=#potential#,
+    	silverMoney=#silverMoney#,
+    	mapId=#mapId#,
+    	mapX=#mapX#,
+    	mapY=#mapY#,
+    	dayOnlineTime=#dayOnlineTime#,
+    	historyOnlineTime=#historyOnlineTime#,
+    	lastLoginTime =#lastLoginTime#,
+    	lastOffTime =#lastOffTime#,
+    	createTime =#createTime#,
+    	backpackCapacity=#backpackCapacity#,
+    	curHP=#curHP#,
+    	frozenBeginTime=#frozenBeginTime#,
+    	frozenEndTime=#frozenEndTime#,
+    	frozenMemo=#frozenMemo#,
+    	forbidType=#forbidType#,
+    	forbidBeginTime=#forbidBeginTime#,
+    	forbidEndTime =#forbidEndTime#,
+    	forbidMemo=#forbidMemo#,
+    	totalExp = #totalExp#,
+    	levelUpTime=#levelUpTime#,
+    	rolePayGold=#rolePayGold#,
+    	roleConsumeGold=#roleConsumeGold#,
+    	receiveRecoup=#receiveRecoup#,
+    	factionSalaryCount=#factionSalaryCount#,
+    	factionActiveTime=#factionActiveTime#,
+    	battleScore=#battleScore#,
+    	honor=#honor#,
+    	wingResId=#wingResId#,
+    	clothesResId=#clothesResId#,
+    	copyLostReLoginInfo=#copyLostReLoginInfo#,
+    	factionDonate=#factionDonate#,
+    	channelId=#channelId#,
+    	channelUserId=#channelUserId#,
+    	pkStatus=#pkStatus#,
+    	lastFinishQuestId=#lastFinishQuestId#,
+    	campPrestige=#campPrestige#,
+    	campId=#campId#,
+    	braveSoul=#braveSoul#,
+    	wildBlood=#wildBlood#,
+    	arena3v3Score=#arena3v3Score#,
+    	heroCoin=#heroCoin#,
+    	prestigePoints=#prestigePoints#,
+    	totalPrestigePoints=#totalPrestigePoints#
+    where roleId = #roleId#
+  </update>
+  
+  <!-- 定时入库，角色下线时间不入库 -->
+	<update id="timingWriteDBRole" parameterClass="sacred.alliance.magic.vo.RoleInstance" >
+    update easter_role 
+    	set 
+    	level=#level#,
+    	exp=#exp#,
+    	potential=#potential#,
+    	silverMoney=#silverMoney#,
+    	backpackCapacity=#backpackCapacity#,
+    	totalExp = #totalExp#,
+    	rolePayGold=#rolePayGold#,
+    	roleConsumeGold=#roleConsumeGold#,
+    	receiveRecoup=#receiveRecoup#,
+    	battleScore=#battleScore#,
+    	honor=#honor#,
+    	factionDonate=#factionDonate#,
+    	forbidType=#forbidType#,
+    	lastFinishQuestId=#lastFinishQuestId#,
+    	campPrestige=#campPrestige#,
+    	campId=#campId#,
+    	braveSoul=#braveSoul#,
+    	wildBlood=#wildBlood#,
+    	arena3v3Score=#arena3v3Score#,
+    	heroCoin=#heroCoin#,
+    	prestigePoints=#prestigePoints#,
+    	totalPrestigePoints=#totalPrestigePoints#
+    where roleId = #roleId#
+    
+  </update>
+  
+  	<update id="changeSilverMoney" parameterClass="java.util.Map">
+  		 update easter_role 
+    	 set 
+    	 silverMoney = silverMoney+ #silverMoney#
+    	 where roleId = #roleId#
+  	</update>
+  	
+      
+    <insert id="insert" parameterClass="sacred.alliance.magic.vo.RoleInstance" >
+    insert into easter_role 
+    (roleId, userId, userName, channelId,roleName, sex, level, campId,
+     exp,potential, silverMoney,mapId,mapX,mapY,
+	 dayOnlineTime,historyOnlineTime,lastLoginTime,createTime,backpackCapacity,
+	 curHP,totalExp,levelUpTime,rolePayGold,roleConsumeGold,receiveRecoup,
+	 factionSalaryCount,factionActiveTime,battleScore,
+	 honor,wingResId,clothesResId,copyLostReLoginInfo,
+	 factionDonate,channelUserId,pkStatus,lastFinishQuestId,campPrestige,createServerId,braveSoul,wildBlood,arena3v3Score,heroCoin,prestigePoints,totalPrestigePoints
+     )
+    values (
+    #roleId#,#userId#, #userName#, #channelId#, #roleName#, #sex#,#level#,#campId#,
+    #exp#,#potential#, #silverMoney#,#mapId#,#mapX#,#mapY#,
+    #dayOnlineTime#,#historyOnlineTime#,#lastLoginTime#, #createTime#,#backpackCapacity#,
+    #curHP#,#totalExp#,#levelUpTime#,#rolePayGold#,#roleConsumeGold#,#receiveRecoup#,
+    #factionSalaryCount#,#factionActiveTime#,#battleScore#,
+    #honor#,#wingResId#,#clothesResId#,#copyLostReLoginInfo#,
+    #factionDonate#,#channelUserId#,#pkStatus#,#lastFinishQuestId#,#campPrestige#,#createServerId#,#braveSoul#,#wildBlood#,#arena3v3Score#,#heroCoin#,#prestigePoints#,#totalPrestigePoints#
+    )
+  </insert>
+    
+  
+   <select id="selectObjectOne" resultClass="roleInstance" parameterClass="java.util.Map" >
+  	select *
+    from easter_role
+    where $key$ = #value# 
+  </select>
+  
+  <select id="selectListOne" resultClass="roleInstance" parameterClass="java.util.Map" >
+  	select *
+    from easter_role 
+    where $key$ = #value#
+  </select>
+  
+  <select id="selectObjectTwo" resultClass="roleInstance" parameterClass="java.util.Map" >
+  	select *
+    from easter_role
+    where $key1$ = #value1# and $key2$ = #value2#
+  </select>
+  
+  <select id="countOne" resultClass="int" parameterClass="java.util.Map" >
+    select count(*) from  easter_role where $key$ = #value#
+  </select>
+  
+  <select id="getMoney" resultClass="java.util.HashMap" >
+  	SELECT SUM(r.goldMoney) AS gold,SUM(r.bindingGoldMoney) AS binding FROM easter_role r 
+  </select>
+  
+  <select id="selectAll" resultClass="roleInstance">
+    select * from easter_role
+  </select>
+  
+  <select id="countLateLoginRole" resultClass="int" parameterClass="java.util.Map" >
+    select count(*) from  easter_role where lastLoginTime >= #lastLoginTime#
+  </select>
+  
+  <select id="getFrozenRoleList" resultClass="roleInstance" parameterClass="java.util.Map">
+  	select * from easter_role where frozenEndTime is not null and frozenEndTime > now()
+  	<dynamic prepend="AND">
+  		<isNotEmpty prepend="and" property="rolename">
+  			roleName like '%$rolename$%'
+  		</isNotEmpty>
+  	</dynamic>
+  </select>
+  
+  <select id="getForbidRoleList" resultClass="roleInstance" parameterClass="java.util.Map">
+  	select * from easter_role where forbidType != 0
+  	<dynamic prepend="AND">
+  		<isNotEmpty prepend="and" property="rolename">
+  			roleName like '%$rolename$%'
+  		</isNotEmpty>
+  	</dynamic>
+  </select>
+  
+  <update id="updateFrozenAndForbid" parameterClass="sacred.alliance.magic.vo.RoleInstance" >
+    update easter_role 
+    	set 
+    	frozenBeginTime=#frozenBeginTime#,
+    	frozenEndTime=#frozenEndTime#,
+    	frozenMemo=#frozenMemo#,
+    	forbidType=#forbidType#,
+    	forbidBeginTime=#forbidBeginTime#,
+    	forbidEndTime =#forbidEndTime#,
+    	forbidMemo=#forbidMemo#
+    where roleId = #roleId#
+  </update>
+  
+  <select id="getRoleMoneyCharts" resultClass="roleInstance" parameterClass="java.util.Map">
+  	select * from easter_role
+  	<dynamic prepend="">
+  		<isEqual prepend="" property="orderby" compareValue="1">
+  			 order by roleConsumeGold desc
+  		</isEqual>
+  		<isEqual prepend="" property="orderby" compareValue="4">
+  			 order by silverMoney desc
+  		</isEqual>
+  	</dynamic>
+  	limit #start#,#end#
+  </select>
+  
+  <select id="getRoleList" resultClass="roleInstance" parameterClass="java.util.Map">
+  	select * from easter_role
+  	<dynamic prepend="where">
+  		<isNotEmpty prepend="or" property="userName">
+  			userName = #userName#
+  		</isNotEmpty>
+  		<isNotEmpty prepend="or" property="roleId">
+  			roleId = #roleId#
+  		</isNotEmpty>
+  		<isNotEmpty prepend="or" property="userId">
+  			userId = #userId#
+  		</isNotEmpty>
+  		<isNotEmpty prepend="or" property="channelUserId">
+  			channelUserId = #channelUserId#
+  		</isNotEmpty>
+  		<isNotEmpty prepend="or" property="roleName">
+  			roleName like '%$roleName$%'
+  		</isNotEmpty>
+  	</dynamic>
+  </select>
+  
+  <select id="getCampRoleSortByColumn" resultClass="roleInstance" parameterClass="java.util.Map" >
+  	(select * from easter_role where campId=0 order by $columnName$ desc 
+  	<isNotEmpty prepend="," property="subColumnName">
+  		$subColumnName$ desc
+  	</isNotEmpty>
+  	limit 1) 
+	union all 
+	(select * from easter_role where campId=1 order by $columnName$ desc 
+	<isNotEmpty prepend="," property="subColumnName">
+  		$subColumnName$ desc
+  	</isNotEmpty>
+  	limit 1) 
+	union all 
+	(select * from easter_role where campId=2 order by $columnName$ desc 
+	<isNotEmpty prepend="," property="subColumnName">
+  		$subColumnName$ desc
+  	</isNotEmpty>
+  	limit 1) 
+  	union all 
+	(select * from easter_role where campId=3 order by $columnName$ desc 
+	<isNotEmpty prepend="," property="subColumnName">
+  		$subColumnName$ desc
+  	</isNotEmpty>
+  	limit 1) 
+  </select>
+  
+  <select id="getRoleByColumn" resultClass="roleInstance" parameterClass="java.util.Map" >
+  	select roleId from easter_role where $columnName$ >= #value#
+  </select>
+  
+  
+  <update id="clearAllCopyLostReLoginInfo" >
+  	update easter_role set copyLostReLoginInfo=NULL
+  </update>
+  
+  <select id="getLevelDistribution" resultClass="sacred.alliance.magic.domain.RoleLevelDistribution">
+  	select level, count(*) as number from easter_role group by level;
+  </select>
+  
+  <select id="selectMaxLevelRole" resultClass="roleInstance" parameterClass="java.util.Map" >
+  	select * from easter_role where userId = #userId# order by level desc limit 1;
+  </select>
+  
+  <select id="searchUserRoles" resultClass="roleInstance" parameterClass="java.util.Map">
+  	select * from easter_role
+  	<dynamic prepend="where">
+  		<isNotEmpty prepend="and" property="userName">
+  			userName = #userName#
+  		</isNotEmpty>
+  		<isNotEmpty prepend="and" property="userId">
+  			userId = #userId#
+  		</isNotEmpty>
+  		<isNotEmpty prepend="and" property="channelUserId">
+  			channelUserId = #channelUserId#
+  		</isNotEmpty>
+  	</dynamic>
+  </select>
+  
+  <select id="getCampLevel" resultClass="com.game.draco.app.camp.balance.domain.CampLevel">
+  	select campId,sum(level) as num from easter_role where level >= #minLevel# group by campId;
+  </select>
+  
+  <update id="changeRoleCamp" parameterClass="java.util.Map" >
+    update easter_role set campId=#newCampId# where roleId = #roleId#
+  </update>
+  
+  <select id="getWorldLevelList" parameterClass="java.util.Map" resultClass="sacred.alliance.magic.vo.RoleInstance">
+  	select * from easter_role order by battleScore desc limit $number$
+  </select>
+  
+  <!-- <update id="updateRoleLeaveFactionTime" parameterClass="sacred.alliance.magic.vo.RoleInstance" >
+    update easter_role set leaveFactionTime=#leaveFactionTime# where roleId = #roleId#
+  </update>  --> 
+</sqlMap>

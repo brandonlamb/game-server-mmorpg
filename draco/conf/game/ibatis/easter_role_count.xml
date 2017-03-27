@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="RoleCount" >
+  <typeAlias alias="roleCount" type="sacred.alliance.magic.domain.RoleCount"/>
+  <insert id="insert" parameterClass="roleCount" >
+    insert into easter_role_count
+    	(	roleId, 
+    		dayTime,
+    		data,
+    		flowerNum,
+    		todayFlowerNum,
+	  		todayTaitan,
+	  		todayJulong
+    	)
+    values 
+    	(	#roleId#, 
+    		#dayTime#,
+    		#data#,
+    		#flowerNum#,
+    		#todayFlowerNum#,
+	        #todayTaitan#,
+	  		#todayJulong#
+    	)
+  </insert>
+  
+  <select id="selectObjectOne" resultClass="roleCount" parameterClass="java.util.Map">
+  	select * from easter_role_count where $key$ = #value#
+  </select>
+  
+   <update id="update" parameterClass="roleCount" >
+    update easter_role_count
+    set dayTime=#dayTime#,
+    	data=#data#,
+    	flowerNum=#flowerNum#,
+    	todayFlowerNum=#todayFlowerNum#,
+	    todayTaitan=#todayTaitan#,
+	    todayJulong=#todayJulong#
+  	where roleId= #roleId#
+  </update>
+  
+ </sqlMap>   

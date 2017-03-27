@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<!-- shop system-->
+<beans>
+	<!-- 商城系统 -->
+	<bean id="shopApp" class="com.game.draco.app.shop.ShopAppImpl" autowire="byName">	
+	</bean>
+	
+	<!-- 商城-限时购买 -->
+	<bean id="shopTimeApp" class="com.game.draco.app.shop.ShopTimeAppImpl" autowire="byName">	
+	</bean>
+	
+	<!-- 神秘商店 -->
+	<bean id="shopSecretApp" class="com.game.draco.app.shopsecret.ShopSecretAppImpl" autowire="byName"></bean>
+</beans>

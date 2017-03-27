@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	 <!-- TODO: 根据项目实情设置 -->
+	<bean id="externalActionFactory"
+		class="sacred.alliance.magic.core.action.AutoLoadActionFactory" init-method="init">
+		<property name="pkgList">
+			<list>
+				<value>sacred.alliance.magic.debug.action</value>
+				<value>sacred.alliance.magic.fee.action</value>
+				<value>sacred.alliance.magic.kefu.action</value>
+				<value>sacred.alliance.magic.shutdown.action</value>
+			</list>
+		</property>
+	</bean>
+</beans>
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans> 
+    <!-- TODO: 根据项目实情设置 -->
+	<bean id="externalMessageMapping" class="sacred.alliance.magic.codec.impl.AutoLoadMessageMapping"  init-method="init">
+		<property name="pkgList">
+			<list>
+				<value>com.game.draco.debug.message.request</value>
+				<value>com.game.draco.debug.message.response</value>
+				<value>platform.message.request</value>
+				<value>platform.message.response</value>
+			</list>
+		</property>
+	</bean>
+
+      
+</beans>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans> 
+	 
+	
+	<bean id="externalPooledExecutor" class="sacred.alliance.magic.core.executor.PooledExecutor" 
+		init-method="start" destroy-method="stop">
+		<property name="processor" ref="externalRequestProcessor" />
+		<property name="corePoolSize" value="2" />
+		<property name="maximumPoolSize" value="10" />
+		<property name="keepAliveMillisTime" value="120000" />
+		<property name="threadName" value="defaultCommandExecutor thread" />
+	</bean>
+	
+	
+	<!--  
+	<bean id="externalSyncExecutor" class="sacred.alliance.magic.core.executor.SyncExecutor" 
+			init-method="start" destroy-method="stop">
+		<property name="processor" ref="externalRequestProcessor" />
+	</bean>
+	-->
+	
+	<!-- 执行器路由配置 -->
+	<bean id="externalExecutorRouter" class="sacred.alliance.magic.channel.ChannelExecutorRouter"
+		init-method="start" destroy-method="stop">
+	  <property name="defaultExecutor" ref="externalPooledExecutor" />
+	</bean>
+</beans>

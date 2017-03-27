@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+	<xsd:element name="mapconfig" />
+	
+	<xsd:complexType name="MapConfig">
+		<xsd:attribute name="maplogicid" type="xsd:int" />
+		<xsd:attribute name="samecampcanpk" type="xsd:boolean" />
+		<xsd:attribute name="diffcampcanpk" type="xsd:boolean" />
+		<xsd:attribute name="cantroop" type="xsd:boolean" />
+		<xsd:attribute name="logictype" type="xsd:byte" />
+		<xsd:attribute name="islinemode" type="xsd:boolean" />
+		<xsd:attribute name="deathjumpmapid" type="xsd:string" />
+		<xsd:attribute name="reloginjumpmapid" type="xsd:string" />
+		<xsd:attribute name="maporiginx" type="xsd:int" />
+		<xsd:attribute name="maporiginy" type="xsd:int" />
+		<xsd:attribute name="maptype" type="xsd:byte" />
+		<xsd:attribute name="mapweather" type="xsd:byte" />
+		<xsd:attribute name="mapdisplayname" type="xsd:string" />
+	</xsd:complexType>
+</xsd:schema>

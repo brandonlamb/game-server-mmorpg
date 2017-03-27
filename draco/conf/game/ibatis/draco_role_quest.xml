@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="RoleQuestLogInfo" >
+ 
+  <typeAlias alias="roleQuestLogInfo" type="com.game.draco.app.quest.domain.RoleQuestLogInfo"/>
+ 
+  <insert id="insert" parameterClass="roleQuestLogInfo" >
+    insert into draco_role_quest
+    	(roleId, questId, phase, data1, data2, data3, awardId, status, createTime, updateTime)
+    values 
+    	(#roleId#, #questId#, #phase#, #data1#, #data2#, #data3#, #awardId#, #status#, #createTime#, #updateTime#)
+  </insert>
+  
+  <update id="update" parameterClass="roleQuestLogInfo" >
+  	 update draco_role_quest 
+  	 set 
+	  	 phase = #phase#,
+	  	 data1=#data1#,
+	  	 data2=#data2#,
+	  	 data3=#data3#,
+	  	 awardId=#awardId#,
+	  	 status=#status#,
+	  	 createTime=#createTime#,
+	  	 updateTime=#updateTime# 
+  	 where 
+  		 roleId=#roleId# and questId=#questId#
+  </update>
+  
+  
+   <select id="selectListOne" resultClass="roleQuestLogInfo" parameterClass="java.util.Map" >
+	select * from draco_role_quest where $key$ = #value#
+  </select>
+    
+     <select id="selectObjectTwo" resultClass="roleQuestLogInfo" parameterClass="java.util.Map" >
+	select *  from draco_role_quest where $key1$ = #value1# and $key2$ = #value2# 
+  </select>
+  
+  <delete id="deleteTwo" parameterClass="java.util.Map" >
+    delete from draco_role_quest where $key1$ = #value1# and $key2$ = #value2# 
+  </delete>
+  
+  <delete id="deleteOne" parameterClass="java.util.Map">
+  	delete from draco_role_quest where $key$ = #value#
+  </delete>
+  
+</sqlMap>

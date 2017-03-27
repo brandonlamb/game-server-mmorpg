@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="RoleBuff" >
+ 
+  <resultMap id="result" class="sacred.alliance.magic.domain.RoleBuff" >
+     <result column="roleId" property="roleId" jdbcType="VARCHAR" />
+     <result column="buffId" property="buffId" jdbcType="INTEGER" />
+     <result column="casterId" property="casterId" jdbcType="VARCHAR" />
+     <result column="remainTime" property="remainTime" jdbcType="INTEGER" />
+     <result column="extroInfo" property="extroInfo" jdbcType="VARCHAR" />
+     <result column="buffLevel" property="buffLevel" jdbcType="INTEGER" />
+     <result column="intervalTime" property="intervalTime" jdbcType="INTEGER" />
+     <result column="buffSeries" property="buffSeries" jdbcType="INTEGER" />
+     <result column="lastExecuteTime" property="lastExecuteTime" jdbcType="TIMESTAMP" />
+     <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+   	
+  <select id="selectListOne" resultMap="result" parameterClass="java.util.Map" >
+    select * 
+    from easter_role_buff
+    where $key$ = #value#
+   </select>
+ 	
+ 	
+    <insert id="insert" parameterClass="sacred.alliance.magic.domain.RoleBuff" >
+    insert into easter_role_buff
+    (
+    roleId,buffId,casterId,remainTime,lastExecuteTime,createTime,extroInfo,buffLevel,intervalTime,buffSeries
+     )
+    values (
+    #roleId#,#buffId#, #casterId#,#remainTime#,#lastExecuteTime#,#createTime#,#extroInfo#,#buffLevel#,#intervalTime#,#buffSeries#
+    )
+  </insert>
+  
+  
+   <select id="selectObjectOne" resultMap="result" parameterClass="java.util.Map" >
+	select *
+    from easter_role_buff
+    where buffId = #buffId#
+  </select>
+    
+  <delete id="deleteOne" parameterClass="java.util.Map" >
+    delete from easter_role_buff
+    where $key$ = #value#
+  </delete>
+  
+</sqlMap>

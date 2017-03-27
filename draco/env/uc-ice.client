@@ -1,0 +1,3 @@
+proxy=userCenterServer:tcp -h 192.168.1.180 -p 19220 -t 5000
+pool.size=10
+Ice.Warn.Connections=1

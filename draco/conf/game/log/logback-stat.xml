@@ -1,0 +1,469 @@
+<appender name="RoleOnlineTime" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/RoleOnlineTime_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="RoleOnlineTime" level="INFO" additivity="false">
+	<appender-ref ref="RoleOnlineTime"/>
+</logger>
+
+<appender name="RoleLogout" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/RoleLogout_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="RoleLogout" level="INFO" additivity="false">
+	<appender-ref ref="RoleLogout"/>
+</logger>
+
+<appender name="ActivityPart" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/ActivityPart_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="ActivityPart" level="INFO" additivity="false">
+	<appender-ref ref="ActivityPart"/>
+</logger>
+
+<appender name="RoleRegister" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/RoleRegister_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="RoleRegister" level="INFO" additivity="false">
+	<appender-ref ref="RoleRegister"/>
+</logger>
+
+<appender name="RoleOnline" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/RoleOnline_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="RoleOnline" level="INFO" additivity="false">
+	<appender-ref ref="RoleOnline"/>
+</logger>
+
+<appender name="RoleDeath" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/RoleDeath_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="RoleDeath" level="INFO" additivity="false">
+	<appender-ref ref="RoleDeath"/>
+</logger>
+
+<appender name="RoleQuickBuy" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/RoleQuickBuy_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="RoleQuickBuy" level="INFO" additivity="false">
+	<appender-ref ref="RoleQuickBuy"/>
+</logger>
+
+<appender name="RoleGoodsRecord" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/RoleGoodsRecord_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="RoleGoodsRecord" level="INFO" additivity="false">
+	<appender-ref ref="RoleGoodsRecord"/>
+</logger>
+
+<appender name="RoleQuest" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/RoleQuest_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="RoleQuest" level="INFO" additivity="false">
+	<appender-ref ref="RoleQuest"/>
+</logger>
+
+<appender name="LogoutGoodsInfo" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/LogoutGoodsInfo_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="LogoutGoodsInfo" level="INFO" additivity="false">
+	<appender-ref ref="LogoutGoodsInfo"/>
+</logger>
+
+<appender name="MailSendInfo" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/MailSendInfo_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="MailSendInfo" level="INFO" additivity="false">
+	<appender-ref ref="MailSendInfo"/>
+</logger>
+
+
+<appender name="RoleExpRecord" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/RoleExpRecord_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="RoleExpRecord" level="INFO" additivity="false">
+	<appender-ref ref="RoleExpRecord"/>
+</logger>
+
+<appender name="RoleConsume" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/RoleConsume_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="RoleConsume" level="INFO" additivity="false">
+	<appender-ref ref="RoleConsume"/>
+</logger>
+
+<appender name="RoleLevelUp" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/RoleLevelUp_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="RoleLevelUp" level="INFO" additivity="false">
+	<appender-ref ref="RoleLevelUp"/>
+</logger>
+
+<appender name="RolePay" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/RolePay_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="RolePay" level="INFO" additivity="false">
+	<appender-ref ref="RolePay"/>
+</logger>
+
+<appender name="ClientInfo" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/ClientInfo_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="ClientInfo" level="INFO" additivity="false">
+	<appender-ref ref="ClientInfo"/>
+</logger>
+
+<appender name="GoldMoneyDayRemain" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/GoldMoneyDayRemain_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="GoldMoneyDayRemain" level="INFO" additivity="false">
+	<appender-ref ref="GoldMoneyDayRemain"/>
+</logger>
+
+<appender name="RoleLevelNumber" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/RoleLevelNumber_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="RoleLevelNumber" level="INFO" additivity="false">
+	<appender-ref ref="RoleLevelNumber"/>
+</logger>
+
+<appender name="UserVIP" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/UserVIP_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="UserVIP" level="INFO" additivity="false">
+	<appender-ref ref="UserVIP"/>
+</logger>
+
+
+<appender name="RoleLogin" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/RoleLogin_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="RoleLogin" level="INFO" additivity="false">
+	<appender-ref ref="RoleLogin"/>
+</logger>
+
+<appender name="RoleMoneyRecord" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/RoleMoneyRecord_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="RoleMoneyRecord" level="INFO" additivity="false">
+	<appender-ref ref="RoleMoneyRecord"/>
+</logger>
+
+<appender name="Compass" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/Compass_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="Compass" level="INFO" additivity="false">
+	<appender-ref ref="Compass"/>
+</logger>
+
+
+<appender name="UserActive" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/UserActive_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="UserActive" level="INFO" additivity="false">
+	<appender-ref ref="UserActive"/>
+</logger>
+
+<appender name="Task" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/Task_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="Task" level="INFO" additivity="false">
+	<appender-ref ref="Task"/>
+</logger>
+
+<appender name="BossDeath" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/BossDeath_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="BossDeath" level="INFO" additivity="false">
+	<appender-ref ref="BossDeath"/>
+</logger>
+
+<appender name="TradingRecord" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/TradingRecord_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="TradingRecord" level="INFO" additivity="false">
+	<appender-ref ref="TradingRecord"/>
+</logger>
+
+<appender name="RoleShopBuy" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/RoleShopBuy_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="RoleShopBuy" level="INFO" additivity="false">
+	<appender-ref ref="RoleShopBuy"/>
+</logger>
+
+<appender name="EquipStreng" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/EquipStreng_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="EquipStreng" level="INFO" additivity="false">
+	<appender-ref ref="EquipStreng"/>
+</logger>
+
+<appender name="RoleKillMonster" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/RoleKillMonster_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="RoleKillMonster" level="INFO" additivity="false">
+	<appender-ref ref="RoleKillMonster"/>
+</logger>
+
+<appender name="GoodsFall" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/GoodsFall_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="GoodsFall" level="INFO" additivity="false">
+	<appender-ref ref="GoodsFall"/>
+</logger>
+
+
+<appender name="UserValid" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		<fileNamePattern>/data/logs/<!--appId-->/UserValid_<!--appId-->_<!--serverId-->.log.%d</fileNamePattern>
+	</rollingPolicy>
+	<encoder>
+		<pattern>
+			%d{yyyy-MM-dd HH:mm:ss},%m%n
+		</pattern>
+	</encoder>
+</appender>
+
+<logger name="UserValid" level="INFO" additivity="false">
+	<appender-ref ref="UserValid"/>
+</logger>
+

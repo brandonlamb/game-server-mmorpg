@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="UnionRoleDpsRecord" >
+    <typeAlias alias="unionRoleDpsRecord" type="com.game.draco.app.union.domain.instance.UnionRoleDpsRecord"/>
+  	
+  	<select id="selectAll" resultClass="unionRoleDpsRecord">
+  		select * from draco_union_role_dps_record
+  	</select>
+  	
+ 	<select id="selectListOne" parameterClass="java.util.Map" resultClass="unionRoleDpsRecord">
+    	select * from draco_union_role_dps_record where $key$ = #value#
+ 	</select>
+ 	
+ 	<insert id="insert" parameterClass="unionRoleDpsRecord" >
+	    insert into draco_union_role_dps_record(unionId,activityId,groupId,data,lastTime)values (#unionId#,#activityId#,#groupId#,#data#,#lastTime#)
+  	</insert>
+  	
+   	<delete id="deleteOne" parameterClass="java.util.Map" >
+   		<![CDATA[delete from draco_union_role_dps_record where $key$ < #value#]]>
+  	</delete>
+
+	<delete id="deleteTwo" parameterClass="java.util.Map" >
+    	delete from draco_union_role_dps_record where $key1$ = #value1# and $key2$ = #value2# 
+  	</delete>
+  
+	<update id="update" parameterClass="unionRoleDpsRecord" >
+	    update draco_union_role_dps_record
+				set data=#data#,
+					lastTime=#lastTime#
+		where unionId = #unionId# and activityId = #activityId# and groupId = #groupId# 
+	</update>
+	
+   
+</sqlMap>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="Mail">
+
+	<typeAlias alias="mail" type="com.game.draco.app.mail.domain.Mail" />
+	<typeAlias alias="mailMoneyRank" type="com.game.draco.app.mail.vo.MailMoneyRank" />
+
+	<select id="selectListOne" parameterClass="java.util.Map" resultClass="mail">
+		select * from draco_role_mail where $key$ = #value#
+	</select>
+
+	<insert id="insert" parameterClass="mail">
+		insert into draco_role_mail
+		(mailId,roleId,gold,bindGold,silverMoney,exp,potential,honor,dkp,look,sendTime,content,title,sendRole,existGoods,sendSource,contentId,payGold,freeze)
+		values
+		(#mailId#,#roleId#,#gold#,#bindGold#,#silverMoney#,#exp#,#potential#,#honor#,#dkp#,#look#,#sendTime#,#content#,#title#,#sendRole#,#existGoods#,#sendSource#,#contentId#,#payGold#,#freeze#)
+	</insert>
+
+	<select id="selectAll" resultClass="mail">
+		select * from draco_role_mail
+	</select>
+	<select id="selectListTwo" resultClass="mail" parameterClass="java.util.Map">
+		<![CDATA[select * from draco_role_mail where $key1$ = #value1# and $key2$ >= #value2# order by sendTime desc]]>
+	</select>
+	<select id="selectObjectTwo" resultClass="mail" parameterClass="java.util.Map">
+		<![CDATA[select * from draco_role_mail where $key1$ = #value1# and $key2$ >= #value2# order by sendTime desc]]>
+	</select>
+
+	<select id="selectObjectOne" resultClass="mail" parameterClass="java.util.Map">
+		select * from draco_role_mail where $key$ = #value#
+	</select>
+
+	<delete id="deleteOne" parameterClass="java.util.Map">
+		<![CDATA[delete from draco_role_mail where $key$ <= #value#]]>
+	</delete>
+
+	<delete id="deleteTwo" parameterClass="java.util.Map">
+		delete from draco_role_mail where $key1$ = #value1# and $key2$ = #value2#
+	</delete>
+
+	<delete id="deleteEmptyMail" parameterClass="java.util.Map">
+		<![CDATA[delete from draco_role_mail where roleId = #roleId# and mailId = #mailId# and freeze != 1 and gold <= 0 and bindGold <= 0 and silverMoney <= 0 and exp <= 0 and potential <= 0 and existGoods = 0]]>
+	</delete>
+
+	<update id="update" parameterClass="mail">
+		update draco_role_mail 
+		set 
+			look=#look#, 
+			gold=#gold#,
+			bindGold=#bindGold#, 
+			silverMoney=#silverMoney#, 
+			exp=#exp#,
+			potential=#potential#,
+			honor=#honor#,
+			dkp=#dkp#, 
+			existGoods=#existGoods#, 
+			contentId=#contentId#,
+			payGold=#payGold#,
+			freeze=#freeze#
+		where roleId = #roleId# and mailId = #mailId#
+	</update>
+
+	<select id="selectListByIterate" resultClass="mail" parameterClass="java.util.Map">
+		<![CDATA[select * from draco_role_mail where roleId = #key1# and sendTime >= #value1# order by look ,sendTime desc limit #value2#,#value3#]]>
+	</select>
+
+	<select id="countTwo" resultClass="int" parameterClass="java.util.Map">
+		<![CDATA[ select count(*) from  draco_role_mail where $key1$ = #value1# and $key2$ >= #value2#]]>
+	</select>
+
+	<select id="countThree" resultClass="int" parameterClass="java.util.Map">
+		<![CDATA[ select count(*) from  draco_role_mail where $key1$ = #value1# and $key2$ = #value2# and $key3$ >= #value3#]]>
+	</select>
+
+	<!-- 查询一批邮件 -->
+	<select id="getBatchMail" resultClass="mail" parameterClass="java.util.Map">
+		select * from draco_role_mail
+		<dynamic prepend="where mailId in">
+			<isNotNull property="mailIds">
+				<iterate property="mailIds" open="(" close=")" conjunction=",">
+					#mailIds[]#
+				</iterate>
+			</isNotNull>
+		</dynamic>
+	</select>
+
+	<select id="countUnreadMail" resultClass="int" parameterClass="java.util.Map">
+		select count(*) from draco_role_mail where look = 0 and roleId = #roleId#
+	</select>
+	
+	<select id="getMoneyRankList" resultClass="mailMoneyRank" parameterClass="java.util.Map">
+		select b.*, r.roleName, r.level 
+		from draco_role r,
+			(select roleId, count(roleId) as number, sum(silverMoney) as totalMoney 
+			from draco_role_mail 
+			<dynamic prepend="where">
+				<isNotEmpty prepend="and" property="sendSource">
+					sendSource = #sendSource# 
+				</isNotEmpty>
+			</dynamic>
+			group by roleId
+			having sum(silverMoney) >= #totalMoney# 
+			order by totalMoney desc) b 
+		where 
+			<![CDATA[r.roleId=b.roleId and (r.frozenEndTime is null or r.frozenEndTime <= now()) and r.del != 1]]>
+		limit #start#, #size#
+	</select>
+	
+	<update id="modifyMailFreeze" parameterClass="java.util.Map">
+		update draco_role_mail 
+		set freeze=#freeze#
+		where roleId = #roleId# and mailId = #mailId#
+	</update>
+
+</sqlMap>

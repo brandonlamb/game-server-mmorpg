@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="questApp" class="com.game.draco.app.quest.QuestAppImpl" autowire="byName">
+		<property name="pathConfig" ref="pathConfig" />
+		<property name="scriptSupport" ref="pyScriptSupport" />
+	</bean>
+	
+	<bean id="userQuestApp" class="com.game.draco.app.quest.UserQuestAppImpl" autowire="byName"></bean>
+	
+	<!-- 任务模块的支持 必须放到所有任务相关的App之后-->
+	<bean id="questServiceApp" class="com.game.draco.app.quest.service.QuestServiceAppImpl" autowire="byName"></bean>
+	
+	<!-- 诈金花任务 -->
+	<bean id="questPokerApp" class="com.game.draco.app.quest.poker.QuestPokerAppImpl" autowire="byName"></bean>
+	
+</beans>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="monitorPrintManager" class="sacred.alliance.magic.monitor.MonitorPrintManager" init-method="start" destroy-method="stop">
+		<property name="intervalMillis" value="60000" />
+		<property name="printList">
+			<list>
+			<!--  
+				<ref bean="pooledExecutor"/>
+				<ref bean="loginExecutor"/>
+				<ref bean="userOrderedExecutor"/>
+				<ref bean="factionExecutor"/>
+				<ref bean="battleExecutor"/>
+				<ref bean="posExecutor"/>
+				<ref bean="posStopExecutor"/>
+				<ref bean="rolePosMessageSender"/>
+				<ref bean="npcPostMessageSender"/>
+				<ref bean="defaultMessageSender"/>
+				<ref bean="battleMessageSender"/>
+				<ref bean="attrMessageSender"/>
+			-->	
+				
+			</list>
+		</property>
+	</bean>
+	
+</beans>

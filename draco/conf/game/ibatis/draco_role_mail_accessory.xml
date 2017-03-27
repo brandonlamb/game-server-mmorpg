@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="MailAccessory" >
+  <typeAlias alias="mailAccessory" type="com.game.draco.app.mail.domain.MailAccessory"/>
+ 	<select id="selectListOne" parameterClass="java.util.Map" resultClass="mailAccessory">
+    	select * from draco_role_mail_accessory where $key$ = #value#
+ 	</select>
+ 	<insert id="insert" parameterClass="mailAccessory" >
+	    insert into draco_role_mail_accessory (mailId,roleId,templateId,num,bind,instanceId,sendTime) 
+	    values (#mailId#,#roleId#,#templateId#,#num#,#bind#,#instanceId#,#sendTime#)
+  	</insert>
+  	<select id="selectAll" resultClass="mailAccessory">
+    	select * from draco_role_mail_accessory
+ 	</select>
+ 	<select id="selectListTwo" resultClass="mailAccessory" parameterClass="java.util.Map" >
+		select * from draco_role_mail_accessory where $key1$ = #value1# and $key2$ = #value2#
+
+  </select>
+ 	<select id="selectObjectTwo" resultClass="mailAccessory" parameterClass="java.util.Map" >
+		select * from draco_role_mail_accessory where $key1$ = #value1# and $key2$ = #value2#
+
+  </select>
+   <delete id="deleteOne" parameterClass="java.util.Map" >
+   <![CDATA[delete from draco_role_mail_accessory where $key$ <= #value#]]>
+    	
+  </delete>
+  <delete id="deleteTwo" parameterClass="java.util.Map" >
+   delete from draco_role_mail_accessory where $key1$ = #value1# and $key2$ = #value2# 
+    	
+  </delete>
+</sqlMap>

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>  
+    <!--管理触发器的总设置,管理我们的触发器列表,可以在bean的list中放置多个触发器。   
+    -->  
+    
+      
+    <bean id="schedulerApp" class="sacred.alliance.magic.app.crontab.SchedulerAppImpl" >
+    	<property name="scheduler" ref="schedulerFactoryBean" />
+    	 <property name="autoStartup" ref="schedulerAutoStartup" />
+    </bean>
+  
+  	<bean id="schedulerAutoStartup" class="java.lang.Boolean">
+  		<constructor-arg>
+  			<value>false</value>
+  		</constructor-arg>
+  	</bean>
+    
+    <bean id="schedulerFactoryBean" autowire="no"  
+        class="org.springframework.scheduling.quartz.SchedulerFactoryBean">  
+        <property name="autoStartup" ref="schedulerAutoStartup" />
+        <property name="triggers">  
+            <list>  
+                 
+                 <ref bean="clearTimeOutMailTrigger" />
+                 <ref bean="publishAnnounceTrigger" />
+                 <ref bean="statLogPrintCatTrigger" />
+                 <ref bean="rankLogTrigger" /> 
+                 <ref bean="rankLogSwitchTrigger" /> 
+                 
+                 <ref bean="rankRewardTrigger" /> 
+               
+                 <ref bean="systemBroacastTrigger" />
+                 <ref bean="clientTargetTrigger" />
+
+                 <ref bean="hintResetTrigger"/>
+                 <ref bean="allRoleOnlineTimeTrigger"/>
+                 <ref bean="roleLevelDistributionTrigger"/>
+                 <ref bean="goldMoneyDayRemainTrigger"/>
+                 <ref bean="onlineTrigger"/>
+                 <ref bean="createLoggerTrigger"/>
+               
+            </list>  
+        </property>  
+    </bean>
+    
+    
+    <!-- 客户端采样Task -->
+    <bean id="clientTargetTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject" ref="clientTargetApp" />  
+        <property name="targetMethod" value="autoCollect" />  
+        <property name="concurrent" value="false" />
+    </bean>  
+    
+    <!-- 客户端采样CronTrigger -->
+    <bean id="clientTargetTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail" ref="clientTargetTask" />  
+         <!-- 每小时第一分钟的第35秒 -->  
+        <property name="cronExpression" value="35 0/60 * * * ?" />
+    </bean>
+    
+    <!-- 系统广播Task -->
+    <bean id="systemBroacastTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject" ref="announceApp" />  
+        <property name="targetMethod" value="systemBroadcast" />  
+        <property name="concurrent" value="false" />
+    </bean>  
+    
+    <!-- 系统广播CronTrigger -->
+    <bean id="systemBroacastTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail" ref="systemBroacastTask" />  
+         <!-- 每分钟 -->  
+        <property name="cronExpression" value="0 * * * * ?" />  
+    </bean>
+    
+    <bean id="statLogPrintCat" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject" ref="statLogApp" />  
+        <property name="targetMethod" value="printCat" />  
+        <property name="concurrent" value="false" />
+    </bean> 
+    
+    <bean id="statLogPrintCatTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail" ref="statLogPrintCat" />  
+        <!-- 每小时的第10s -->
+        <property name="cronExpression" value="10 0/60 * * * ?" />  
+    </bean>
+   
+    <!--清除过期邮件 -->
+    <bean id="clearTimeOutMailTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail" ref="clearTimeOutMailTask" />  
+         <!-- 每天0点 -->  
+        <property name="cronExpression" value="0 0 0 * * ?" />  
+    </bean>
+    <!-- 清除过期邮件Task -->
+    <bean id="clearTimeOutMailTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject" ref="mailApp" />  
+        <property name="targetMethod" value="clearOutTimeMail" />  
+    </bean>  
+   
+    <!-- 系统广播Task -->
+    <bean id="publishAnnounceTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject" ref="announceApp" />  
+        <property name="targetMethod" value="publish" />  
+        <property name="concurrent" value="false" />
+    </bean>  
+    
+     <!-- 系统广播CronTrigger -->
+    <bean id="publishAnnounceTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail" ref="publishAnnounceTask" />  
+         <!-- 每分钟的第50s -->  
+        <property name="cronExpression" value="50 * * * * ?" />  
+    </bean>
+   
+    
+    <!-- 打印排行榜rankLogTask -->
+    <bean id="rankLogTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject" ref="rankApp" />  
+        <property name="targetMethod" value="printRankLogTimer" />  
+        <property name="concurrent" value="false" />
+    </bean>
+    
+    <!-- 排行榜定时打日志rankLogTrigger -->
+    <bean id="rankLogTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail" ref="rankLogTask" />  
+        <!-- 每小时第0分钟 -->  
+        <property name="cronExpression" value="0 0 * * * ?" />
+    </bean>
+
+    <!-- 打印排行榜rankLogSwitchTask -->
+    <bean id="rankLogSwitchTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject" ref="rankApp" />  
+        <property name="targetMethod" value="switchRankLogTimer" />  
+        <property name="concurrent" value="false" />
+    </bean>
+    
+    <!-- 排行榜定时切换日志文件rankLogSwitchTrigger -->
+    <bean id="rankLogSwitchTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail" ref="rankLogSwitchTask" />  
+        <!--  每小时第5秒  -->  
+        <property name="cronExpression" value="5 0/60 * * * ?" />
+    </bean>
+    <!-- 世界排行榜发奖rankRewardTask -->
+    <bean id="rankRewardTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject" ref="rankApp" />  
+        <property name="targetMethod" value="reward" />  
+        <property name="concurrent" value="false" />
+    </bean>
+    
+    <!-- 世界排行榜发奖rankRewardTrigger -->
+    <bean id="rankRewardTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail" ref="rankRewardTask" />  
+        <!--  每小时第50分钟  -->
+        <property name="cronExpression" value="0 50 * * * ?" />
+    </bean>
+
+    <!-- 帮会积分日志清理Task 
+    <bean id="factionIntegralLogTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject" ref="factionApp" />  
+        <property name="targetMethod" value="clearIntegralLog" />  
+        <property name="concurrent" value="false" />
+    </bean>  
+    -->
+    
+    <!-- 帮会积分日志清理CronTrigger 
+    <bean id="factionIntegralLogTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail" ref="factionIntegralLogTask" />  
+                        每天凌晨2点零1分
+        <property name="cronExpression" value="0 1 2 * * ?" />  
+    </bean>
+    -->
+    
+    <!-- 帮会日志清理Task 
+    <bean id="factionRecordTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject" ref="factionFuncApp" />  
+        <property name="targetMethod" value="clearFactionRecord" />  
+        <property name="concurrent" value="false" />
+    </bean>  
+    -->
+    
+    
+     <!-- 帮会日志清理CronTrigger 
+    <bean id="factionRecordTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail" ref="factionRecordTask" />  
+        	每天凌晨5点零30分 
+        <property name="cronExpression" value="0 30 5 * * ?" />  
+    </bean>
+    -->
+    
+
+    
+     <!-- 嘉年华排名Task
+    <bean id="carnivalTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject" ref="carnivalApp" />  
+        <property name="targetMethod" value="doRank" />  
+        <property name="concurrent" value="false" />
+    </bean>  
+    -->
+
+     <!-- 嘉年华排名CronTrigger
+    <bean id="carnivalTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail" ref="carnivalTask" />  
+        <property name="cronExpression" value="0 1 * * * ?" />
+    </bean>
+    -->
+    
+    <!-- 可领奖提示特效Task -->
+    <bean id="hintResetTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject" ref="hintApp" />  
+        <property name="targetMethod" value="sysPushHintMsg" />  
+        <property name="concurrent" value="false" />
+    </bean>  
+    
+    <!-- 可领奖提示特效CronTrigger -->
+    <bean id="hintResetTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail" ref="hintResetTask" />  
+         <!-- 每天凌晨0点8秒 --> 
+        <property name="cronExpression" value="8 0 0 * * ?" />  
+    </bean>
+    
+    <!-- 统计每天在线时长Task -->
+    <bean id="allRoleOnlineTimeTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject" ref="statLogApp" />  
+        <property name="targetMethod" value="allRoleOnlineTimeLog" />  
+        <property name="concurrent" value="false" />
+    </bean>  
+    
+     <!-- 统计每天在线时长 -->
+    <bean id="allRoleOnlineTimeTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail" ref="allRoleOnlineTimeTask" />  
+         <!-- 每天凌晨23点零58分 -->  
+        <property name="cronExpression" value="0 58 23 * * ?" />  
+    </bean>
+    
+    <!-- 统计角色等级分布Task -->
+    <bean id="roleLevelDistributionTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject" ref="statLogApp" />  
+        <property name="targetMethod" value="roleLevelDistributionLog" />  
+        <property name="concurrent" value="false" />
+    </bean>  
+    
+     <!-- 统计角色等级分布 -->
+    <bean id="roleLevelDistributionTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail" ref="roleLevelDistributionTask" />  
+         <!-- 每天凌晨23点零58分 -->  
+        <property name="cronExpression" value="0 58 23 * * ?" /> 
+    </bean>
+    
+    <!-- 统计日元宝剩余Task -->
+    <bean id="goldMoneyDayRemainTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject" ref="statLogApp" />  
+        <property name="targetMethod" value="goldMoneyDayRemainLog" />  
+        <property name="concurrent" value="false" />
+    </bean>  
+    
+     <!-- 统计日元宝剩余 -->
+    <bean id="goldMoneyDayRemainTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail" ref="goldMoneyDayRemainTask" />  
+         <!-- 每天凌晨23点零58分 -->  
+        <property name="cronExpression" value="0 58 23 * * ?" /> 
+    </bean>
+    
+    <!-- 昆仑在线人数统计Task -->
+    <bean id="onlineTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject" ref="logApp" />  
+        <property name="targetMethod" value="onlineLog" />  
+        <property name="concurrent" value="false" />
+    </bean>  
+    
+     <!-- 昆仑在线人数统计 -->
+    <bean id="onlineTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail" ref="onlineTask" />  
+         <!-- 每小时每10分钟10秒打印 -->  
+        <property name="cronExpression" value="10 0/10 * * * ?" /> 
+    </bean>
+    
+    <!-- 昆仑日志跨月重新生成Task -->
+    <bean id="createLoggerTask" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">  
+        <property name="targetObject" ref="logApp" />  
+        <property name="targetMethod" value="createNewLogger" />  
+        <property name="concurrent" value="false" />
+    </bean>  
+    
+     <!-- 昆仑日志跨月重新生成 -->
+    <bean id="createLoggerTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">  
+        <property name="jobDetail" ref="createLoggerTask" />  
+         <!-- 每个月第一天0点 -->
+        <property name="cronExpression" value="0 0 0 1 * ?" />  
+    </bean>
+    
+</beans>  

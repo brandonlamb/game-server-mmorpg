@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap namespace="RoleCopyLineReward" >
+	<typeAlias alias="roleCopyLineReward" type="com.game.draco.app.copy.line.domain.RoleCopyLineReward"/>
+	
+	<insert id="insert" parameterClass="roleCopyLineReward" >
+		insert into draco_role_copy_line_reward
+			(roleId,chapterId,takeStarNum) 
+		values
+			(#roleId#,#chapterId#,#takeStarNum#)
+	</insert>
+	
+	<select id="selectObjectOne" parameterClass="java.util.Map" resultClass="roleCopyLineReward">
+    	select * from draco_role_copy_line_reward where $key$ = #value# 
+ 	</select>
+ 	
+ 	<select id="selectObjectTwo" parameterClass="java.util.Map" resultClass="roleCopyLineReward">
+    	select * from draco_role_copy_line_reward where $key1$ = #value1# and $key2$ = #value2#
+ 	</select>
+ 	
+	<select id="selectListOne" parameterClass="java.util.Map" resultClass="roleCopyLineReward">
+  		select * from draco_role_copy_line_reward where $key$ = #value#
+  	</select>
+  	
+  	<select id="selectListTwo" parameterClass="java.util.Map" resultClass="roleCopyLineReward">
+    	select * from draco_role_copy_line_reward where $key1$ = #value1# and $key2$ = #value2#
+ 	</select>
+  	
+  	<update id="update" parameterClass="roleCopyLineReward">
+  		update draco_role_copy_line_reward
+  		set 
+  			takeStarNum=#takeStarNum#
+		where
+			roleId=#roleId# and chapterId=#chapterId#
+  	</update>
+  	
+  	<delete id="deleteAll">
+  		truncate table draco_role_copy_line_reward
+  	</delete>
+  	
+  	<delete id="deleteOne"  parameterClass="java.util.Map">
+  		delete from draco_role_copy_line_reward where $key$ = #value#
+  	</delete>
+  	
+  	<delete id="deleteTwo"  parameterClass="java.util.Map">
+  		delete from draco_role_copy_line_reward where $key1$ = #value1# and $key2$ = #value2#
+  	</delete>
+  	
+</sqlMap>

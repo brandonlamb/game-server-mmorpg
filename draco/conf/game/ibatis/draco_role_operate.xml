@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap namespace="RoleOperateActive">
+	<typeAlias alias="roleOperateActive" type="com.game.draco.app.operate.domain.RoleOperateActive" />
+
+	<insert id="insert" parameterClass="roleOperateActive">
+		insert into draco_role_operate
+		(roleId,activeType,activeId,data) values (#roleId#,#activeType#,#activeId#,#data#)
+	</insert>
+
+	<select id="selectObjectTwo" parameterClass="java.util.Map" resultClass="roleOperateActive">
+		select * from draco_role_operate where $key1$ = #value1# and $key2$ = #value2#
+	</select>
+
+	<update id="update" parameterClass="roleOperateActive">
+		update draco_role_operate set 
+			activeType=#activeType#, 
+			data=#data#
+		where roleId=#roleId# and activeId=#activeId#
+	</update>
+	
+	<delete id="deleteTwo" parameterClass="java.util.Map">
+		delete from draco_role_operate where $key1$ = #value1# and $key2$ = #value2#
+	</delete>
+
+</sqlMap>

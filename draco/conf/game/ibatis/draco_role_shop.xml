@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="RoleShopDailyLimit" >
+	 <typeAlias alias="roleShopDailyLimit" type="com.game.draco.app.shop.domain.RoleShopDailyLimit"/>
+   <insert id="insert" parameterClass="roleShopDailyLimit" >
+    insert into draco_role_shop
+    (roleId,refreshTime,data)
+    values 
+    (#roleId#, #refreshTime#, #data#)
+  </insert>
+  <select id="selectObjectOne" resultClass="roleShopDailyLimit" parameterClass="java.util.Map">
+  	select * from draco_role_shop where $key$ = #value#
+  </select>
+  
+  
+  <update id="update" parameterClass="roleShopDailyLimit" >
+    update draco_role_shop
+    set
+		refreshTime=#refreshTime#,
+		data=#data#
+  	where roleId=#roleId#
+  </update>
+  
+	<delete id="delete" parameterClass="java.util.Map">
+		delete from draco_role_shop where where $key$ = #value#
+	</delete>
+
+</sqlMap> 

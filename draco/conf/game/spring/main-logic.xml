@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans> 
+	
+	<bean id="mapLoop" class="sacred.alliance.magic.scheduler.job.MapLoop" init-method="start" destroy-method="stop">
+			<property name="mapApp" ref="mapApp" />
+			<property name="loopSleepMillis" value="100" />
+			<property name="maximumPoolSize" value="25" />
+	</bean>
+	
+
+</beans>

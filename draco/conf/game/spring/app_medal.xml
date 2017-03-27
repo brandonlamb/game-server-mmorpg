@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	<bean id="medalApp" class="com.game.draco.app.medal.MedalAppImpl" autowire="byName"></bean>
+	
+	<bean id="medalStorage" class="com.game.draco.app.medal.MedalSSDBStorage" autowire="byName"></bean>
+	
+</beans>

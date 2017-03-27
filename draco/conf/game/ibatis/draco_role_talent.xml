@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap namespace="RoleTalent" >
+	<typeAlias alias="roleTalent" type="com.game.draco.app.talent.domain.RoleTalent"/>
+	
+	<insert id="insert" parameterClass="roleTalent" >
+		insert into draco_role_talent
+			(roleId,talent,talent1,talent2,talent3,talent4,talent5) 
+		values
+			(#roleId#,#talent#,#talent1#,#talent2#,#talent3#,#talent4#,#talent5#)
+	</insert>
+	
+	<select id="selectObjectOne" parameterClass="java.util.Map" resultClass="roleTalent">
+    	select * from draco_role_talent where $key$ = #value#
+ 	</select>
+ 	
+ 	<select id="selectObjectTwo" parameterClass="java.util.Map" resultClass="roleTalent">
+    	select * from draco_role_talent where $key1$ = #value1# and $key2$ = #value2#
+ 	</select>
+ 	
+	<select id="selectListOne" parameterClass="java.util.Map" resultClass="roleTalent">
+  		select * from draco_role_talent where $key$ = #value#
+  	</select>
+  	
+  	<select id="selectListTwo" parameterClass="java.util.Map" resultClass="roleTalent">
+    	select * from draco_role_talent where $key1$ = #value1# and $key2$ = #value2# 
+ 	</select>
+  	
+  	<update id="update" parameterClass="roleTalent">
+  		update draco_role_talent
+  		set 
+  			talent=#talent#,talent1=#talent1#,talent2=#talent2#,talent3=#talent3#,talent4=#talent4#,talent5=#talent5#
+		where
+			roleId = #roleId# 
+  	</update>
+  	
+  	<delete id="deleteOne"  parameterClass="java.util.Map">
+  		delete from draco_role_talent where $key$ = #value#
+  	</delete>
+  	
+  	<delete id="deleteTwo"  parameterClass="java.util.Map">
+  		delete from draco_role_talent where $key1$ = #value1# and $key2$ = #value2#
+  	</delete>
+  	
+</sqlMap>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="UnionBattle" >
+	 <typeAlias alias="unionBattle" type="com.game.draco.app.union.battle.domain.UnionBattle"/>
+  	<insert id="insert" parameterClass="unionBattle" >
+    	insert into draco_union_battle
+    	(battleId, roleId, unionId, killTime, winNumber, newMapName, instanceId, instanceRenamedId)
+   		values  
+    	(#battleId#, #roleId#, #unionId#, #killTime#, #winNumber#, #newMapName#, #instanceId#, #instanceRenamedId#)
+  	</insert>
+  
+ 	<!-- 根据公会战ID查公会战记录 -->
+    <select id="selectObjectOne" parameterClass="java.util.Map" resultClass="unionBattle">
+  		select * from draco_union_battle where $key$ = #value#
+  	</select>
+  	
+	<!-- 返回所有公会战 -->
+    <select id="selectAll" resultClass="unionBattle">
+  	select * from draco_union_battle
+    </select>
+    
+	<update id="update" parameterClass="unionBattle">
+		update draco_union_battle set 
+			battleId=#battleId#,
+			roleId=#roleId#,
+			unionId=#unionId#,
+			killTime=#killTime#,
+			winNumber=#winNumber#,
+			newMapName=#newMapName#,
+			instanceId=#instanceId#,
+			instanceRenamedId=#instanceRenamedId#
+		where
+			battleId=#battleId#
+	</update>
+	
+	
+	<delete id="deleteOne" parameterClass="java.util.Map">
+		delete from draco_union_battle where $key$ = #value#
+	</delete>
+</sqlMap> 

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!-- 运营活动 -->
+	<bean id="operateActiveApp" class="com.game.draco.app.operate.OperateActiveAppImpl" autowire="byName"></bean>
+
+	<!-- 活动-折扣活动 -->
+	<bean id="discountApp" class="com.game.draco.app.operate.discount.DiscountAppImpl" autowire="byName"></bean>
+
+	<!-- 首冲 -->
+	<bean id="firstPayApp" class="com.game.draco.app.operate.firstpay.FirstPayAppImpl"></bean>
+
+	<!-- 月卡 -->
+	<bean id="monthCardApp" class="com.game.draco.app.operate.monthcard.MonthCardAppImpl"></bean>
+
+	<!-- 乐翻天 -->
+	<bean id="donateApp" class="com.game.draco.app.operate.donate.DonateAppImpl" autowire="byName"></bean>
+	
+	<!-- 成长基金 -->
+	<bean id="growFundApp" class="com.game.draco.app.operate.growfund.GrowFundAppImpl" autowire="byName"></bean>
+	
+	<!-- 充值额外送 -->
+	<bean id="payExtraApp" class="com.game.draco.app.operate.payextra.PayExtraAppImpl" autowire="byName"></bean>
+	
+	<!-- 简单活动 -->
+	<bean id="simpleApp" class="com.game.draco.app.operate.simple.SimpleAppImpl" autowire="byName"></bean>
+</beans>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="UnionKillBossRecord" >
+    <typeAlias alias="unionKillBossRecord" type="com.game.draco.app.union.domain.instance.UnionKillBossRecord"/>
+  	
+  	<select id="selectAll" resultClass="unionKillBossRecord">
+  		select * from draco_union_kill_boss_record
+  	</select>
+  	
+ 	<select id="selectListOne" parameterClass="java.util.Map" resultClass="unionKillBossRecord">
+    	select * from draco_union_kill_boss_record where $key$ = #value#
+ 	</select>
+ 	
+ 	<insert id="insert" parameterClass="unionKillBossRecord" >
+	    insert into draco_union_kill_boss_record(unionId,data)values (#unionId#,#data#)
+  	</insert>
+  	
+   	<delete id="deleteOne" parameterClass="java.util.Map" >
+   		<![CDATA[delete from draco_union_kill_boss_record where $key$ < #value#]]>
+	</delete>
+	
+	<update id="update" parameterClass="unionKillBossRecord" >
+	    	update draco_union_kill_boss_record
+				set data=#data#
+			where unionId = #unionId# 
+	</update>
+	
+</sqlMap>

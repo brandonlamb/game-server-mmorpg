@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="UnionRoleAuction" >
+    <typeAlias alias="unionRoleAuction" type="com.game.draco.app.union.domain.auction.UnionRoleAuction"/>
+  	
+  	<select id="selectAll" resultClass="unionRoleAuction">
+  		select * from draco_union_role_auction
+  	</select>
+  	
+ 	<select id="selectListOne" parameterClass="java.util.Map" resultClass="unionRoleAuction">
+    	select * from draco_union_role_auction where $key$ = #value#
+ 	</select>
+ 	
+ 	<insert id="insert" parameterClass="unionRoleAuction" >
+	    insert into draco_union_role_auction(unionId,uuid,roleId,price)values (#unionId#,#uuid#,#roleId#,#price#)
+  	</insert>
+  	
+   	<delete id="deleteOne" parameterClass="java.util.Map" >
+   		delete from draco_union_role_auction where $key$ = #value#
+	</delete>
+	
+	<update id="update" parameterClass="unionRoleAuction" >
+    	update draco_union_role_auction
+			set price=#price#
+		where unionId = #unionId# and uuid = #uuid# and roleId = #roleId#
+	</update>
+	
+</sqlMap>

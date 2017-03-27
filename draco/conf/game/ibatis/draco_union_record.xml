@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="UnionRecord" >
+    <typeAlias alias="unionRecord" type="com.game.draco.app.union.domain.UnionRecord"/>
+  	
+ 	<select id="selectListOne" parameterClass="java.util.Map" resultClass="unionRecord">
+    	select * from draco_union_record where $key$ = #value# order by createTime desc
+ 	</select>
+ 	
+ 	<insert id="insert" parameterClass="unionRecord" >
+	    insert into draco_union_record(unionId,type,data1,data2,data3,createTime)values (#unionId#,#type#,#data1#,#data2#,#data3#,#createTime#)
+  	</insert>
+  	
+   <delete id="deleteOne" parameterClass="java.util.Map" >
+   <![CDATA[delete from draco_union_record where $key$ < #value#]]>
+  </delete>
+  
+   <update id="update" parameterClass="unionRecord" >
+    update draco_union_record
+			set type=#type#,
+				data1=#data1#,
+				data2=#data2#,
+				data3=#data3#,
+				createTime=#createTime#
+	where unionId = #unionId#
+	</update>
+	
+  <select id="getRecordList" resultClass="unionRecord" parameterClass="java.util.Map">
+  	select * from draco_union_record
+  	where unionId = #unionId#
+  	order by createTime desc
+  	limit #start#, #end#
+  </select>
+   
+</sqlMap>

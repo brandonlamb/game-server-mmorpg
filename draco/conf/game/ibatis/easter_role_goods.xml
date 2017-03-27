@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="RoleGoods" >
+ 
+	<update id="update" parameterClass="sacred.alliance.magic.domain.RoleGoods" >
+    update easter_role_goods
+    set
+		roleId =  #roleId#,
+		storageType=#storageType#,
+		goodsId=#goodsId#,
+		mosaic =  #mosaic#,
+		currOverlapCount =  #currOverlapCount#,
+		bind =  #bind#,
+		attrVar =  #attrVar#,
+		strengthenLevel= #strengthenLevel#,
+		expiredTime =  #expiredTime#,
+		deadline= #deadline#,
+		otherParm =  #otherParm#,
+		quality = #quality#,
+		star= #star#
+    where id = #id#
+  </update>
+   
+      
+    <insert id="insert" parameterClass="sacred.alliance.magic.domain.RoleGoods" >
+    insert into easter_role_goods 
+    (id, roleId, storageType, goodsId,mosaic, currOverlapCount,bind,attrVar,strengthenLevel,otherParm,expiredTime,deadline,quality,star
+     )
+    values (
+    #id#,#roleId#, #storageType#, #goodsId#,
+     #mosaic#,#currOverlapCount#,#bind#,#attrVar#,#strengthenLevel#,#otherParm#,#expiredTime#,#deadline#,#quality#,#star#
+    )
+  </insert>
+    
+    <insert id="replace" parameterClass="sacred.alliance.magic.domain.RoleGoods" >
+    replace into easter_role_goods 
+    (id, roleId, storageType, goodsId,mosaic, currOverlapCount,bind,attrVar,strengthenLevel,otherParm,expiredTime,deadline,quality,star
+     )
+    values (
+    #id#,#roleId#, #storageType#, #goodsId#,
+     #mosaic#,#currOverlapCount#,#bind#,#attrVar#,#strengthenLevel#,#otherParm#,#expiredTime#,#deadline#,#quality#,#star#
+    )
+  </insert>
+  
+   <select id="selectObjectOne" resultClass="sacred.alliance.magic.domain.RoleGoods" parameterClass="java.util.Map" >
+  	select *   
+    from easter_role_goods
+    where $key$ = #value#
+  </select>
+  
+  <!-- 
+  <select id="selectListOne" resultMap="result" parameterClass="java.util.Map" >
+  	select *
+    from easter_role_goods
+    where $key$ = #value#
+  </select>
+   -->
+  
+  <select id="selectListTwo" resultClass="sacred.alliance.magic.domain.RoleGoods" parameterClass="java.util.Map" >
+  	select *
+    from easter_role_goods
+    where $key1$ = #value1# and $key2$ = #value2#
+  </select>
+  
+  <select id="selectListByIterate" resultClass="sacred.alliance.magic.domain.RoleGoods" parameterClass="java.util.Map" >
+  	select *
+    from easter_role_goods
+    where roleId = #key1# and (storageType = #value1# or storageType = #value2# or storageType = #value3# or storageType = #value4# or storageType = #value5# or storageType = #value6#)
+  </select>
+  
+  <delete id="delete" parameterClass="sacred.alliance.magic.domain.RoleGoods" >
+    delete from easter_role_goods
+    where id = #id#
+  </delete>
+  
+  <delete id="deleteOne" parameterClass="java.util.Map" >
+    delete from easter_role_goods
+    where $key$ = #value#
+  </delete>
+  
+  <delete id="deleteTwo" parameterClass="java.util.Map" >
+    delete from easter_role_goods
+   where $key1$ = #value1# and $key2$ = #value2#
+  </delete>
+  
+  
+  <delete id="deleteThree" parameterClass="java.util.Map" >
+    delete from easter_role_goods
+    where $key1$ = #value1# and $key2$ = #value2# and $key3$ = #value3#
+  </delete>
+  
+  <select id="statistices" resultClass="java.util.HashMap" >
+  	SELECT goodsid,SUM(curroverlapcount) as statis FROM easter_role_goods GROUP BY goodsid
+  </select>
+  <delete id="del2str" parameterClass="java.util.Map" >
+    delete from easter_role_goods
+    where $key$ in ( $value$ )
+  </delete>
+  
+  <select id="countOne" resultClass="int" parameterClass="java.util.Map" >
+    select count(*) from  easter_role_goods where $key$ = #value#
+  </select>
+  
+  <select id="countTwo" resultClass="int" parameterClass="java.util.Map" >
+    select count(*) from  easter_role_goods where $key1$ = #value1# and $key2$ = #value2#
+  </select>
+</sqlMap>

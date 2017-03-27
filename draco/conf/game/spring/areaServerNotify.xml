@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="areaServerNotifyApp"  class="sacred.alliance.magic.app.notify.AreaServerNotifyAppImpl">
+		<property name="port" value="${acceptor.socket.port}" />
+		<property name="appId" value="${appId}" />
+		<property name="loopMillis" value="${areaserver.notify.client.loopmillis}" />
+		<property name="maxServerIdTimes" value="${areaserver.notify.getserverid.maxtimes}" />
+		<property name="serverStateConfig" ref="serverStateConfig" />
+	</bean>
+	
+	
+	<bean id="areaServerClient"  class="sacred.alliance.magic.app.notify.AreaServerClient"  depends-on="externalMessageParser">
+		<property name="clientAllFile" value="${area.client.ice.config.file}" />
+		<property name="messageParser" ref="externalMessageParser" />
+	</bean>
+</beans>

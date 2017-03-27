@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	<bean id="teamCache"
+		class="sacred.alliance.magic.module.cache.SimpleCache" init-method="start" destroy-method="destroy">
+		<property name="timeToLiveMillisecond" value="300000" />
+	</bean>
+	
+	<!-- 公会成员关系cache -->
+	<bean id="factionRoleCache"
+		class="sacred.alliance.magic.module.cache.SimpleCache" init-method="start" destroy-method="destroy">
+		<property name="timeToLiveMillisecond" value="1200000" />
+	</bean>
+	
+	<!-- 交易cache -->
+	<bean id="tradingCache"
+		class="sacred.alliance.magic.module.cache.SimpleCache" init-method="start" destroy-method="destroy">
+		<property name="timeToLiveMillisecond" value="300000" />
+	</bean>
+	
+	<!-- 宝箱cache -->
+	<bean id="boxesCache"
+		class="sacred.alliance.magic.module.cache.SimpleCache" init-method="start" destroy-method="destroy">
+		<property name="timeToLiveMillisecond" value="300000" />
+	</bean>
+	
+	<!-- 组队副本 -->
+	<bean id="teamCopyCache" 
+		class="sacred.alliance.magic.module.cache.SimpleCache" init-method="start" destroy-method="destroy">
+		<property name="timeToLiveMillisecond" value="30000"></property>
+	</bean>
+	
+	<!-- 生存战场 -->
+	<bean id="survivalCache" class="sacred.alliance.magic.module.cache.SimpleCache" init-method="start" destroy-method="destroy">
+		<property name="timeToLiveMillisecond" value="30000"></property>
+	</bean>
+	
+	
+</beans>

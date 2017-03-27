@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+    <bean id="transactionInterceptor"   
+        class="org.springframework.transaction.interceptor.TransactionInterceptor">   
+        <property name="transactionManager" ref="transactionManager" />   
+        <property name="transactionAttributes">   
+            <props> 
+             	<!-- prop key="offlineStoreGoods">PROPAGATION_REQUIRED,-sacred.alliance.magic.core.exception.ServiceException</prop> -->
+                <prop key="initRole">PROPAGATION_REQUIRED,-sacred.alliance.magic.core.exception.ServiceException</prop>
+                <prop key="acceptQuest">PROPAGATION_REQUIRED,-sacred.alliance.magic.core.exception.ServiceException</prop>
+                <prop key="giveupQuest">PROPAGATION_REQUIRED,-sacred.alliance.magic.core.exception.ServiceException</prop>
+                <prop key="submitQuest">PROPAGATION_REQUIRED,-sacred.alliance.magic.core.exception.ServiceException</prop>
+                
+                <prop key="createUnion">PROPAGATION_REQUIRED,-sacred.alliance.magic.core.exception.ServiceException</prop>
+                <!-- 
+                <prop key="leave">PROPAGATION_REQUIRED,-sacred.alliance.magic.core.exception.ServiceException</prop>  
+                 -->
+                <prop key="sendMail">PROPAGATION_REQUIRED,-sacred.alliance.magic.core.exception.ServiceException</prop>
+                <prop key="pickMailAccessory">PROPAGATION_REQUIRED,-sacred.alliance.magic.core.exception.ServiceException</prop>
+                <prop key="delMail">PROPAGATION_REQUIRED,-sacred.alliance.magic.core.exception.ServiceException</prop>    
+                <!--
+                <prop key="delRoleGoods">PROPAGATION_REQUIRED,-sacred.alliance.magic.core.exception.ServiceException</prop>
+                <prop key="insRoleGoodsBatch">PROPAGATION_REQUIRED,-sacred.alliance.magic.core.exception.ServiceException</prop>
+                <prop key="insRoleGood">PROPAGATION_REQUIRED,-sacred.alliance.magic.core.exception.ServiceException</prop> 
+                -->
+                
+                <prop key="insertDbRoleGoods">PROPAGATION_REQUIRED,-sacred.alliance.magic.core.exception.ServiceException</prop> 
+                <prop key="deleteDbRoleGoods">PROPAGATION_REQUIRED,-sacred.alliance.magic.core.exception.ServiceException</prop> 
+                 <prop key="useHeroGoods">PROPAGATION_REQUIRED,-sacred.alliance.magic.core.exception.ServiceException</prop> 
+            </props>   
+        </property>   
+    </bean>   
+     
+    <bean   
+        class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">   
+        <property name="beanNames">    
+           	<value>userGoodsApp,roleService,mailApp,userQuestApp,unionApp,userRoleApp,heroApp</value>
+        </property>    
+        <property name="interceptorNames">
+            <list>   
+                <value>transactionInterceptor</value>  
+            </list>   
+        </property>   
+    </bean>  
+    
+    <!-- TransactionManager-->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+</beans>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap namespace="RoleRichMan" >
+	<typeAlias alias="roleRichMan" type="com.game.draco.app.richman.domain.RoleRichMan"/>
+	
+	<insert id="insert" parameterClass="roleRichMan" >
+		insert into draco_role_richman
+			(roleId,curJoinNum,diceNormalNum,diceRemoteNum,diceDoubleNum,todayCoupon,operateDate,totalCoupon,randomEventInfo) 
+		values
+			(#roleId#,#curJoinNum#,#diceNormalNum#,#diceRemoteNum#,#diceDoubleNum#,#todayCoupon#,#operateDate#,#totalCoupon#,#randomEventInfo#)
+	</insert>
+	
+	<select id="selectObjectOne" parameterClass="java.util.Map" resultClass="roleRichMan">
+    	select * from draco_role_richman where $key$ = #value# 
+ 	</select>
+ 	
+ 	<update id="update" parameterClass="roleRichMan">
+ 		update draco_role_richman
+ 		set 
+ 			curJoinNum=#curJoinNum#,
+ 			diceNormalNum=#diceNormalNum#,
+ 			diceRemoteNum=#diceRemoteNum#,
+ 			diceDoubleNum=#diceDoubleNum#,
+ 			todayCoupon=#todayCoupon#,
+ 			operateDate=#operateDate#,
+ 			totalCoupon=#totalCoupon#,
+ 			randomEventInfo=#randomEventInfo#
+	  where
+		  roleId=#roleId# 
+ 	</update>
+ 	
+ 	<delete id="deleteOne"  parameterClass="java.util.Map">
+ 		delete from draco_role_richman where $key$ = #value#
+ 	</delete>
+  	
+</sqlMap>

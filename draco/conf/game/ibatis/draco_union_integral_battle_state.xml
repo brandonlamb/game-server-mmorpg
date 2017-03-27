@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="UnionIntegralState" >
+	 <typeAlias alias="integral" type="com.game.draco.app.unionbattle.domain.UnionIntegralState"/>
+  	<insert id="insert" parameterClass="integral" >
+    	insert into draco_union_integral_state
+    	(round,grid,groupId,unionId,state)
+   		values  
+    	(#round#, #grid#, #groupId#, #unionId#,#state#)
+  	</insert>
+  
+    <select id="selectAll" resultClass="integral">
+  		select * from draco_union_integral_state
+    </select>
+    
+	<update id="update" parameterClass="integral">
+		update draco_union_integral_state set 
+			state=#state# 
+		where
+			round=#round# and
+			grid=#grid# and
+			groupId=#groupId# and
+			unionId=#unionId#
+	</update>
+	
+	<delete id="deleteAll">
+		delete from draco_union_integral_state
+	</delete>
+</sqlMap> 

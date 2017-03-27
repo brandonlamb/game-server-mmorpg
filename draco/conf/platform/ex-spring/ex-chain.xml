@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="externalFilterChainFactory"
+		class="sacred.alliance.magic.core.filter.DefaultFilterChainFactory">
+		
+		<property name="filterList">
+			<list>
+				<ref local="elogMessageFilter"/>
+			</list>
+		</property>
+		 
+	</bean>
+
+    <bean id="elogMessageFilter" class="sacred.alliance.magic.filter.impl.LogMessageFilter" >
+            <property name="protoBuffer" ref="bytesProtoBuffer" />
+    </bean>
+</beans>
+

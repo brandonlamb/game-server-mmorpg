@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="doorDogApp" class="sacred.alliance.magic.app.doordog.DoorDogAppImpl" >
+	</bean>
+	
+	<bean id="captchaCmdConfig"
+		class="sacred.alliance.magic.app.config.SetConfig"
+		init-method="init">
+		<property name="configFile">
+			<value>spring/properties/captchacmd.txt</value>
+		</property>
+	</bean>
+
+</beans>

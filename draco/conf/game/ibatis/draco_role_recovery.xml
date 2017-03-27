@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="RoleRecovery" >
+	 <typeAlias alias="roleRecovery" type="com.game.draco.app.recovery.domain.RoleRecovery"/>
+   <insert id="insert" parameterClass="roleRecovery" >
+    insert into draco_role_recovery
+    (roleId, recoveryId, roleLevel, num, maxNum, data, updateTime)
+    values  
+    (#roleId#, #recoveryId#, #roleLevel#, #num#, #maxNum#, #data#, #updateTime#)
+  </insert>
+  <!-- 获得玩家一键追回的列表 -->
+  <select id="selectListOne" resultClass="roleRecovery" parameterClass="java.util.Map">
+  	select * from draco_role_recovery where $key$ = #value#
+  </select>
+  
+  <select id="selectObjectTwo" resultClass="roleRecovery" parameterClass="java.util.Map">
+    	select * from draco_role_recovery where $key1$ = #value1# and $key2$ = #value2#
+  </select>
+  
+  <update id="update" parameterClass="roleRecovery" >
+    update draco_role_recovery
+    set
+		roleLevel=#roleLevel#,
+		num=#num#,
+		maxNum=#maxNum#,
+		data=#data#,
+		updateTime=#updateTime#
+  	where roleId=#roleId#
+  	and recoveryId=#recoveryId#
+  </update>
+  
+	<delete id="delete" parameterClass="java.util.Map">
+		delete from draco_role_recovery where where $key$ = #value#
+	</delete>
+	
+  	<delete id="deleteTwo"  parameterClass="java.util.Map">
+  		delete from draco_role_recovery where $key1$ = #value1# and $key2$ = #value2#
+  	</delete>
+</sqlMap> 

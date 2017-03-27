@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="FactionWarGambleInfo" >
+  <typeAlias alias="factionWarGambleInfo" type="sacred.alliance.magic.app.faction.war.domain.FactionWarGambleInfo"/>
+  <insert id="insert" parameterClass="factionWarGambleInfo" >
+    insert into easter_faction_war_gamble
+    (roleId, factionId, money)
+    values 
+    (#roleId#, #factionId#, #money#)
+  </insert>
+  
+  <select id="selectAll" resultClass="factionWarGambleInfo">
+  	select * from easter_faction_war_gamble
+  </select>
+  
+  <select id="selectObjectOne" resultClass="factionWarGambleInfo" parameterClass="java.util.Map" >
+  	select * from easter_faction_war_gamble
+    where $key$ = #value#
+  </select>
+  
+  <select id="selectListOne" resultClass="factionWarGambleInfo" parameterClass="java.util.Map" >
+  	select factionId,sum(money) as money from easter_faction_war_gamble group by factionId;
+  </select>
+  
+  <select id="selectListTwo" resultClass="factionWarGambleInfo" parameterClass="java.util.Map" >
+  	select * from easter_faction_war_gamble limit #value1#, #value2#;
+  </select>
+  
+  <delete id="deleteAll">
+  	truncate table easter_faction_war_gamble
+  </delete>
+  
+  <select id="getFacrtionWarGambleMoney" resultClass="int" parameterClass="java.util.Map" >
+    select sum(money) from easter_faction_war_gamble
+  </select>
+</sqlMap>

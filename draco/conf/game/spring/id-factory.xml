@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans> 
+
+	<!--  
+	<bean id="idFactoryStorePath"
+		class="java.lang.String"  factory-bean="pathConfig" factory-method="getIdFactoryStorePath"/>
+	-->
+	
+	<!--  
+	<bean id="roleIdGenerator" class="sacred.alliance.magic.module.id.SectionDbMemoryIntIdGenerator" depends-on="dataSource"> 
+		<property name="pkColumn" value="roleid" />
+		<property name="tableName" value="sacred_role" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	-->
+	
+	<bean id="roleIdGenerator" class="sacred.alliance.magic.component.id.RoleIdGenerator" depends-on="dataSource" autowire="byName">
+		<property name="pkColumn" value="roleId" />
+		<property name="tableName" value="easter_role" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<bean id="npcIdGenerator" class="sacred.alliance.magic.module.id.IntegerIdGenerator" > 
+		<property name="positive"  value="false"  />
+	</bean>
+	
+	
+	<bean id="strIdFactory" class="sacred.alliance.magic.component.id.StringIdGenerator" depends-on="dataSource" autowire="byName">
+		<property name="tableName" value="idgen_string_id" />
+		<property name="scope" value="2000" />
+		<property name="createLimitSize" value="1500" />
+		<property name="getLimitSize" value="500" />
+		<property name="dataSource" ref="dataSource" />
+		
+	</bean>
+	
+	<bean id="idFactory" class="sacred.alliance.magic.component.id.IdFactory" depends-on="strIdFactory,roleIdGenerator">
+		<property name="idGeneratorMap">
+		<!-- 注意key的配置要与IdType枚举里面相对应 -->
+			<map>
+				<entry key="1"><ref bean="roleIdGenerator" /></entry>
+				<entry key="2"><ref bean="npcIdGenerator" /></entry>
+				<entry key="3"><ref bean="strIdFactory" /></entry>
+				<entry key="4"><ref bean="strIdFactory" /></entry>
+				<entry key="5"><ref bean="strIdFactory" /></entry>
+				<entry key="6"><ref bean="strIdFactory" /></entry>
+				<entry key="7"><ref bean="npcIdGenerator" /></entry>
+				<entry key="8"><ref bean="strIdFactory" /></entry>
+				<!-- 女神 -->
+			</map>
+		</property>
+	</bean>
+		 
+</beans>

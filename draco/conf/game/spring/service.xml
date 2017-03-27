@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="roleService" class="sacred.alliance.magic.service.impl.RoleServiceImpl" autowire="byName">
+		<property name="idFactory" ref="idFactory" />
+		<property name="baseDAO" ref="baseDAO" />
+	</bean>
+	 
+	 <bean id="illegalWordsService" class="sacred.alliance.magic.service.impl.IllegalWordsServiceImpl" autowire="byName">
+		<property name="illegalWordsConfig" ref="illegalWordsConfig" />
+		<property name="forbiddenWordsConfig" ref="forbiddenWordsConfig" />
+	</bean>
+	
+	 <bean id="userAttributeApp" class="sacred.alliance.magic.app.user.UserAttributeAppImpl" autowire="byName">
+		<property name="calctManager" ref="calctManager" />
+	</bean>
+	
+	
+	<bean id="userRoleApp" class="sacred.alliance.magic.app.user.UserRoleAppImpl" autowire="byName">
+	   	<property name="baseDAO" ref="baseDAO" />
+	   	<property name="onlineCenter" ref="onlineCenter" />
+    </bean>
+    
+	<bean id="userMapApp" class="sacred.alliance.magic.app.user.UserMapAppImpl" autowire="byName">
+		<property name="mapApp" ref="mapApp" />
+		<property name="roleBornApp" ref="roleBornApp" />
+		<property name="handler" ref="minaChannelHandler" />
+	</bean>
+	 
+	<bean id="userGoodsApp" class="sacred.alliance.magic.app.user.UserGoodsAppImpl" autowire="byName">
+	</bean> 
+	
+	<bean id="userWarehouseApp" class="sacred.alliance.magic.app.user.UserWarehouseAppImpl" autowire="byName">
+	</bean> 
+ 
+</beans>

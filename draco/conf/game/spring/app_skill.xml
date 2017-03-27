@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	<bean id="skillApp" class="com.game.draco.app.skill.SkillAppImpl" autowire="byName">
+		<property name="scriptSupport" ref="pyScriptSupport" />
+	</bean>
+	
+	<bean id="userSkillApp" class="com.game.draco.app.skill.UserSkillAppImpl" autowire="byName">
+	</bean>
+	
+	<bean id="skillProcessCache" class="sacred.alliance.magic.module.cache.SimpleCache" init-method="start" destroy-method="destroy">
+		<property name="timeToLiveMillisecond" value="180000" />
+	</bean>
+	
+</beans>

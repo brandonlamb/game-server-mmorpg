@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+	<!-- vip system-->
+<beans>
+	<!-- 可领取提示特效 -->
+	<bean id="hintApp" class="com.game.draco.app.hint.HintAppImpl" autowire="byName">
+		
+		<property name="hintSupportList">
+			<list>
+				<!--
+				<ref bean="factionFuncApp"/>
+				-->
+				<ref bean="targetApp" />
+				<ref bean="accumulateLoginApp"/>
+				<ref bean="levelGiftApp" />
+				<ref bean="dailyPlayApp" />
+				<ref bean="firstPayApp" />
+				<ref bean="recoveryApp" />
+				<ref bean="activeApp" />
+				<ref bean="operateActiveApp" />
+			</list>
+		</property>
+		
+		<property name="hintTimeSupportList">
+			<list>
+				<ref bean="roleChoiceCardApp"/>
+			</list>
+		</property>
+		
+	</bean>
+</beans>

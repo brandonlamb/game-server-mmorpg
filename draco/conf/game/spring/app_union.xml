@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="unionDataApp" class="com.game.draco.app.union.UnionDataAppImpl">
+	</bean>
+	<bean id="unionApp" class="com.game.draco.app.union.UnionAppImpl">
+	</bean>
+	<bean id="unionInstanceApp" class="com.game.draco.app.union.UnionInstanceAppImpl">
+	</bean>
+	<bean id="unionAuctionApp" class="com.game.draco.app.union.UnionAuctionAppImpl">
+	</bean>
+	<!-- 公会战 -->
+   	<bean id="unionBattleApp" class="com.game.draco.app.union.battle.UnionBattleAppImpl">
+   	</bean>
+   	
+   	<!-- 公会资源战 -->
+   	<bean id="unionIntegralBattleApp" class="com.game.draco.app.unionbattle.UnionIntegralBattleAppImpl">
+   	</bean>
+   	
+ 	<bean id="unionIntegralBattleDataApp" class="com.game.draco.app.unionbattle.UnionIntegralBattleDataAppImpl">
+   	</bean>
+   	
+   	
+</beans>

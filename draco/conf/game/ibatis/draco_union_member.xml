@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="UnionMember" >
+    <typeAlias alias="unionMember" type="com.game.draco.app.union.domain.UnionMember"/>
+  	
+ 	<select id="selectAll" resultClass="unionMember">
+    	select * from draco_union_member 
+ 	</select>
+ 	<select id="selectObjectOne" parameterClass="java.util.Map" resultClass="unionMember">
+    	select * from draco_union_member where $key$ = #value# 
+ 	</select>
+ 	
+ 	<select id="selectListOne" parameterClass="java.util.Map" resultClass="unionMember">
+    	select * from draco_union_member where $key$ = #value#
+ 	</select>
+ 	
+ 	<select id="selectListTwo" parameterClass="java.util.Map" resultClass="unionMember">
+    	select * from draco_union_member where $key1$ = #value1# and $key2$ = #value2#
+ 	</select>
+ 	<select id="countOne" resultClass="int" parameterClass="java.util.Map">
+ 		select count(*) from draco_union_member where $key$ = #value#
+ 	</select>
+ 	
+ 	<insert id="insert" parameterClass="unionMember" >
+	    insert into draco_union_member 
+	    (roleId,unionId,roleName,level,occupation,position,createTime,offlineTime,dkp,userId)
+	    values 
+	    (#roleId#,#unionId#,#roleName#,#level#,#occupation#,#position#,#createTime#,#offlineTime#,#dkp#,#userId#)
+  	</insert>
+  	
+ 	<update id="update" parameterClass="unionMember">
+  		update draco_union_member 
+		set
+			roleId = #roleId#,
+			unionId=#unionId#,
+			roleName=#roleName#,
+			level=#level#,
+			occupation=#occupation#,
+			position=#position#,
+			createTime=#createTime#,
+		    offlineTime=#offlineTime#,
+		    dkp=#dkp#,
+		    userId=#userId# 
+  		where roleId=#roleId#
+   </update>
+   
+   <delete id="deleteOne"  parameterClass="java.util.Map">
+  		delete from draco_union_member where $key$ = #value#
+   </delete>
+   
+   
+</sqlMap>

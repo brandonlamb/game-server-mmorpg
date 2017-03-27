@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="gameContext" class="com.game.draco.GameContext" autowire="byName">
+		<property name="goodsApp" ref="goodsApp" />
+		<property name="appId" value="${appId}" />
+		<property name="threadsPools" value="1"/>
+		<property name="test" value="${SHENZHOU_TEST}" />
+		<property name="gameStartDateStr" value="${SHENZHOU_STARTDATE}" />
+		<property name="continuationTimeout" value="${http.server.continuationTimeout}" />
+		<property name="bytesProtoBuffer" ref="bytesProtoBuffer" />
+		
+	</bean>	
+
+</beans>

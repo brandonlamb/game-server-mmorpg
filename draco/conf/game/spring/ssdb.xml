@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="ssdbHost"
+		class="java.lang.String"  factory-bean="platformConfig" factory-method="getSsdbHost"/>
+		
+	<bean id="ssdbPort"
+		class="java.lang.Integer"  factory-bean="platformConfig" factory-method="getSsdbPort"/>
+
+	<bean id="ssdbPool" class="com.game.draco.component.ssdb.pool.SSDBPool" depends-on="platformConfig">
+		<constructor-arg index="0" ref="ssdbPoolConfig" />
+		<constructor-arg index="1" ref="ssdbHost" />
+		<constructor-arg index="2" ref="ssdbPort" />
+		<constructor-arg index="3" value="1000" />
+	</bean>
+
+	<bean id="ssdbPoolConfig" class="com.game.draco.component.ssdb.pool.SSDBPoolConfig">
+		<property name="maxTotal" value="5" />
+		<property name="maxIdle" value="2" />
+		<property name="maxWaitMillis" value="1000" />
+		<property name="testOnBorrow" value="true" />
+	</bean>
+	
+	<bean id="ssdbUtil" class="com.game.draco.component.ssdb.SSDBUtil">
+		<property name="pool" ref="ssdbPool" />
+	</bean>
+	
+</beans>

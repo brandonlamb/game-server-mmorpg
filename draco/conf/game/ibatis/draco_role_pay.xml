@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="RolePayRecord" >
+	<typeAlias alias="rolePayRecord" type="sacred.alliance.magic.domain.RolePayRecord"/>
+	
+	<insert id="insert" parameterClass="rolePayRecord" >
+    insert into draco_role_pay 
+    (roleId, currMoney, totalMoney,consumeMoney, lastUpTime,payGold)values (#roleId#, #currMoney#, #totalMoney#,#consumeMoney#, #lastUpTime#,#payGold#)
+  </insert>
+  
+  <select id="selectObjectOne" resultClass="rolePayRecord" parameterClass="java.util.Map" >
+    select * from draco_role_pay where $key$ = #value#
+  </select>
+  
+  <update id="update" parameterClass="rolePayRecord" >
+    update draco_role_pay
+    set currMoney=#currMoney#,totalMoney=#totalMoney# ,consumeMoney=#consumeMoney#,lastUpTime=#lastUpTime# ,payGold=#payGold# where roleId = #roleId#
+  </update>
+  
+  <select id="getUserMoneyRank" resultClass="rolePayRecord" parameterClass="java.util.Map">
+  	select * from draco_role_pay
+  	<dynamic prepend="">
+  		<isEqual prepend="" property="orderby" compareValue="1">
+  			 order by currMoney desc
+  		</isEqual>
+  		<isEqual prepend="" property="orderby" compareValue="2">
+  			 order by totalMoney desc
+  		</isEqual>
+  		<isEqual prepend="" property="orderby" compareValue="3">
+  			 order by consumeMoney desc
+  		</isEqual>
+  		<isEqual prepend="" property="orderby" compareValue="4">
+  			 order by payGold desc
+  		</isEqual>
+  	</dynamic>
+  	limit #start#,#end#
+  </select>
+  
+  <select id="goldMoneyRemain" resultClass="long" parameterClass="java.util.Map" >
+    select sum(currMoney) from draco_role_pay
+  </select>
+  
+</sqlMap>

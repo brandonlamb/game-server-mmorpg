@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="SysAnnouncement">
+	
+	<resultMap id="announcementResult" class="sacred.alliance.magic.domain.SysAnnouncement">
+		<result column="id" property="id" jdbcType="INTEGER" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
+		<result column="startTime" property="startTime" jdbcType="TIMESTAMP" />
+     	<result column="endTime" property="endTime" jdbcType="TIMESTAMP" />
+		<result column="timeGap" property="timeGap" jdbcType="INTEGER" />
+		<result column="state" property="state" jdbcType="INTEGER" />
+		<result column="announceType" property="announceType" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<insert id="insert" parameterClass="sacred.alliance.magic.domain.SysAnnouncement" >
+	    insert into easter_public_announce 
+	    (content, startTime, endTime, timeGap,state,announceType)
+	    values (#content#, #startTime#, #endTime#, #timeGap#,#state#,#announceType#)
+	    <selectKey resultClass="int" keyProperty="id" >
+	      SELECT @@IDENTITY AS id
+	    </selectKey>
+  	</insert>
+	
+	<select id="selectAll" resultMap="announcementResult">
+		select * from easter_public_announce order by id
+	</select>
+	
+	<select id="selectObjectOne" resultMap="announcementResult" parameterClass="java.util.Map" >
+    	select * from easter_public_announce where $key$ = #value#
+  	</select>
+	
+	<update id="update" parameterClass="sacred.alliance.magic.domain.SysAnnouncement" >
+	    update easter_public_announce
+	    <dynamic prepend="set" >
+	    	<isNotEmpty prepend="," property="content">
+				content=#content#
+		   	</isNotEmpty>
+		   <isNotEmpty prepend="," property="startTime">
+				startTime=#startTime#
+		   </isNotEmpty>
+		   <isNotEmpty prepend="," property="endTime">
+				endTime=#endTime#
+		   </isNotEmpty>
+		   <isNotEqual prepend="," property="timeGap" compareValue="-1">
+				timeGap =  #timeGap#
+			</isNotEqual>
+		   <isNotEqual prepend="," property="state" compareValue="-1">
+				state =  #state#
+			</isNotEqual>
+		</dynamic>
+		where id = #id#
+	</update>
+	
+	<delete id="deleteOne" parameterClass="java.util.Map">
+		delete from easter_public_announce where $key$ = #value#
+	</delete>
+	
+</sqlMap>

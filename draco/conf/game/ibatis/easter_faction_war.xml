@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="FactionWarInfo" >
+  <typeAlias alias="factionWarInfo" type="sacred.alliance.magic.app.faction.war.domain.FactionWarInfo"/>
+  <insert id="insert" parameterClass="factionWarInfo" >
+    insert into easter_faction_war
+    (factionWarIndex, factionId, factionName, rounds, createTime)
+    values 
+    (#factionWarIndex#, #factionId#, #factionName#, #rounds#, #createTime#)
+  </insert>
+  
+  <select id="selectAll" resultClass="factionWarInfo">
+  	select * from easter_faction_war order by factionWarIndex
+  </select>
+  
+  <select id="selectListOne" resultClass="factionWarInfo" parameterClass="java.util.Map" >
+  	select * from easter_faction_war
+    where $key$ = #value#
+  </select>
+  
+  <select id="selectListTwo" resultClass="factionWarInfo" parameterClass="java.util.Map" >
+  	select * from easter_faction_war
+    where $key1$ = #value1# and $key2$ = #value2#
+  </select>
+  
+  <update id="update" parameterClass="factionWarInfo" >
+    update easter_faction_war
+    set rounds=#rounds#
+    where factionWarIndex = #factionWarIndex# and factionId = #factionId#
+  </update>
+  
+  <delete id="deleteAll">
+  	truncate table easter_faction_war
+  </delete>
+</sqlMap>

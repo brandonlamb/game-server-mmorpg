@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap namespace="RoleHeroStatus" >
+	<typeAlias alias="roleHeroStatus" type="com.game.draco.app.hero.domain.RoleHeroStatus"/>
+	
+	<insert id="insert" parameterClass="roleHeroStatus" >
+		insert into draco_role_hero_status
+			(roleId,battleHeroId,switchHeros,helpHeros) 
+		values
+			(#roleId#,#battleHeroId#,#switchHeros#,#helpHeros#)
+	</insert>
+	
+	<select id="selectObjectOne" parameterClass="java.util.Map" resultClass="roleHeroStatus">
+    	select * from draco_role_hero_status where $key$ = #value# 
+ 	</select>
+ 	
+  	
+  	<update id="update" parameterClass="roleHeroStatus">
+  		update draco_role_hero_status
+  		set 
+  			battleHeroId=#battleHeroId#,
+  			switchHeros=#switchHeros#,
+  			helpHeros=#helpHeros#
+		where
+			roleId=#roleId# 
+  	</update>
+</sqlMap>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="FactionContribute" >
+  <typeAlias alias="factionContribute" type="sacred.alliance.magic.domain.FactionContribute"/>
+  
+  <insert id="insert" parameterClass="factionContribute" >
+    insert into easter_faction_contribute 
+    (roleId, factionId, contribute, totalContribute)
+    values 
+    (#roleId#, #factionId#, #contribute#, #totalContribute#)
+  </insert>
+  
+  <select id="selectAll" resultClass="factionContribute">
+  	select * from easter_faction_contribute 
+  </select>
+  
+  <select id="selectListOne" resultClass="factionContribute" parameterClass="java.util.Map" >
+  	select * from easter_faction_contribute
+    where $key$ = #value#
+  </select>
+  
+  <select id="selectListTwo" resultClass="factionContribute" parameterClass="java.util.Map" >
+  	select * from easter_faction_contribute
+    where $key1$ = #value1# and $key2$ = #value2#
+  </select>
+  
+  <select id="selectObjectOne" resultClass="factionContribute" parameterClass="java.util.Map" >
+  	select * from easter_faction_contribute where $key$ = #value#
+  </select>
+  
+  <select id="selectObjectTwo" resultClass="factionContribute" parameterClass="java.util.Map" >
+  	select * from easter_faction_contribute where $key1$ = #value1# and $key2$ = #value2#
+  </select>
+  
+  <update id="update" parameterClass="factionContribute" >
+    update easter_faction_contribute
+    set contribute=#contribute#,totalContribute=#totalContribute#
+    where roleId = #roleId# and factionId = #factionId#
+  </update>
+  
+  
+  <delete id="deleteTwo" parameterClass="java.util.Map" >
+    delete from easter_faction_contribute
+    where $key1$ = #value1# and $key2$ = #value2#
+  </delete>
+  
+   <delete id="deleteOne" parameterClass="java.util.Map" >
+    delete from easter_faction_contribute 
+    where $key$ = #value#
+  </delete>
+  
+  <select id="countOne" resultClass="int" parameterClass="java.util.Map" >
+    select count(*) from  easter_faction_contribute where $key$ = #value#
+  </select>
+  
+  <select id="countTwo" resultClass="int" parameterClass="java.util.Map" >
+    select count(*) from  easter_faction_contribute where $key1$ = #value1# and $key2$ = #value2#
+  </select>
+  
+</sqlMap>

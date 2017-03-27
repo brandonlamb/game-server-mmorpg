@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="Union" >
+    <typeAlias alias="union" type="com.game.draco.app.union.domain.Union"/>
+  	
+ 	<select id="selectAll" resultClass="union">
+    	select * from draco_union 
+ 	</select>
+ 	<select id="selectObjectOne" parameterClass="java.util.Map" resultClass="union">
+    	select * from draco_union where $key$ = #value# 
+ 	</select>
+ 	
+ 	<select id="selectListOne" parameterClass="java.util.Map" resultClass="union">
+    	select * from draco_union where $key$ = #value#
+ 	</select>
+ 	
+ 	<select id="selectListTwo" parameterClass="java.util.Map" resultClass="union">
+    	select * from draco_union where $key1$ = #value1# and $key2$ = #value2#
+ 	</select>
+ 	<select id="countOne" resultClass="int" parameterClass="java.util.Map">
+ 		select count(*) from draco_union where $key$ = #value#
+ 	</select>
+ 	
+ 	<insert id="insert" parameterClass="union" >
+	    insert into draco_union 
+	    (unionId, unionName,unionLevel,leaderId,leaderName,unionDesc,
+	    popularity,unionCamp,createTime,summonFlag,summonTime,bossState)
+	    values 
+	    (#unionId#,#unionName#,#unionLevel#,#leaderId#,#leaderName#,#unionDesc#,#popularity#,
+	    #unionCamp#,#createTime#,#summonFlag#,#summonTime#,#bossState#)
+  	</insert>
+  	
+ 	<update id="update" parameterClass="union">
+  		update draco_union 
+		set
+			unionId = #unionId#,
+			unionName=#unionName#,
+			unionLevel=#unionLevel#,
+			leaderId=#leaderId#,
+			leaderName=#leaderName#,
+			unionDesc=#unionDesc#,
+			popularity=#popularity#,
+		    unionCamp=#unionCamp#,
+		    createTime=#createTime#,
+		    summonFlag=#summonFlag#,
+		    summonTime=#summonTime#,
+		    bossState=#bossState#  
+  		where unionId=#unionId#
+   </update>
+   
+   <delete id="deleteOne"  parameterClass="java.util.Map">
+  		delete from draco_union where $key$ = #value#
+   </delete>
+   
+   
+   <select id="searchUnionByName" parameterClass="java.util.Map" resultClass="union">
+    	select * from draco_union where unionName like '%$parameter$%'
+ 	</select>
+   
+</sqlMap>

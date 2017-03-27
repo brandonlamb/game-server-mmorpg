@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+	<xsd:element name="mapway" />
+	
+	<xsd:complexType name="MapWay">
+		<xsd:sequence>
+			<xsd:element name="point" type="Point" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="pathid" type="xsd:string" />
+	</xsd:complexType>
+	
+	<!--  
+	<xsd:complexType name="Way">
+		<xsd:sequence>
+			<xsd:element name="point1" type="Point"/>
+			<xsd:element name="point2" type="Point"/>
+		</xsd:sequence>
+		<xsd:attribute name="distance" type="xsd:int"/>
+	</xsd:complexType>
+	-->
+	
+	<xsd:complexType name="Point">
+			<xsd:attribute name="mapid" type="xsd:string" />
+			<xsd:attribute name="x" type="xsd:int"/>
+			<xsd:attribute name="y" type="xsd:int"/>
+	</xsd:complexType>
+</xsd:schema>

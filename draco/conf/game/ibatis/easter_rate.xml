@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="Rate">
+	<typeAlias alias="rateType" type="sacred.alliance.magic.domain.Rate" />
+
+	<resultMap id="rateTypeResult" class="rateType">
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="startTime" property="startTime" jdbcType="TIMESTAMP" />
+     	<result column="endTime" property="endTime" jdbcType="TIMESTAMP" />
+		<result column="rate" property="rate" jdbcType="INTEGER" />
+		<result column="rate1" property="rate1" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<select id="selectAll" resultMap="rateTypeResult">
+		select * from easter_rate
+	</select>
+	
+	<insert id="insert" parameterClass="sacred.alliance.magic.domain.Rate" >
+    insert into easter_rate 
+    (type, startTime, endTime, rate, rate1)
+    values 
+    (#type#, #startTime#, #endTime#, #rate#, #rate1#)
+  </insert>
+	
+	<update id="update" parameterClass="sacred.alliance.magic.domain.Rate" >
+	    update easter_rate
+	    set
+			startTime=#startTime#,
+			endTime=#endTime#,
+			rate=#rate#,
+			rate1=#rate1#
+	  	where type=#type#
+    </update>
+    
+    <delete id="deleteOne" parameterClass="java.util.Map" >
+	    delete from easter_rate
+	    where $key$ = #value#
+	</delete>
+    
+    <delete id="deleteAll" parameterClass="java.util.Map" >
+	    truncate table easter_rate
+	</delete>
+	
+</sqlMap>

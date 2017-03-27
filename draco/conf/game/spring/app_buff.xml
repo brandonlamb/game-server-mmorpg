@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	<bean id="buffApp" class="com.game.draco.app.buff.BuffAppImpl" autowire="byName" destroy-method="stop">
+		<property name="scriptSupport" ref="pyScriptSupport" />
+	</bean>
+	
+	<bean id="userBuffApp" class="com.game.draco.app.buff.UserBuffAppImpl" autowire="byName">
+		<property name="buffApp" ref="buffApp" />
+		<property name="baseDAO" ref="baseDAO" />	
+	</bean>
+	
+</beans>

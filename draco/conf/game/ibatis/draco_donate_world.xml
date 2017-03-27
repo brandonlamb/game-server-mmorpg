@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="WorldDonate" >
+  <insert id="insert" parameterClass="com.game.draco.app.operate.donate.domain.WorldDonate" >
+    insert into draco_donate_world
+    (activeId, curCount) 
+    values (#activeId#, #curCount#)
+  </insert>
+  
+  <select id="selectAllWorldDonate" resultClass="com.game.draco.app.operate.donate.domain.WorldDonate">
+  	select * from draco_donate_world 
+  </select>
+  
+   <update id="update" parameterClass="com.game.draco.app.operate.donate.domain.WorldDonate" >
+    update draco_donate_world 
+    set
+		curCount=#curCount# 
+  	where activeId= #activeId#
+  </update>
+ </sqlMap>

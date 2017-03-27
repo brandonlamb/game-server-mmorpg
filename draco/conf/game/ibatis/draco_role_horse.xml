@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap namespace="RoleHorse" >
+	<typeAlias alias="roleHorse" type="com.game.draco.app.horse.domain.RoleHorse"/>
+	
+	<insert id="insert" parameterClass="roleHorse" >
+		insert into draco_role_horse
+			(roleId,horseId,quality,star,state,starNum,battleScore) 
+		values
+			(#roleId#,#horseId#,#quality#,#star#,#state#,#starNum#,#battleScore#)
+	</insert>
+	
+	<select id="selectObjectOne" parameterClass="java.util.Map" resultClass="roleHorse">
+    	select * from draco_role_horse where $key$ = #value#
+ 	</select>
+ 	
+ 	<select id="selectObjectTwo" parameterClass="java.util.Map" resultClass="roleHorse">
+    	select * from draco_role_horse where $key1$ = #value1# and $key2$ = #value2#
+ 	</select>
+ 	
+	<select id="selectListOne" parameterClass="java.util.Map" resultClass="roleHorse">
+  		select * from draco_role_horse where $key$ = #value#
+  	</select>
+  	
+  	<select id="selectListTwo" parameterClass="java.util.Map" resultClass="roleHorse">
+    	select * from draco_role_horse where $key1$ = #value1# and $key2$ = #value2# 
+ 	</select>
+  	
+  	<update id="update" parameterClass="roleHorse">
+  		update draco_role_horse
+  		set 
+  			roleId=#roleId#,
+  			horseId=#horseId#,
+  			quality=#quality#,
+  			star=#star#,
+  			state=#state#,
+  			starNum=#starNum#,
+  			battleScore=#battleScore#
+		where
+			roleId = #roleId# and horseId=#horseId# 
+  	</update>
+  	
+  	<delete id="deleteOne"  parameterClass="java.util.Map">
+  		delete from draco_role_horse where $key$ = #value#
+  	</delete>
+  	
+  	<delete id="deleteTwo"  parameterClass="java.util.Map">
+  		delete from draco_role_horse where $key1$ = #value1# and $key2$ = #value2#
+  	</delete>
+  	
+</sqlMap>

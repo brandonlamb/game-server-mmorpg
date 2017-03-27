@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="FactionRole" >
+  <typeAlias alias="factionRole" type="sacred.alliance.magic.domain.FactionRole"/>
+  
+  <insert id="insert" parameterClass="factionRole" >
+    insert into easter_faction_role 
+    (roleId,factionId,roleName,roleLevel,nickName,sex,career,position,createDate,signature,offlineTime,prestige,contribution,totalContribution)
+    values 
+    (#roleId#, #factionId#, #roleName#,#roleLevel#,#nickName#,#sex#,#career#,#position#,#createDate#,#signature#,#offlineTime#,#prestige#,#contribution#,#totalContribution#)
+  </insert>
+  
+  <select id="selectAll" resultClass="factionRole">
+  	select * from easter_faction_role 
+  </select>
+  
+  <select id="selectListOne" resultClass="factionRole" parameterClass="java.util.Map" >
+  	select * from easter_faction_role
+    where $key$ = #value#
+  </select>
+  
+  <select id="selectObjectOne" resultClass="factionRole" parameterClass="java.util.Map" >
+  	select * from easter_faction_role where $key$ = #value#
+  </select>
+  
+  <select id="selectObjectTwo" resultClass="factionRole" parameterClass="java.util.Map" >
+  	select * from easter_faction_role where $key1$ = #value1# and $key2$ = #value2#
+  </select>
+  
+  <update id="update" parameterClass="factionRole" >
+    update easter_faction_role
+    	set 
+    	roleLevel=#roleLevel#,
+    	nickName=#nickName#,
+    	sex=#sex#,
+    	career=#career#,
+    	position=#position#,
+    	createDate=#createDate#,
+    	signature=#signature#,
+    	offlineTime=#offlineTime#,
+    	prestige=#prestige#,
+    	contribution=#contribution#,
+    	totalContribution=#totalContribution# 
+    where roleId = #roleId# and factionId = #factionId#
+  </update>
+  
+  
+  <delete id="deleteTwo" parameterClass="java.util.Map" >
+    delete from easter_faction_role
+    where $key1$ = #value1# and $key2$ = #value2#
+  </delete>
+  
+   <delete id="deleteOne" parameterClass="java.util.Map" >
+    delete from easter_faction_role 
+    where $key$ = #value#
+  </delete>
+  
+  <select id="countOne" resultClass="int" parameterClass="java.util.Map" >
+    select count(*) from  easter_faction_role where $key$ = #value#
+  </select>
+  
+  <select id="countTwo" resultClass="int" parameterClass="java.util.Map" >
+    select count(*) from  easter_faction_role where $key1$ = #value1# and $key2$ = #value2#
+  </select>
+  
+  <!-- 所有帮众的贡献度之和（帮会总贡献） -->
+  <select id="getContributionSum" resultClass="int" parameterClass="java.util.Map" >
+     select sum(totalContribution) from easter_faction_role where factionId = #factionId#
+  </select>
+  
+  <!-- 修改角色名称 -->
+  <update id="modifyFactionRoleName" parameterClass="java.util.Map" >
+  	update easter_faction_role
+    set roleName = #roleName#
+    where roleId = #roleId# and factionId = #factionId#
+  </update>
+  
+  <select id="getFacrtionIdByRoleId" resultClass="factionRole" parameterClass="java.util.Map" >
+    select factionId from easter_faction_role where roleId = #roleId#
+  </select>
+</sqlMap>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+	<xsd:element name="builddata" />
+	
+	<xsd:complexType name="BuildData">
+		<xsd:attribute name="buildlayer" type="xsd:int" />
+		<xsd:attribute name="drawx" type="xsd:int" />
+		<xsd:attribute name="drawy" type="xsd:int" />
+		<xsd:attribute name="imageid" type="xsd:int" />
+		<xsd:attribute name="imagename" type="xsd:string" />
+		<xsd:attribute name="x" type="xsd:int" />
+		<xsd:attribute name="xnum" type="xsd:int" />
+		<xsd:attribute name="y" type="xsd:int" />
+		<xsd:attribute name="ynum" type="xsd:int" />
+	</xsd:complexType>
+</xsd:schema>

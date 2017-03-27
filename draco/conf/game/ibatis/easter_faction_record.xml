@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="FactionRecord" >
+
+  <typeAlias alias="factionRecord" type="sacred.alliance.magic.domain.FactionRecord"/>
+ 
+ 	<select id="selectListOne" parameterClass="java.util.Map" resultClass="factionRecord">
+    	select * from easter_faction_record where $key$ = #value# order by createTime desc
+ 	</select>
+ 	
+ 	<insert id="insert" parameterClass="factionRecord" >
+	    insert into easter_faction_record(factionId,type,data1,data2,data3,createTime)values (#factionId#,#type#,#data1#,#data2#,#data3#,#createTime#)
+  	</insert>
+  	
+   <delete id="deleteOne" parameterClass="java.util.Map" >
+   <![CDATA[delete from easter_faction_record where $key$ < #value#]]>
+  </delete>
+  
+   <update id="update" parameterClass="factionRecord" >
+    update easter_faction_record
+			set type=#type#,
+				data1=#data1#,
+				data2=#data2#,
+				data3=#data3#,
+				createTime=#createTime#
+	where factionId = #factionId#
+	</update>
+	
+	<!-- 删除一周前的积分日志数据 -->
+  <delete id="deleteBeforeOneMonth" parameterClass="java.util.Map" >
+    <![CDATA[delete from easter_faction_record where subString(createTime,1,10) <= subString(DATE_ADD(now(),INTERVAL -1 month),1,10)]]>
+  </delete>
+  
+  <select id="getRecordList" resultClass="factionRecord" parameterClass="java.util.Map">
+  	select * from easter_faction_record
+  	where factionId = #factionId#
+  	order by createTime desc
+  	limit #start#, #end#
+  </select>
+</sqlMap>

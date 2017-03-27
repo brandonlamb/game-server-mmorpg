@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+  <appender name="screen" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d %p [%C] - &lt;%m&gt;%n</pattern>
+    </encoder>
+  </appender>
+  
+  <appender name="project" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>logs/project.log</File>
+    <encoder>
+      <pattern>%d %p [%C] - &lt;%m&gt;%n</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <maxIndex>30</maxIndex>
+      <FileNamePattern>logs/project.log.%i</FileNamePattern>
+    </rollingPolicy>
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <MaxFileSize>20000KB</MaxFileSize>
+    </triggeringPolicy>
+  </appender>
+  
+  <appender name="check" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>logs/check.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>logs/check.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="at" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>logs/at.log</File>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+  		<fileNamePattern>logs/at.log.%i</fileNamePattern>
+  		<maxIndex>30</maxIndex>
+  	</rollingPolicy>
+  	<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <MaxFileSize>10000KB</MaxFileSize>
+    </triggeringPolicy>
+  </appender>
+  
+  <appender name="loop" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>logs/loop.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>logs/loop.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="changemoneyerror" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>logs/changemoneyerror.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>logs/changemoneyerror.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="changemoneyerror" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>logs/changemoneyerror.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>logs/changemoneyerror.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="chargemoneylog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>logs/chargemoneylog.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>logs/chargemoneylog.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="userline" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>logs/userline.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>logs/userline.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="userpay" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>logs/userpay.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>logs/userpay.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="speeduplog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>logs/speeduplog.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>logs/speeduplog.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="rankrewardbymail" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>logs/rankrewardbymail.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>logs/rankrewardbymail.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+   <appender name="recall_award" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>logs/recallawardbymail.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>logs/recallawardbymail.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="npc_refresh" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>logs/npcrefresh.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>logs/npcrefresh.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="npc_refresh_death" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>logs/npcrefreshdeath.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>logs/npcrefreshdeath.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="npc_refresh_speak" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>logs/npcrefreshspeak.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>logs/npcrefreshspeak.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="auctionput" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/auctionput.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/auctionput.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="auctionremove" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/auctionremove.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/auctionremove.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="auctionexpired" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/auctionexpired.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/auctionexpired.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="offline_countdb" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/offline_countdb.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/offline_countdb.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="offline_rankactivedb" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/offline_rankactivedb.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/offline_rankactivedb.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="offline_arenadb" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/offline_arenadb.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/offline_arenadb.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="offline_syssetdb" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/offline_syssetdb.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/offline_syssetdb.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="offline_exchangedb" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/offline_exchangedb.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/offline_exchangedb.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="offline_mountdb" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/offline_mountdb.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/offline_mountdb.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="offline_vipdb" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/offline_vipdb.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/offline_vipdb.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="offline_discountactivedb" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/offline_discountactivedb.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/offline_discountactivedb.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="offline_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/offline_error.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/offline_error.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="offline_role" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/offline_role.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/offline_role.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="offline_goods" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/offline_goods.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/offline_goods.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="faction" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/faction.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/faction.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="faction_member" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/faction_member.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/faction_member.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  
+  <appender name="offline_summondb" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/offline_summondb.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/offline_summondb.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="carnival_all_reward" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/carnival_all_reward.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/carnival_all_reward.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="carnival_already_reward" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/carnival_already_reward.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/carnival_already_reward.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="camp" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/camp.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/camp.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="offline_carnival" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/offline_carnival.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/offline_carnival.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="offline_shop_secret" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/offline_shop_secret.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/offline_shop_secret.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="ladder_rank_award" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/ladder_rank_award.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/ladder_rank_award.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="qualify_rank" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/qualify_rank.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/qualify_rank.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="ladder_all_rank" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/ladder_all_rank.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/ladder_all_rank.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="quest_main_branch_complete" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/quest_main_branch_complete.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/quest_main_branch_complete.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+   <appender name="admin" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <File>logs/admin.log</File>
+    <encoder>
+      <pattern>%d %p [%C] - &lt;%m&gt;%n</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <maxIndex>30</maxIndex>
+      <FileNamePattern>logs/admin.log.%i</FileNamePattern>
+    </rollingPolicy>
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <MaxFileSize>10000KB</MaxFileSize>
+    </triggeringPolicy>
+  </appender>
+  
+  <appender name="faction_money" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/faction_money.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/faction_money.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <appender name="faction_gamble" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/faction_gamble.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/faction_gamble.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+   <appender name="donate_score" class="ch.qos.logback.core.rolling.RollingFileAppender">
+  	<File>/data/logs/5/game/donate_score.log</File>
+  	<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+  		<fileNamePattern>/data/logs/5/game/donate_score.log.%d</fileNamePattern>
+  	</rollingPolicy>
+  	<encoder>
+  		<pattern>
+  			%d,%m%n
+  		</pattern>
+  	</encoder>
+  </appender>
+  
+  <logger name="sacred.alliance" level="INFO">
+    <appender-ref ref="screen"/>
+    <appender-ref ref="project"/>
+  </logger>
+  
+  <logger name="com.game.draco" level="INFO">
+    <appender-ref ref="screen"/>
+    <appender-ref ref="project"/>
+  </logger>
+  
+  <logger name="org.apache.mina" level="ERROR">
+    <appender-ref ref="screen"/>
+    <appender-ref ref="project"/>
+  </logger>
+  
+  <logger name="org.springframework" level="ERROR">
+    <appender-ref ref="screen"/>
+    <appender-ref ref="project"/>
+  </logger>
+  
+  <logger name="check" level="INFO" additivity="false">
+    <appender-ref ref="check"/>
+  </logger>
+  
+  <logger name="at" level="INFO" additivity="false">
+    <appender-ref ref="at"/>
+  </logger>
+  
+  <logger name="loop" level="INFO" additivity="false">
+    <appender-ref ref="loop"/>
+  </logger>
+  
+  <logger name="changemoneyerror" level="INFO" additivity="false">
+    <appender-ref ref="changemoneyerror"/>
+  </logger>
+  
+  <logger name="chargemoneylog" level="INFO" additivity="false">
+    <appender-ref ref="chargemoneylog"/>
+  </logger>
+  
+  <logger name="userline" level="INFO" additivity="false">
+    <appender-ref ref="userline"/>
+  </logger>
+  
+  <logger name="userpay" level="INFO" additivity="false">
+    <appender-ref ref="userpay"/>
+  </logger>
+  
+  <logger name="speeduplog" level="INFO" additivity="false">
+    <appender-ref ref="speeduplog"/>
+  </logger>
+  
+  <logger name="rankrewardbymail" level="INFO" additivity="false">
+    <appender-ref ref="rankrewardbymail"/>
+  </logger>
+  
+  <logger name="auctionput" level="INFO" additivity="false">
+    <appender-ref ref="auctionput"/>
+  </logger>
+  
+  <logger name="auctionremove" level="INFO" additivity="false">
+    <appender-ref ref="auctionremove"/>
+  </logger>
+  
+  <logger name="auctionexpired" level="INFO" additivity="false">
+    <appender-ref ref="auctionexpired"/>
+  </logger>
+  
+  <logger name="offline_countdb" level="INFO" additivity="false">
+    <appender-ref ref="offline_countdb"/>
+  </logger>
+  
+  <logger name="offline_rankactivedb" level="INFO" additivity="false">
+    <appender-ref ref="offline_rankactivedb"/>
+  </logger>
+  
+  <logger name="offline_arenadb" level="INFO" additivity="false">
+    <appender-ref ref="offline_arenadb"/>
+  </logger>
+  
+  <logger name="offline_syssetdb" level="INFO" additivity="false">
+    <appender-ref ref="offline_syssetdb"/>
+  </logger>
+  
+  <logger name="offline_exchangedb" level="INFO" additivity="false">
+    <appender-ref ref="offline_exchangedb"/>
+  </logger>
+  
+  <logger name="offline_mountdb" level="INFO" additivity="false">
+    <appender-ref ref="offline_mountdb"/>
+  </logger>
+  
+  <logger name="offline_vipdb" level="INFO" additivity="false">
+    <appender-ref ref="offline_vipdb"/>
+  </logger>
+  
+  <logger name="offline_discountactivedb" level="INFO" additivity="false">
+    <appender-ref ref="offline_discountactivedb"/>
+  </logger>
+  
+  <logger name="offline_error" level="INFO" additivity="false">
+    <appender-ref ref="offline_error"/>
+  </logger>
+  
+  <logger name="offline_role" level="INFO" additivity="false">
+    <appender-ref ref="offline_role"/>
+  </logger>
+  
+  <logger name="offline_goods" level="INFO" additivity="false">
+    <appender-ref ref="offline_goods"/>
+  </logger>
+  
+  <logger name="faction" level="INFO" additivity="false">
+    <appender-ref ref="faction"/>
+  </logger>
+  
+  <logger name="faction_member" level="INFO" additivity="false">
+    <appender-ref ref="faction_member"/>
+  </logger>
+  
+  <logger name="offline_summondb" level="INFO" additivity="false">
+    <appender-ref ref="offline_summondb"/>
+  </logger>
+  
+  <logger name="carnival_all_reward" level="INFO" additivity="false">
+    <appender-ref ref="carnival_all_reward"/>
+  </logger>
+  
+  <logger name="carnival_already_reward" level="INFO" additivity="false">
+    <appender-ref ref="carnival_already_reward"/>
+  </logger>
+  
+  <logger name="camp" level="INFO" additivity="false">
+    <appender-ref ref="camp"/>
+  </logger>
+  
+  <logger name="offline_carnival" level="INFO" additivity="false">
+    <appender-ref ref="offline_carnival"/>
+  </logger>
+  
+  <logger name="offline_shop_secret" level="INFO" additivity="false">
+    <appender-ref ref="offline_shop_secret"/>
+  </logger>
+  
+  <logger name="ladder_rank_award" level="INFO" additivity="false">
+    <appender-ref ref="ladder_rank_award"/>
+  </logger>
+  
+  <logger name="ladder_rank" level="INFO" additivity="false">
+    <appender-ref ref="ladder_rank"/>
+  </logger>
+  
+  <logger name="admin" level="INFO" additivity="false">
+    <appender-ref ref="admin"/>
+  </logger>
+  
+  <logger name="ladder_all_rank" level="INFO" additivity="false">
+    <appender-ref ref="ladder_all_rank"/>
+  </logger>
+  
+  <logger name="quest_main_branch_complete" level="INFO" additivity="false">
+    <appender-ref ref="quest_main_branch_complete"/>
+  </logger>
+  
+  <logger name="recall_award" level="INFO" additivity="false">
+    <appender-ref ref="recall_award"/>
+  </logger>
+  
+  <logger name="qualify_rank" level="INFO" additivity="false">
+    <appender-ref ref="qualify_rank"/>
+  </logger>
+  
+  <logger name="npc_refresh" level="INFO" additivity="false">
+    <appender-ref ref="npc_refresh"/>
+  </logger>
+  
+  <logger name="npc_refresh_death" level="INFO" additivity="false">
+    <appender-ref ref="npc_refresh_death"/>
+  </logger>
+  
+  <logger name="npc_refresh_speak" level="INFO" additivity="false">
+    <appender-ref ref="npc_refresh_speak"/>
+  </logger>
+   
+  <logger name="faction_money" level="INFO" additivity="false">
+    <appender-ref ref="faction_money"/>
+  </logger>
+  
+  <logger name="faction_gamble" level="INFO" additivity="false">
+    <appender-ref ref="faction_gamble"/>
+  </logger>
+  
+   <logger name="donate_score" level="INFO" additivity="false">
+    <appender-ref ref="donate_score"/>
+  </logger>
+   
+  <!-- 统计相关,下面行不能删除,游戏启动时会替换 -->
+  <!--statlogconfig-->
+  
+</configuration>

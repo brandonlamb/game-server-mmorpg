@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<!--  
+	<bean id="dataSourcepropertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>datasource/game-db.properties</value>
+			</list>
+		</property>
+	</bean>
+	-->
+	
+	<!--
+	<bean id="dataSource"
+		class="org.logicalcobwebs.proxool.ProxoolDataSource">
+		<property name="driver">
+			<value>${game.driver}</value>
+		</property>
+		<property name="driverUrl"> 
+			<value><![CDATA[jdbc:mysql://${SHENZHOU_DB_HOST}:${SHENZHOU_DB_PORT}/easter?user=${SHENZHOU_DB_USER}&password=${SHENZHOU_DB_PWD}&useServerPrepStmts=false&characterEncoding=utf8]]></value>
+		</property>
+		<property name="user">
+			<value>${SHENZHOU_DB_USER}</value>
+		</property>
+		<property name="password">
+			<value>${SHENZHOU_DB_PWD}</value>
+		</property>
+		<property name="alias">
+			<value>${game.alias}</value>
+		</property>
+		<property name="houseKeepingSleepTime">
+			<value>${game.houseKeepingSleepTime}</value>
+		</property>
+		<property name="prototypeCount">
+			<value>${game.prototypeCount}</value>
+		</property>
+		<property name="maximumConnectionCount">
+			<value>${game.maximumConnectionCount}</value>
+		</property>
+		<property name="minimumConnectionCount">
+			<value>${game.minimumConnectionCount}</value>
+		</property>
+		<property name="trace">
+			<value>${game.trace}</value>
+		</property>
+		<property name="verbose">
+			<value>${game.verbose}</value>
+		</property>
+		<property name="simultaneousBuildThrottle">
+			<value>${game.simultaneousBuildThrottle}</value>
+		</property>
+        <property name="houseKeepingTestSql">
+                    <value>select CURRENT_DATE</value>
+        </property>
+	</bean>
+	-->
+	
+	<bean id="sqlMapClient"
+		class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="configLocation" value="classpath:ibatis/root.xml" />
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="url"> 
+			<value><![CDATA[jdbc:mysql://${SHENZHOU_DB_HOST}:${SHENZHOU_DB_PORT}/draco?useServerPrepStmts=false&characterEncoding=utf8]]></value>
+		</property>
+		<property name="username">
+			<value>${SHENZHOU_DB_USER}</value>
+		</property>
+		<property name="password">
+			<ref bean="dbPassword"/>
+		</property>
+		<property name="minEvictableIdleTimeMillis">
+			<value>${game.houseKeepingSleepTime}</value>
+		</property> 
+		<property name="maxActive">
+			<value>${game.maximumConnectionCount}</value>
+		</property>
+		<property name="minIdle">
+			<value>${game.minimumConnectionCount}</value>
+		</property>
+		<property name="maxWait" value="60000" />
+		<property name="initialSize" value="1" />
+    	<property name="timeBetweenEvictionRunsMillis" value="60000" />
+    	<property name="validationQuery" value="select CURRENT_DATE" />
+    	<property name="testWhileIdle" value="true" />
+    	<property name="testOnBorrow" value="false" />
+    	<property name="testOnReturn" value="false" />
+	    <!-- property name="filters" value="stat" / -->
+	</bean>
+	
+	<bean id="dbPassword" class="java.lang.String" factory-bean="rsaApp" factory-method="decryptByPublicKey"/>
+	
+	<bean id="statMbeanServer" class="com.alibaba.druid.support.spring.MBeanServerFactoryBean" />
+	<bean id="statManager" class="com.alibaba.druid.stat.JdbcStatManagerFactoryBean" />
+	<bean id="statExporter"	class="org.springframework.jmx.export.MBeanExporter" lazy-init="false">
+		<property name="beans">
+			<map>
+				<entry key="com.alibaba.druid:type=JdbcStats" value-ref="statManager" />
+			</map>
+		</property>
+		<property name="server" ref="statMbeanServer" />
+	</bean>
+	
+</beans>

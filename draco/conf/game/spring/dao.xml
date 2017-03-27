@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>	
+	<bean id="baseDAO" class="sacred.alliance.magic.dao.impl.BaseDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>	
+	
+	<bean id="roleDAO" class="sacred.alliance.magic.dao.impl.RoleDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	
+	<bean id="questDAO" class="sacred.alliance.magic.dao.impl.QuestDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	
+	<!-- 社交系统DAO -->
+	<bean id="socialDAO" class="sacred.alliance.magic.dao.impl.SocialDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	
+	<!-- 排行榜系统DAO -->
+	<bean id="rankDAO" class="sacred.alliance.magic.dao.impl.RankDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	
+	<!-- 帮会系统DAO 
+	<bean id="factionDAO" class="sacred.alliance.magic.dao.impl.FactionDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	-->
+	
+	<bean id="idFactoryDAO" class="sacred.alliance.magic.dao.impl.IdFactoryDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	
+	<!-- 邮件系统DAO -->
+	<bean id="mailDAO" class="sacred.alliance.magic.dao.impl.MailDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	
+	<!-- 嘉年华系统DAO -->
+	<bean id="carnivalDAO" class="sacred.alliance.magic.dao.impl.CarnivalDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	
+	<!-- 神秘商店DAO -->
+	<bean id="roleShopSecretDAO" class="sacred.alliance.magic.dao.impl.RoleShopSecretDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	
+	<!-- 充值DAO -->
+	<bean id="chargeDAO" class="sacred.alliance.magic.dao.impl.ChargeDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	
+	<!-- 公会系统DAO -->
+	<bean id="unionDAO" class="sacred.alliance.magic.dao.impl.UnionDAOImpl">
+		<property name="dataSource" ref="dataSource" />
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	
+	
+</beans>

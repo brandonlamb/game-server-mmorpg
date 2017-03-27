@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="CarnivalRankInfo">
+	<typeAlias alias="carnivalRankInfo"
+		type="sacred.alliance.magic.domain.CarnivalRankInfo" />
+	<insert id="insert" parameterClass="carnivalRankInfo">
+		insert into easter_role_carnival_rank (activeId, targetId, name,
+		campId, career, targetValue, rank) values (#activeId#,
+		#targetId#, #name#, #campId#, #career#, #targetValue#, #rank#)
+	</insert>
+
+	<select id="selectListOne" resultClass="carnivalRankInfo"
+		parameterClass="java.util.Map">
+		select * from easter_role_carnival_rank where $key$ = #value#
+	</select>
+
+	<update id="update" parameterClass="carnivalRankInfo">
+		update easter_role_carnival_rank set targetValue=#targetValue#
+		where activeId= #activeId# and targetId=#targetId#
+	</update>
+
+	<delete id="deleteOne" parameterClass="java.util.Map">
+		delete from easter_role_carnival_rank where $key$ = #value#
+	</delete>
+	
+	<select id="getRoleMonutSort" resultClass="carnivalRankInfo"
+		parameterClass="java.util.Map">
+		select r.roleId as targetId,
+		r.rolename as name,
+		r.campId,
+		r.career,
+		m.battleScore as targetValue 
+		from easter_role r,easter_role_mount m 
+		where r.roleId = m.roleId 
+		order by m.battleScore desc 
+		limit #start#, #end#
+	</select>
+</sqlMap>

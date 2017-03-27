@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xsd:include schemaLocation="../../../vo/MapWay.xsd"/>
+	
+	<!--  
+	<xsd:element name="jumpmappoint" />
+	-->
+	
+	<xsd:complexType name="EventPoint">
+		<xsd:complexContent>
+		 	<xsd:extension base="Point"></xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="JumpMapPoint">
+		<xsd:complexContent>
+		 	<xsd:extension base="EventPoint">
+		 		<xsd:attribute name="tomapid" type="xsd:string" />
+				<xsd:attribute name="level" type="xsd:int" />
+				<xsd:attribute name="questid" type="xsd:int" />
+				<xsd:attribute name="goodsid" type="xsd:int" />
+		 	</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="JumpMapPointCollection">
+		<xsd:sequence>
+			<xsd:element name="point" type="JumpMapPoint" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="CollectPointConfig">
+		<xsd:sequence>
+			<xsd:element name="nodes" type="PointNode" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	
+	<xsd:complexType name="PointNode">
+		<xsd:sequence>
+			<xsd:element name="point" type="Point" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="id" type="xsd:string" />
+	</xsd:complexType>
+	
+	<!--  
+	<xsd:complexType name="QuestCollectPoint">
+		<xsd:complexContent>
+		 	<xsd:extension base="EventPoint">
+				<xsd:attribute name="questid" type="xsd:int" />
+				<xsd:attribute name="imageid" type="xsd:int" />
+		 	</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	
+	<xsd:complexType name="SkillCollectPoint">
+		<xsd:complexContent>
+		 	<xsd:extension base="EventPoint">
+				<xsd:attribute name="skillid" type="xsd:int" />
+				<xsd:attribute name="skilllevel" type="xsd:int" />
+				<xsd:attribute name="goodsid" type="xsd:int" />
+				<xsd:attribute name="imageid" type="xsd:int" />
+		 	</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	-->
+	
+</xsd:schema>

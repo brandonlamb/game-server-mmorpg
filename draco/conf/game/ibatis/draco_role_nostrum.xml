@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap namespace="RoleNostrum" >
+	<typeAlias alias="roleNostrum" type="com.game.draco.app.nostrum.domain.RoleNostrum"/>
+	
+	<insert id="insert" parameterClass="roleNostrum" >
+		insert into draco_role_nostrum
+			(roleId,goodsId,goodsNum) 
+		values
+			(#roleId#,#goodsId#,#goodsNum#)
+	</insert>
+	
+	<select id="selectObjectOne" parameterClass="java.util.Map" resultClass="roleNostrum">
+    	select * from draco_role_nostrum where $key$ = #value# 
+ 	</select>
+ 	
+ 	<select id="selectObjectTwo" parameterClass="java.util.Map" resultClass="roleNostrum">
+    	select * from draco_role_nostrum where $key1$ = #value1# and $key2$ = #value2#
+ 	</select>
+ 	
+	<select id="selectListOne" parameterClass="java.util.Map" resultClass="roleNostrum">
+  		select * from draco_role_nostrum where $key$ = #value#
+  	</select>
+  	
+  	<select id="selectListTwo" parameterClass="java.util.Map" resultClass="roleNostrum">
+    	select * from draco_role_nostrum where $key1$ = #value1# and $key2$ = #value2#
+ 	</select>
+  	
+  	<update id="update" parameterClass="roleNostrum">
+  		update draco_role_nostrum
+  		set 
+  			goodsNum=#goodsNum#
+		where
+			roleId=#roleId# and goodsId=#goodsId#
+  	</update>
+  	
+  	<delete id="deleteAll">
+  		truncate table draco_role_nostrum
+  	</delete>
+  	
+  	<delete id="deleteOne"  parameterClass="java.util.Map">
+  		delete from draco_role_nostrum where $key$ = #value#
+  	</delete>
+  	
+  	<delete id="deleteTwo"  parameterClass="java.util.Map">
+  		delete from draco_role_nostrum where $key1$ = #value1# and $key2$ = #value2#
+  	</delete>
+  	
+</sqlMap>

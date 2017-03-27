@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" 
+
+"http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+  <settings
+          cacheModelsEnabled="true"
+          enhancementEnabled="true"
+          lazyLoadingEnabled="false"
+          maxRequests="256"
+          maxSessions="256"
+          maxTransactions="150"
+          useStatementNamespaces="true"
+          />   
+  
+  <sqlMap resource="ibatis/draco_role_copy_count.xml"/>
+  <sqlMap resource="ibatis/draco_role_copy_line_reward.xml"/>
+  <sqlMap resource="ibatis/draco_role_copy_line_score.xml"/>
+  <sqlMap resource="ibatis/draco_role_nostrum.xml"/>
+  <sqlMap resource="ibatis/draco_role_hero.xml"/>
+  <sqlMap resource="ibatis/draco_role_hero_status.xml"/>
+  <sqlMap resource="ibatis/draco_role_skill.xml"/>
+  <sqlMap resource="ibatis/draco_role_pet.xml"/>
+  <sqlMap resource="ibatis/draco_role_horse.xml"/>
+  <sqlMap resource="ibatis/draco_role_horse_skill.xml"/>
+  <sqlMap resource="ibatis/draco_role_richman.xml"/>
+  <sqlMap resource="ibatis/draco_role_async_arena.xml"/>
+  <sqlMap resource="ibatis/draco_role_target.xml"/>
+  <sqlMap resource="ibatis/draco_qualify_rank.xml"/>
+  <sqlMap resource="ibatis/draco_qualify_robot.xml"/>
+  <sqlMap resource="ibatis/draco_role_quest_poker.xml"/>
+  <sqlMap resource="ibatis/draco_role_quest.xml"/>
+  <sqlMap resource="ibatis/draco_social_relation.xml"/>
+  <!-- <sqlMap resource="ibatis/draco_role_quest_finished.xml"/> -->
+  <sqlMap resource="ibatis/draco_role_quest_daily_finished.xml"/>
+  
+  <!-- 以下是旧系统文件 -->
+  <sqlMap resource="ibatis/easter_role.xml"/>
+  <sqlMap resource="ibatis/easter_role_buff.xml"/>
+
+  <sqlMap resource="ibatis/easter_role_goods.xml"/>
+  
+  <sqlMap resource="ibatis/draco_role_charge.xml"/>
+  <sqlMap resource="ibatis/easter_rate.xml"/>
+  <sqlMap resource="ibatis/easter_public_announce.xml"/>
+
+  <sqlMap resource="ibatis/easter_role_setting.xml"/>
+  <sqlMap resource="ibatis/easter_role_arena.xml"/>
+  
+  <sqlMap resource="ibatis/draco_role_mail.xml"/>
+  <sqlMap resource="ibatis/draco_role_mail_accessory.xml"/>
+  <sqlMap resource="ibatis/draco_role_mail_goods.xml"/>
+  
+  <sqlMap resource="ibatis/draco_role_pay.xml"/>
+  <sqlMap resource="ibatis/draco_role_exchange.xml"/>
+  <sqlMap resource="ibatis/easter_role_count.xml"/>
+  <sqlMap resource="ibatis/draco_role_discount.xml"/>
+  
+  <sqlMap resource="ibatis/easter_role_title.xml"/>
+  <!-- 排行榜相关 -->
+  <sqlMap resource="ibatis/draco_role_rank.xml"/>
+  <sqlMap resource="ibatis/draco_ranklog.xml"/>
+  
+  
+  <sqlMap resource="ibatis/easter_recoup.xml"/>
+  <!-- new vip system  -->
+  <sqlMap resource="ibatis/draco_role_vip.xml"/>
+  <!--
+  <sqlMap resource="ibatis/easter_faction_contribute.xml"/>
+  <sqlMap resource="ibatis/easter_faction_integral_log.xml"/>
+  <sqlMap resource="ibatis/easter_faction_role.xml"/>
+  <sqlMap resource="ibatis/easter_faction.xml"/>
+  <sqlMap resource="ibatis/easter_faction_record.xml"/>
+  <sqlMap resource="ibatis/easter_faction_war.xml"/> 
+  <sqlMap resource="ibatis/easter_faction_war_gamble.xml"/> 
+  -->
+  <sqlMap resource="ibatis/easter_summon.xml"/>
+ 
+  
+  <sqlMap resource="ibatis/easter_arena1v1_realtime.xml"/>
+  
+  <sqlMap resource="ibatis/easter_role_carnival_rank.xml"/>
+  <sqlMap resource="ibatis/easter_role_carnival.xml"/>
+  
+  <sqlMap resource="ibatis/draco_role_shop_secret.xml"/>
+  
+  <sqlMap resource="ibatis/easter_role_drama.xml"/>
+  
+  <sqlMap resource="ibatis/easter_camp_boom.xml"/>
+  
+  <sqlMap resource="ibatis/draco_union.xml"/>
+  
+  <sqlMap resource="ibatis/draco_union_member.xml"/>
+   
+  <sqlMap resource="ibatis/draco_union_record.xml"/>
+  
+  <sqlMap resource="ibatis/draco_union_dkp.xml"/>
+  
+  <sqlMap resource="ibatis/draco_union_role_dps_record.xml"/>
+  
+  <sqlMap resource="ibatis/draco_union_activity.xml" />
+  
+  <sqlMap resource="ibatis/draco_union_activity_boss_record.xml"/>
+  
+  <sqlMap resource="ibatis/draco_union_kill_boss_record.xml"/>
+  
+  <sqlMap resource="ibatis/draco_union_auction.xml"/>
+  
+  <sqlMap resource="ibatis/draco_union_role_auction.xml"/>
+  
+  <sqlMap resource="ibatis/draco_role_choice_card.xml"/>
+  
+  <sqlMap resource="ibatis/draco_role_choice_card_luck.xml"/>
+  
+  <sqlMap resource="ibatis/draco_role_dailyplay.xml"/>
+  <!-- 商城 -->
+  <sqlMap resource="ibatis/draco_role_shop.xml"/>
+  
+  <!-- 运营活动 -->
+  <sqlMap resource="ibatis/draco_role_operate.xml"/>
+  
+   <sqlMap resource="ibatis/draco_donate_world.xml"/>
+   
+   <sqlMap resource="ibatis/draco_donate_role.xml"/>
+  <!-- 一键追回 --> 
+  <sqlMap resource="ibatis/draco_role_recovery.xml"/>
+  <!-- 天赋 -->
+  <sqlMap resource="ibatis/draco_role_talent.xml"/>
+  <!-- 公会战 -->
+  <sqlMap resource="ibatis/draco_union_battle.xml"/>
+  <sqlMap resource="ibatis/draco_union_battle_rank.xml"/>
+    <sqlMap resource="ibatis/draco_role_tower_gate.xml"/>
+  <!-- 公会积分战 -->
+  <sqlMap resource="ibatis/draco_union_integral_battle_rank.xml"/>
+  <sqlMap resource="ibatis/draco_union_integral_battle_state.xml"/>
+  
+  
+</sqlMapConfig>

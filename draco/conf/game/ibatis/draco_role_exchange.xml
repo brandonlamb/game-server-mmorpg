@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="ExchangeDbInfo" >
+	 <typeAlias alias="exchangeDbInfo" type="com.game.draco.app.exchange.domain.ExchangeDbInfo"/>
+   <insert id="insert" parameterClass="exchangeDbInfo" >
+    insert into draco_role_exchange 
+    (id, roleId, times, lastExTime, expiredTime)
+    values 
+    (#id#, #roleId#, #times#, #lastExTime#, #expiredTime#)
+  </insert>
+  
+  <select id="selectListOne" resultClass="exchangeDbInfo" parameterClass="java.util.Map">
+  	select * from draco_role_exchange where $key$ = #value#
+  </select>
+  
+  <update id="update" parameterClass="exchangeDbInfo" >
+    update draco_role_exchange
+    set
+		times=#times#,
+		lastExTime=#lastExTime#,
+		expiredTime=#expiredTime#
+  	where id= #id# and roleId=#roleId#
+  </update>
+  
+  <delete id="deleteTwo" parameterClass="java.util.Map" >
+    delete from draco_role_exchange
+    where $key1$ = #value1# and $key2$ = #value2#
+  </delete>
+</sqlMap> 

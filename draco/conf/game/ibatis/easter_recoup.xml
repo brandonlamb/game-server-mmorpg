@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="Recoup" >
+ <typeAlias alias="recoup" type="sacred.alliance.magic.app.recoup.Recoup"/>
+ 
+  <insert id="insert" parameterClass="sacred.alliance.magic.app.recoup.Recoup" >
+    insert into easter_recoup 
+    (id, senderName, title, context,bindMoney,gameMoney,goodsInfo,startTime,endTime,channelId)
+    values 
+    (#id#, #senderName#, #title#, #context#,#bindMoney#,#gameMoney#,#goodsInfo#,#startTime#,#endTime#,#channelId#)
+    <selectKey resultClass="int" keyProperty="id" >
+      SELECT @@IDENTITY AS id
+    </selectKey>
+  </insert>
+  
+  <select id="selectObjectOne" parameterClass="java.util.Map" resultClass="recoup">
+    select * from easter_recoup where $key$ = #value#
+  </select>
+  
+  <select id="selectListOne" parameterClass="java.util.Map" resultClass="recoup">
+    select * from easter_recoup where $key$ = #value#
+  </select>
+  
+  <select id="selectListTwo" parameterClass="java.util.Map" resultClass="recoup">
+  	select * from easter_recoup where $key1$ = #value1# and $key2$ = #value2#
+  </select>
+  
+  <select id="selectAll" resultClass="recoup">
+    select * from easter_recoup 
+  </select>
+  
+  <update id="update" parameterClass="sacred.alliance.magic.app.recoup.Recoup" >
+    update easter_recoup
+    set
+		senderName=#senderName#,
+		title=#title#,
+		context=#context#,
+		bindMoney=#bindMoney#,
+		gameMoney=#gameMoney#,
+		goodsInfo=#goodsInfo#,
+		startTime=#startTime#,
+		endTime=#endTime#,
+		channelId=#channelId#
+  	where id=#id#
+  </update>
+  
+  <delete id="deleteOne" parameterClass="java.util.Map" >
+    delete from easter_recoup
+    where $key$ = #value#
+  </delete>
+  
+  <delete id="del2str" parameterClass="java.util.Map" >
+    delete from easter_recoup
+    where $key$ in ( $value$ )
+  </delete>
+
+  
+</sqlMap>

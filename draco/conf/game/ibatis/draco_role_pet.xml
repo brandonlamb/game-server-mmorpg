@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap namespace="RolePet">
+	<typeAlias alias="rolePet" type="com.game.draco.app.pet.domain.RolePet" />
+
+	<insert id="insert" parameterClass="rolePet">
+		insert into draco_role_pet
+		(masterId,petId,level,exp,star,starProgress,score,mosaic) values
+		(#masterId#,#petId#,#level#,#exp#,#star#,#starProgress#,#score#,#mosaic#)
+	</insert>
+
+	<select id="selectObjectTwo" parameterClass="java.util.Map" resultClass="rolePet">
+		select * from draco_role_pet where $key1$ = #value1# and $key2$ = #value2#
+	</select>
+
+	<select id="selectListOne" parameterClass="java.util.Map" resultClass="rolePet">
+		select * from draco_role_pet where $key$ = #value#
+	</select>
+
+	<update id="update" parameterClass="rolePet">
+		update draco_role_pet set 
+			level=#level#, 
+			exp=#exp#, 
+			star=#star#,
+			starProgress=#starProgress#, 
+			mosaic=#mosaic#, 
+			score=#score#
+		where masterId=#masterId# and petId=#petId#
+	</update>
+
+	<delete id="deleteTwo" parameterClass="java.util.Map">
+		delete from draco_role_pet where $key1$ = #value1# and $key2$ = #value2#
+	</delete>
+
+</sqlMap>

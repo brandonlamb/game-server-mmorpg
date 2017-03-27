@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<bean id="arenaApp" class="sacred.alliance.magic.app.arena.ArenaAppImpl">
+	</bean>
+	
+	<bean id="arena1V1App" class="sacred.alliance.magic.app.arena.Arena1V1AppImpl">
+	</bean>
+	
+	<bean id="arena3V3App" class="sacred.alliance.magic.app.arena.Arena3V3AppImpl">
+	</bean>
+	
+	
+	<bean id="arenaTopApp" class="sacred.alliance.magic.app.arena.top.ArenaTopAppImpl">
+	</bean>
+	
+	<bean id="arenaLearnApp" class="sacred.alliance.magic.app.arena.learn.ArenaLearnAppImpl">
+	</bean>
+	
+</beans>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	
+	<!-- 活动 -->
+	<bean id="activeApp" class="sacred.alliance.magic.app.active.ActiveAppImpl" autowire="byName">
+		<property name="activeAppsMap">
+			<map>
+				<entry key="0"><ref bean="activeCommonSupport"/></entry>
+				<entry key="1"><ref bean="activeDpsApp"/></entry>
+				<entry key="2"><ref bean="angelChestApp"/></entry>
+				<entry key="3"><ref bean="activeSyncArenaApp" /></entry>
+				<entry key="4"><ref bean="activeCampWarApp"/></entry>
+				<entry key="5"><ref bean="activeUnionBattleSupport"/></entry>
+				<entry key="9"><ref bean="activeUnionInstanceApp"/></entry>
+				<entry key="10"><ref bean="activeRichmanApp"/></entry>
+				<entry key="11"><ref bean="activeAsyncArenaApp"/></entry>
+				<entry key="12"><ref bean="activePetFightAppImpl"/></entry>
+				<entry key="13"><ref bean="activeHeroArenaAppImpl"/></entry>
+				<entry key="14"><ref bean="activeAlchemyAppImpl"/></entry>
+				<entry key="15"><ref bean="activeLuckBoxAppImpl"/></entry>
+				<entry key="16"><ref bean="activePoKerAppImpl" /></entry>
+
+				<entry key="17"><ref bean="activeMapSupport"/></entry>
+				<entry key="18"><ref bean="activeCompassApp"/></entry>
+				<!-- 3v3 -->
+				<entry key="23"><ref bean="activeArena3v3Support" /></entry>
+				<entry key="25"><ref bean="activeDarkDoorArenaSupport" /></entry>
+				<entry key="26"><ref bean="activeInsApp" /></entry>
+				<entry key="29"><ref bean="activeShopSecretApp" /></entry>
+				<entry key="30"><ref bean="activeQualifyApp" /></entry>
+				<entry key="31"><ref bean="activeGoblinApp" /></entry>
+				<entry key="32"><ref bean="activeSurvivalApp" /></entry>
+				<entry key="33"><ref bean="activeWorldBossApp" /></entry>
+				<entry key="34"><ref bean="activeUnionIntegralBattleSupport" /></entry>
+                <entry key="35"><ref bean="activeTowerSupport" /></entry>
+
+			</map>
+		</property>
+	</bean>
+	
+	<!-- 活动-0-通用显示类型的活动 -->
+	<bean id="activeCommonSupport" class="sacred.alliance.magic.app.active.common.ActiveCommonSupport" autowire="byName">
+	</bean>
+	
+	<!-- 活动-1-BossDPS -->
+	<bean id="activeDpsApp" class="sacred.alliance.magic.app.active.dps.ActiveDpsAppImpl" autowire="byName"></bean>
+	
+	<!-- 活动-2-AngelChest 神仙福地 -->
+	<bean id="angelChestApp" class="sacred.alliance.magic.app.active.angelchest.AngelChestAppImpl" autowire="byName"></bean>
+	
+	<!-- 活动-3-ActiveSyncArenaApp 同步竞技场 -->
+	<bean id="activeSyncArenaApp" class="sacred.alliance.magic.app.active.syncarena.ActiveSyncArenaAppImpl" autowire="byName"></bean>
+	
+	<!-- 活动-4-CampWarApp 阵营战 -->
+	<bean id="activeCampWarApp" class="sacred.alliance.magic.app.active.campwar.ActiveCampWarAppImpl" autowire="byName"></bean>
+	
+	<!-- 活动-5-UnionBattleApp 公会战 -->
+	<bean id="activeUnionBattleSupport" class="sacred.alliance.magic.app.active.unionbattle.ActiveUnionBattleSupport" autowire="byName"></bean>
+	
+	<!-- 活动-7-个人副本-->
+
+	<!-- 活动-8-组队副本-->
+	
+	<!-- 活动-9-公会副本-->
+	<bean id="activeUnionInstanceApp" class="sacred.alliance.magic.app.active.union.ActiveUnionInstanceAppImpl" autowire="byName">
+	</bean>
+	
+	<!-- 活动-10-大富翁 -->
+	<bean id="activeRichmanApp" class="sacred.alliance.magic.app.active.richman.ActiveRichmanAppImpl" autowire="byName">
+	</bean>
+	
+	<!-- 活动-11-异步竞技场 -->
+	<bean id="activeAsyncArenaApp" class="sacred.alliance.magic.app.active.asyncarena.ActiveAsyncArenaAppImpl" autowire="byName"></bean>
+	
+	<!-- 活动-12-宠物 -->
+	<bean id="activePetFightAppImpl" class="sacred.alliance.magic.app.active.pet.ActivePetFightAppImpl" autowire="byName"></bean>
+	
+	<!-- 活动-13-英雄试炼 -->
+	<bean id="activeHeroArenaAppImpl" class="sacred.alliance.magic.app.active.heroarena.ActiveHeroArenaAppImpl" autowire="byName"></bean>
+	
+	<!-- 活动-14-炼金 -->
+	<bean id="activeAlchemyAppImpl" class="sacred.alliance.magic.app.active.alchemy.ActiveAlchemyAppImpl" autowire="byName"></bean>
+	
+	<!-- 活动-15-幸运宝箱 -->
+	<bean id="activeLuckBoxAppImpl" class="sacred.alliance.magic.app.active.luckbox.ActiveLuckBoxAppImpl" autowire="byName"></bean>
+	
+	<!-- 活动-16-扑克 -->
+	<bean id="activePoKerAppImpl" class="sacred.alliance.magic.app.active.poker.ActivePoKerAppImpl" autowire="byName"></bean>
+	
+	<!-- 活动-18-上古法阵（淘宝） -->
+	<bean id="activeCompassApp" class="sacred.alliance.magic.app.active.compass.ActiveCompassAppImpl" autowire="byName"></bean>
+	
+	
+	<!-- 活动-21-排行榜 
+	<bean id="activeRankApp" class="sacred.alliance.magic.app.active.rank.ActiveRankAppImpl" autowire="byName"></bean>
+	-->
+	
+	<!-- 活动-22-怪物攻城 -->
+	<bean id="activeSiegeApp" class="sacred.alliance.magic.app.active.siege.ActiveSiegeAppImpl" autowire="byName"></bean>
+	
+	
+	<!-- 活动-14 活动地图-->
+	<bean id="activeMapSupport" class="sacred.alliance.magic.app.active.map.ActiveMapSupport" autowire="byName">
+	</bean>
+	
+	<!-- 23 本服3v3 -->
+	<bean id="activeArena3v3Support" class="sacred.alliance.magic.app.active.syncarena.ActiveArena3v3Support" autowire="byName"></bean>
+	
+	
+	<!-- 25 跨服3v3 -->
+	<bean id="activeDarkDoorArenaSupport" class="sacred.alliance.magic.app.active.syncarena.ActiveDarkDoorArenaSupport" autowire="byName"></bean>
+	
+	<!-- 活动-26-副本活动 -->
+	<bean id="activeInsApp" class="sacred.alliance.magic.app.active.ins.ActiveInsAppImpl" autowire="byName"></bean>
+	
+	<!-- 活动-29-神秘商店 -->
+	<bean id="activeShopSecretApp" class="sacred.alliance.magic.app.active.shopsecret.ActiveShopSecretAppImpl" autowire="byName"></bean>
+	
+	<!-- 活动-30-排位赛 -->
+	<bean id="activeQualifyApp" class="sacred.alliance.magic.app.active.qualify.ActiveQualifyAppImpl" autowire="byName"></bean>
+	<!-- 活动-31-哥布林-->
+	<bean id="activeGoblinApp" class="sacred.alliance.magic.app.active.goblin.ActiveGoblinAppImpl" autowire="byName"></bean>
+	<!-- 活动-32-生存战场-->
+	<bean id="activeSurvivalApp" class="sacred.alliance.magic.app.active.survival.ActiveSurvivalAppImpl" autowire="byName"></bean>
+	<!-- 活动-33-世界BOSS -->
+	<bean id="activeWorldBossApp" class="sacred.alliance.magic.app.active.worldboss.ActiveWorldBossAppImpl" autowire="byName"></bean>
+	<!-- 活动-34-公会积分战 -->
+	<bean id="activeUnionIntegralBattleSupport" class="sacred.alliance.magic.app.active.unionbattle.ActiveUnionIntegralBattleSupport" autowire="byName"></bean>
+    <!-- 35 爬塔-->
+    <bean id="activeTowerSupport" class="sacred.alliance.magic.app.active.tower.ActiveTowerSupport" autowire="byName"></bean>
+</beans>

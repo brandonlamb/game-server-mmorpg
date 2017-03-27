@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+	"http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="talentApp" class="com.game.draco.app.talent.TalentAppImpl">
+	</bean>
+	
+	<bean id="roleTalentApp" class="com.game.draco.app.talent.RoleTalentAppImpl">
+	</bean>
+	
+	
+</beans>

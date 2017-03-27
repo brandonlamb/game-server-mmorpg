@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+
+<sqlMap namespace="RoleChoiceCard" >
+	<typeAlias alias="roleChoiceCard" type="com.game.draco.app.choicecard.domain.RoleChoiceCard"/>
+	
+	<insert id="insert" parameterClass="roleChoiceCard" >
+		insert into draco_role_choice_card
+			(roleId,type,specificType,num,freeNum,cdTime) 
+		values
+			(#roleId#,#type#,#specificType#,#num#,#freeNum#,#cdTime#)
+	</insert>
+	
+	<select id="selectObjectOne" parameterClass="java.util.Map" resultClass="roleChoiceCard">
+    	select * from draco_role_choice_card where $key$ = #value#
+ 	</select>
+ 	
+ 	<select id="selectObjectTwo" parameterClass="java.util.Map" resultClass="roleChoiceCard">
+    	select * from draco_role_choice_card where $key1$ = #value1# and $key2$ = #value2#
+ 	</select>
+ 	
+	<select id="selectListOne" parameterClass="java.util.Map" resultClass="roleChoiceCard">
+  		select * from draco_role_choice_card where $key$ = #value#
+  	</select>
+  	
+  	<select id="selectListTwo" parameterClass="java.util.Map" resultClass="roleChoiceCard">
+    	select * from draco_role_choice_card where $key1$ = #value1# and $key2$ = #value2# 
+ 	</select>
+  	
+  	<update id="update" parameterClass="roleChoiceCard">
+  		update draco_role_choice_card
+  		set 
+  			roleId=#roleId#,
+  			num=#num#,
+  			freeNum=#freeNum#,
+  			cdTime=#cdTime#
+		where
+			roleId = #roleId# and type=#type# and specificType=#specificType#
+  	</update>
+  	
+  	<delete id="deleteOne"  parameterClass="java.util.Map">
+  		delete from draco_role_choice_card where $key$ = #value#
+  	</delete>
+  	
+  	<delete id="deleteTwo"  parameterClass="java.util.Map">
+  		delete from draco_role_choice_card where $key1$ = #value1# and $key2$ = #value2#
+  	</delete>
+  	
+</sqlMap>
